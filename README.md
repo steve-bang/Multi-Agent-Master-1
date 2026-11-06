@@ -24,4 +24,10 @@ npm run lint && npx tsc --noEmit && npm test
 - Giới hạn: cây tối đa 4 cấp; tối đa 500 trang mỗi space; tiêu đề tối đa 200 ký tự; slug tối đa 80 ký tự (`a-z0-9` và `-`).
 - Slug tự sinh từ tiêu đề (bỏ dấu, `đ`->`d`), trùng trong space thì thêm `-2`, `-3`...; đổi tiêu đề không đổi slug.
 - Xóa trang có trang con cần `DELETE /api/pages/:id?confirm=1` (không có thì 400 `CONFIRM_REQUIRED` kèm `childCount`), xóa cả cây.
-- Chưa làm: xóa space, soạn Markdown, xuất bản, tìm kiếm.
+- Chưa làm: xóa space, xuất bản, tìm kiếm.
+
+## Soạn Markdown và xem trước (REQ-005)
+- `PATCH /api/pages/:pid` nhận `title` và/hoặc `bodyMd` (một transaction); `GET /api/pages/:pid` trả `bodyMd`; `POST /api/preview {bodyMd}` trả `{html}` đã làm sạch.
+- Giới hạn nội dung: 200 KB (byte UTF-8) mỗi trang và mỗi lần xem trước; vượt thì 400 `TOO_LARGE` (cả khi vượt giới hạn body 1 MB của server).
+- Render dùng một hàm duy nhất `src/render/markdown.ts` (markdown-it `html:false` + sanitize-html): chỉ http/https/mailto, ảnh chỉ http/https (chèn bằng URL, không upload), link có `rel="noopener noreferrer nofollow"`, không có `on*`/`style`. Markdown gốc được lưu, làm sạch khi render.
+- Studio: xem trước nằm trong `<iframe sandbox="">` (không script); CSP thêm `img-src 'self' http: https:`. Lưu thủ công, cảnh báo khi rời trang chưa lưu.
