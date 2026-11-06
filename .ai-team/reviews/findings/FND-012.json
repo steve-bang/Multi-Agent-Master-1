@@ -1,0 +1,28 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "22c0ab4ce9dbf6526d6dc32459ffacdb500e76a5",
+  "severity": "LOW",
+  "category": "docs",
+  "file": ".ai-team/architecture/api-contracts/vn-docs-platform.md",
+  "line": 43,
+  "description": "H\u1ee3p \u0111\u1ed3ng c\u00f2n ghi 'PATCH ch\u1ec9 nh\u1eadn title; bodyMd s\u1ebd th\u00eam \u1edf T-007', m\u00e2u thu\u1eabn m\u1ee5c c\u1eadp nh\u1eadt sau T-007.",
+  "expected": "H\u1ee3p \u0111\u1ed3ng nh\u1ea5t qu\u00e1n.",
+  "action": "C\u1eadp nh\u1eadt d\u00f2ng 43.",
+  "acceptance": "Kh\u00f4ng c\u00f2n c\u00e2u m\u00e2u thu\u1eabn.",
+  "task": "T-007",
+  "id": "FND-012",
+  "kind": "finding",
+  "status": "DISPOSITIONED",
+  "created": "2026-11-06T04:41:11Z",
+  "original_sha": "22c0ab4ce9dbf6526d6dc32459ffacdb500e76a5",
+  "history": [
+    {
+      "at": "2026-11-06T04:41:11Z",
+      "from": "OPEN",
+      "to": "DISPOSITIONED",
+      "sha": null,
+      "evidence": null
+    }
+  ],
+  "disposition": "\u0110\u00e3 s\u1eeda t\u00e0i li\u1ec7u: d\u00f2ng 43 h\u1ee3p \u0111\u1ed3ng API c\u1eadp nh\u1eadt nh\u1ea5t qu\u00e1n. Ch\u1ec9 \u0111\u1ed5i t\u00e0i li\u1ec7u, kh\u00f4ng \u0111\u1ed5i m\u00e3."
+}

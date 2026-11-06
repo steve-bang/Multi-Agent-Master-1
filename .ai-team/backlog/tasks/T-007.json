@@ -12,9 +12,13 @@
     "AC REQ-005 pass; XSS b\u1ecb ch\u1eb7n c\u00f3 test"
   ],
   "expected_outputs": [],
-  "status": "IN_REVIEW",
+  "status": "REVISION",
   "related_pr": null,
-  "related_findings": [],
+  "related_findings": [
+    "FND-010",
+    "FND-011",
+    "FND-012"
+  ],
   "related_bugs": [],
   "requirements": [
     "REQ-005"
@@ -61,6 +65,13 @@
       "to": "IN_REVIEW",
       "by": "orchestrator",
       "note": null
+    },
+    {
+      "at": "2026-11-06T04:41:11Z",
+      "from": "IN_REVIEW",
+      "to": "REVISION",
+      "by": "orchestrator",
+      "note": "FND-010, FND-011"
     }
   ]
 }

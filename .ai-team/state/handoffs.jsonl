@@ -23,3 +23,4 @@
 {"at": "2026-11-06T04:32:18Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-007", "type": "delegation", "summary": "I-4 so\u1ea1n Markdown + xem tr\u01b0\u1edbc, \u1ea3nh b\u1eb1ng URL"}
 {"at": "2026-11-06T04:38:49Z", "from": "senior-fullstack-dev", "to": "orchestrator", "task": "T-007", "type": "report", "summary": "REQ-005 xong; 79/79 test; UI ch\u01b0a test tr\u00ecnh duy\u1ec7t th\u1eadt; CSP img http:"}
 {"at": "2026-11-06T04:38:49Z", "from": "orchestrator", "to": "reviewer", "task": "T-007", "type": "delegation", "summary": "Review T-007 t\u1ea1i 895c22169bb726d7cbccc5c1743438b171ff56fc"}
+{"at": "2026-11-06T04:41:11Z", "from": "reviewer", "to": "orchestrator", "task": "T-007", "type": "finding", "summary": "CHANGES_REQUESTED: 2 MEDIUM (FND-010 sandbox test gi\u1ea3, FND-011 preview DoS), 1 LOW; Reviewer KH\u00d4NG t\u1ef1 ch\u1ea1y \u0111\u01b0\u1ee3c g\u00ec"}
