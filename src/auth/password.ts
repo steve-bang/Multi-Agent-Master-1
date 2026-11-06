@@ -5,11 +5,33 @@ const R = 8;
 const P = 1;
 const KEYLEN = 64;
 
-function derive(password: string, salt: Buffer, n: number, r: number, p: number): Promise<Buffer> {
+// Giới hạn số scrypt chạy đồng thời (mỗi tác vụ ~32MB); phần dư xếp hàng.
+export const MAX_CONCURRENT_SCRYPT = 4;
+let running = 0;
+const waiting: Array<() => void> = [];
+export const scryptStats = { peak: 0 };
+
+async function acquire(): Promise<void> {
+  if (running >= MAX_CONCURRENT_SCRYPT) await new Promise<void>((res) => waiting.push(res));
+  else running++;
+  scryptStats.peak = Math.max(scryptStats.peak, running);
+}
+function release(): void {
+  const next = waiting.shift();
+  if (next) next();
+  else running--;
+}
+
+async function derive(password: string, salt: Buffer, n: number, r: number, p: number): Promise<Buffer> {
   const opts: ScryptOptions = { N: n, r, p, maxmem: 128 * n * r * 2 };
-  return new Promise((resolve, reject) => {
-    scrypt(password.normalize('NFKC'), salt, KEYLEN, opts, (err, key) => (err ? reject(err) : resolve(key)));
-  });
+  await acquire();
+  try {
+    return await new Promise<Buffer>((resolve, reject) => {
+      scrypt(password.normalize('NFKC'), salt, KEYLEN, opts, (err, key) => (err ? reject(err) : resolve(key)));
+    });
+  } finally {
+    release();
+  }
 }
 
 export async function hashPassword(password: string): Promise<string> {
