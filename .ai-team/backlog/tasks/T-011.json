@@ -17,7 +17,7 @@
     "Test t\u1ef1 \u0111\u1ed9ng: t\u1ec9 l\u1ec7 t\u01b0\u01a1ng ph\u1ea3n c\u00e1c c\u1eb7p m\u00e0u \u0111\u1ea1t WCAG AA; to\u00e0n b\u1ed9 test c\u0169 v\u1eabn xanh"
   ],
   "expected_outputs": [],
-  "status": "IN_PROGRESS",
+  "status": "IN_REVIEW",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -26,7 +26,13 @@
   ],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T06:45:57Z",
+      "by": "senior-fullstack-dev",
+      "evidence": "dev 67349b6 -> fb20130; orchestrator run-checks PASS, 149/149 tests; screenshots screens-ui1"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T06:35:39Z",
@@ -44,6 +50,20 @@
       "at": "2026-11-06T06:35:39Z",
       "from": "ASSIGNED",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T06:45:57Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "senior-fullstack-dev",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T06:45:57Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
       "by": "orchestrator",
       "note": null
     }

@@ -2,13 +2,13 @@
   "version": 1,
   "project": "Multi-Agent-Master-1",
   "status": "AWAITING_FIRST_PRODUCT_IDEA",
-  "updated": "2026-11-06T05:26:16Z",
+  "updated": "2026-11-06T06:45:57Z",
   "features": {
     "vn-docs-platform": {
       "title": "N\u1ec1n t\u1ea3ng t\u00e0i li\u1ec7u ki\u1ec3u GitBook cho th\u1ecb tr\u01b0\u1eddng Vi\u1ec7t Nam",
       "branch": "ai/vn-docs-platform",
       "pr": null,
-      "head_sha": "919a0046d9490a521ac5a3b2a00b9b956ade2bef",
+      "head_sha": "c6fae730682b2f0ac076ad85a88ac7f183d6b4b0",
       "phase": "DEVELOPMENT",
       "gates": {}
     }
