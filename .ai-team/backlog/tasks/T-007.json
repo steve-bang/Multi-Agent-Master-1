@@ -17,7 +17,8 @@
   "related_findings": [
     "FND-010",
     "FND-011",
-    "FND-012"
+    "FND-012",
+    "FND-013"
   ],
   "related_bugs": [],
   "requirements": [

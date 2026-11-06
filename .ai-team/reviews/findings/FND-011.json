@@ -12,7 +12,7 @@
   "task": "T-007",
   "id": "FND-011",
   "kind": "finding",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T04:41:11Z",
   "original_sha": "22c0ab4ce9dbf6526d6dc32459ffacdb500e76a5",
   "history": [
@@ -22,7 +22,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T04:48:48Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+      "evidence": "Reviewer \u0111\u1ecdc docs.ts:53-69 (ki\u1ec3m tra+ghi \u0111\u1ed3ng b\u1ed9), test 40 song song 30/10; ch\u1ea1y l\u1ea1i vitest 108 xanh. Report T-007-a0f30e0.md"
     }
   ],
-  "fixed_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336"
+  "fixed_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "verified_by": "reviewer",
+  "verified_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336"
 }

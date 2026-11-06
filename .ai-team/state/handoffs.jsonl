@@ -28,3 +28,4 @@
 {"at": "2026-11-06T04:46:53Z", "from": "senior-fullstack-dev", "to": "orchestrator", "task": "T-007", "type": "report", "summary": "FND-010/011 \u0111\u00e3 s\u1eeda; 108/108 test; mutation sandbox v\u00e0 validateLink c\u00f3 b\u1eb1ng ch\u1ee9ng \u0111\u1ecf; ca preview 0,5s \u1edf 200KB"}
 {"at": "2026-11-06T04:46:53Z", "from": "orchestrator", "to": "tester", "task": "T-007", "type": "delegation", "summary": "Ki\u1ec3m th\u1eed T-007 t\u1ea1i c7a20614e360fcc7e26016084111cd726276cf23 b\u1eb1ng tr\u00ecnh duy\u1ec7t th\u1eadt"}
 {"at": "2026-11-06T04:46:53Z", "from": "orchestrator", "to": "reviewer", "task": "T-007", "type": "delegation", "summary": "Re-review FND-010/011 t\u1ea1i c7a20614e360fcc7e26016084111cd726276cf23"}
+{"at": "2026-11-06T04:48:48Z", "from": "reviewer", "to": "orchestrator", "task": "T-007", "type": "finding", "summary": "Re-review: FND-010/011 verified; FND-013 MEDIUM m\u1edbi (429 l\u00e0m m\u1ea5t focus); ch\u1edd Tester"}

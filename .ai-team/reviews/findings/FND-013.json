@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "severity": "MEDIUM",
+  "category": "ux",
+  "file": "src/render/studio-page.ts",
+  "line": 70,
+  "description": "Ng\u01b0\u1ee1ng 30 request/ph\u00fat cho /api/preview \u0111i c\u00f9ng debounce 300 ms ki\u1ec3u trailing: ng\u01b0\u1eddi g\u00f5 c\u00f3 nh\u1ecbp d\u1eebng >300 ms m\u1ed7i ~2 gi\u00e2y s\u1ebd ch\u1ea1m ng\u01b0\u1ee1ng. Khi nh\u1eadn 429, err(x) hi\u1ec7n l\u1ed7i v\u00e0 g\u1ecdi msg.focus() l\u00e0m m\u1ea5t focus kh\u1ecfi textarea gi\u1eefa l\u00fac g\u00f5; client kh\u00f4ng t\u1ef1 th\u1eed l\u1ea1i n\u00ean xem tr\u01b0\u1edbc \u0111\u1ee9ng y\u00ean. K\u1ebft lu\u1eadn t\u1eeb \u0111\u1ecdc m\u00e3, ch\u01b0a ch\u1ea1y tr\u00ean tr\u00ecnh duy\u1ec7t.",
+  "expected": "B\u1ecb rate limit khi \u0111ang so\u1ea1n kh\u00f4ng l\u00e0m m\u1ea5t focus v\u00e0 kh\u00f4ng l\u00e0m h\u1ecfng so\u1ea1n th\u1ea3o; xem tr\u01b0\u1edbc t\u1ef1 ph\u1ee5c h\u1ed3i sau Retry-After.",
+  "action": "V\u1edbi 429 tr\u00ean preview: kh\u00f4ng g\u1ecdi focus, hi\u1ec7n th\u00f4ng b\u00e1o nh\u1eb9 (aria-live) v\u00e0 t\u1ef1 th\u1eed l\u1ea1i sau Retry-After; v\u00e0/ho\u1eb7c n\u00e2ng ng\u01b0\u1ee1ng ho\u1eb7c debounce d\u00e0i h\u01a1n khi g\u1ea7n ng\u01b0\u1ee1ng. Th\u00eam test h\u00e0nh vi client.",
+  "acceptance": "M\u00f4 ph\u1ecfng 429 li\u00ean ti\u1ebfp: textarea gi\u1eef focus, xem tr\u01b0\u1edbc c\u1eadp nh\u1eadt l\u1ea1i sau Retry-After; Reviewer x\u00e1c minh tr\u00ean SHA m\u1edbi.",
+  "task": "T-007",
+  "id": "FND-013",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:48:48Z",
+  "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "history": []
+}
