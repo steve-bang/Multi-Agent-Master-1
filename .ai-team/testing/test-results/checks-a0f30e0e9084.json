@@ -1,0 +1,36 @@
+{
+  "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "at": "2026-11-06T04:46:33Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 502ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 524ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 561ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 30 request/ph\u00fat/user: request th\u1ee9 31 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 409ms\n \u2713 test/integration/auth-hardening.test.ts (16 tests) 7601ms\n   \u2713 FND-001 race kh\u00f3a \u0111\u0103ng nh\u1eadp > 20 login sai song song: \u0111\u00fang 5 x 401, 15 x 429, 5 d\u00f2ng login_attempts 482ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > 5 l\u1ea7n sai t\u1eeb IP A kh\u00f4ng kh\u00f3a \u0111\u0103ng nh\u1eadp \u0111\u00fang t\u1eeb IP B 740ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > register tr\u1ea3 429 khi v\u01b0\u1ee3t 10 l\u1ea7n/15 ph\u00fat t\u1eeb c\u00f9ng IP, IP kh\u00e1c v\u1eabn \u0111\u01b0\u1ee3c 1176ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > X-Forwarded-For b\u1ecb b\u1ecf qua m\u1eb7c \u0111\u1ecbnh; d\u00f9ng \u0111\u01b0\u1ee3c khi trustProxy b\u1eadt 1452ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > s\u1ed1 scrypt ch\u1ea1y \u0111\u1ed3ng th\u1eddi kh\u00f4ng v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 529ms\n   \u2713 FND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 834ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 734ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 575ms\n\n Test Files  8 passed (8)\n      Tests  108 passed (108)\n   Start at  04:46:16\n   Duration  8.34s (transform 472ms, setup 0ms, collect 2.12s, tests 20.06s, environment 1ms, prepare 550ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 501ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 456ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 555ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 30 request/ph\u00fat/user: request th\u1ee9 31 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 343ms\n \u2713 test/integration/auth-hardening.test.ts (16 tests) 7360ms\n   \u2713 FND-001 race kh\u00f3a \u0111\u0103ng nh\u1eadp > 20 login sai song song: \u0111\u00fang 5 x 401, 15 x 429, 5 d\u00f2ng login_attempts 485ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > 5 l\u1ea7n sai t\u1eeb IP A kh\u00f4ng kh\u00f3a \u0111\u0103ng nh\u1eadp \u0111\u00fang t\u1eeb IP B 712ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > register tr\u1ea3 429 khi v\u01b0\u1ee3t 10 l\u1ea7n/15 ph\u00fat t\u1eeb c\u00f9ng IP, IP kh\u00e1c v\u1eabn \u0111\u01b0\u1ee3c 1191ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > X-Forwarded-For b\u1ecb b\u1ecf qua m\u1eb7c \u0111\u1ecbnh; d\u00f9ng \u0111\u01b0\u1ee3c khi trustProxy b\u1eadt 1431ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > s\u1ed1 scrypt ch\u1ea1y \u0111\u1ed3ng th\u1eddi kh\u00f4ng v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 449ms\n   \u2713 FND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 779ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 708ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 571ms\n\n Test Files  7 passed (7)\n      Tests  107 passed (107)\n   Start at  04:46:25\n   Duration  8.00s (transform 439ms, setup 0ms, collect 1.88s, tests 19.61s, environment 1ms, prepare 404ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}

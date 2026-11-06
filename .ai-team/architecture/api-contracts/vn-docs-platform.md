@@ -53,3 +53,8 @@ Ghi chú: slug trang trùng trong cùng space được thêm hậu tố `-2`; đ
 - POST /api/preview `{bodyMd}` -> 200 `{html}` (HTML đã sanitize, không gắn với trang; cần đăng nhập + Origin hợp lệ).
 - Body > 1 MB và lỗi Fastify 4xx khác trả envelope tiếng Việt; 5xx trả INTERNAL.
 - CSP hiện tại: default-src 'self'; img-src 'self' http: https:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'. (Thiết kế cũ ghi chỉ https; đang chờ quyết định giữ http: hay không.)
+
+## Cập nhật sau sửa T-007 (mã tại a0f30e0)
+- POST /api/preview giới hạn 30 request/phút/user (cửa sổ cố định, in-memory, một tiến trình); vượt trả 429 `PREVIEW_RATE_LIMITED` + `Retry-After`.
+- CSP: `img-src 'self' https:` khi NODE_ENV=production, thêm `http:` khi không phải production.
+- Lỗi 5xx: client nhận envelope `INTERNAL`; chi tiết chỉ ghi log phía server.
