@@ -287,6 +287,20 @@ describe('REQ-004 phân quyền và bảo vệ', () => {
     expect((app.db.prepare('SELECT title FROM pages').get() as { title: string }).title).toBe('P');
   });
 
+  it('BUG-001 DELETE có Content-Type json nhưng không body (đúng như client gửi) -> 204; script không gửi header khi không body', async () => {
+    const { app, a, call, } = await setup();
+    const sp = (await call(a, 'POST', '/api/spaces', { title: 'S' })).json().space.id as number;
+    const p = (await call(a, 'POST', `/api/spaces/${sp}/pages`, { title: 'P' })).json().page.id as number;
+    const r = await app.inject({ method: 'DELETE', url: `/api/pages/${p}`, headers: { ...a, 'content-type': 'application/json' } });
+    expect(r.statusCode).toBe(204);
+    const js = (await app.inject({ method: 'GET', url: '/assets/studio.js', headers: a })).body;
+    expect(js).toMatch(/if\(body\)\{o\.headers=\{'Content-Type':'application\/json'\}/);
+    // JSON hỏng vẫn bị từ chối bằng envelope tiếng Việt
+    const bad = await app.inject({ method: 'POST', url: '/api/spaces', headers: { ...a, 'content-type': 'application/json' }, payload: '{x' });
+    expect(bad.statusCode).toBe(400);
+    expect(bad.json().error.message).toBe('Dữ liệu không hợp lệ.');
+  });
+
   it('REQ-004 /studio hiển thị khung quản lý bằng tiếng Việt, có script ngoài (CSP không cho inline)', async () => {
     const { app, a } = await setup();
     const r = await app.inject({ method: 'GET', url: '/studio', headers: a });

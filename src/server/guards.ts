@@ -14,6 +14,10 @@ const SAFE = new Set(['GET', 'HEAD', 'OPTIONS']);
 export function registerGlobalGuards(app: FastifyInstance): void {
   app.decorateRequest('user', null);
   app.addHook('onRequest', async (req, reply) => {
+    // Client có thể gửi Content-Type: application/json cho request không body (vd. DELETE): coi như không có body,
+    // nếu không Fastify trả 400 FST_ERR_CTP_EMPTY_JSON_BODY.
+    const cl = req.headers['content-length'];
+    if ((cl === undefined || cl === '0') && !req.headers['transfer-encoding']) delete req.headers['content-type'];
     if (SAFE.has(req.method)) return;
     let ok = false;
     if (req.headers.origin) {

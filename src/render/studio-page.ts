@@ -14,9 +14,10 @@ var cur=null;
 function el(tag,text,attrs){var e=document.createElement(tag);if(text!=null)e.textContent=text;
 for(var k in(attrs||{}))e.setAttribute(k,attrs[k]);return e;}
 function btn(label,fn){var b=el('button',label,{type:'button'});b.addEventListener('click',fn);return b;}
-function api(method,url,body){return fetch(url,{method:method,credentials:'same-origin',
-headers:{'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined})
-.then(function(r){return r.text().then(function(x){var j={};try{j=x?JSON.parse(x):{};}catch(e){}return {ok:r.ok,status:r.status,j:j};});});}
+function api(method,url,body,signal){var o={method:method,credentials:'same-origin',signal:signal};
+if(body){o.headers={'Content-Type':'application/json'};o.body=JSON.stringify(body);}
+return fetch(url,o)
+.then(function(r){return r.text().then(function(x){var j={};try{j=x?JSON.parse(x):{};}catch(e){}return {ok:r.ok,status:r.status,j:j,retry:parseInt(r.headers.get('Retry-After'),10)||0};});});}
 var msg=el('div',null,{role:'alert',tabindex:'-1'});msg.hidden=true;
 function err(x){msg.textContent=(x&&x.j&&x.j.error&&x.j.error.message)||S['error.network'];msg.hidden=false;msg.focus();}
 function ok(){msg.hidden=true;msg.textContent='';}
