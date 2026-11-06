@@ -20,9 +20,45 @@ describe('T-007 CSP img-src theo môi trường', () => {
     expect(c).toContain("img-src 'self' https:;");
     expect(c).not.toMatch(/img-src[^;]*\shttp:/);
   });
-  it('không phải production: thêm http:', async () => {
+  it('development: thêm http:', async () => {
     process.env.NODE_ENV = 'development';
     expect(await csp()).toContain("img-src 'self' http: https:;");
+  });
+  it('không đặt NODE_ENV: coi là production (fail-closed), không có http:', async () => {
+    delete process.env.NODE_ENV;
+    const c = await csp();
+    expect(c).toContain("img-src 'self' https:;");
+    expect(c).not.toMatch(/img-src[^;]*\shttp:/);
+  });
+});
+
+describe('T-007 cờ Secure của cookie theo môi trường', () => {
+  const orig = process.env.NODE_ENV;
+  afterEach(() => {
+    process.env.NODE_ENV = orig;
+  });
+  const cookie = async (): Promise<string> => {
+    const app = buildApp(openDb(':memory:'));
+    const r = await app.inject({ method: 'POST', url: '/api/auth/register', headers: H, payload: { email: 'a@x.vn', password: 'matkhau123' } });
+    return String(r.headers['set-cookie']);
+  };
+  it('không đặt NODE_ENV -> Secure; production -> Secure; development -> không Secure', async () => {
+    delete process.env.NODE_ENV;
+    expect(await cookie()).toContain('; Secure');
+    process.env.NODE_ENV = 'production';
+    expect(await cookie()).toContain('; Secure');
+    process.env.NODE_ENV = 'development';
+    expect(await cookie()).not.toContain('Secure');
+  });
+});
+
+describe('T-007 route không tồn tại', () => {
+  it('404 envelope tiếng Việt, không phải JSON mặc định của Fastify', async () => {
+    const app = buildApp(openDb(':memory:'));
+    const r = await app.inject({ method: 'GET', url: '/khong-co-route-nay' });
+    expect(r.statusCode).toBe(404);
+    expect(r.json()).toEqual({ error: { code: 'NOT_FOUND', message: 'Không tìm thấy.' } });
+    expect(r.body).not.toContain('Route GET');
   });
 });
 

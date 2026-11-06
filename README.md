@@ -8,7 +8,7 @@ npm install
 npm run build
 SESSION_SECRET=<chuoi-ngau-nhien> DB_PATH=./data/app.db npm start   # http://localhost:3000/healthz
 ```
-Biến môi trường cần có: `SESSION_SECRET`, `DB_PATH`, `PORT` . Phiên lưu phía server (token băm SHA-256); `NODE_ENV=production` bật cờ Secure cho cookie phiên. Repo không có `.env.example`.
+Biến môi trường cần có: `SESSION_SECRET`, `DB_PATH`, `PORT` . Phiên lưu phía server (token băm SHA-256); Cờ Secure của cookie và CSP `img-src` chỉ https: được bật cho MỌI giá trị NODE_ENV khác `development` và `test` (kể cả khi không đặt: mặc định an toàn là production). Khi chạy dev qua HTTP (localhost) phải đặt `NODE_ENV=development`, ví dụ `NODE_ENV=development SESSION_SECRET=... DB_PATH=./data/app.db npm start`, nếu không trình duyệt sẽ không lưu cookie Secure qua http và ảnh http: bị chặn. Repo không có `.env.example`.
 
 ## Kiểm tra
 ```

@@ -1,6 +1,6 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { userFromSession, type AuthUser } from '../auth/service.js';
-import { COOKIE, fail, readCookie } from './http.js';
+import { COOKIE, fail, isProd, readCookie } from './http.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -34,7 +34,7 @@ export function registerGlobalGuards(app: FastifyInstance): void {
     reply.header('X-Frame-Options', 'DENY');
     reply.header('Referrer-Policy', 'same-origin');
     // Ảnh theo URL: production chỉ https:; http: chỉ để dev/test (production bị mixed content chặn).
-    const img = process.env.NODE_ENV === 'production' ? "'self' https:" : "'self' http: https:";
+    const img = isProd() ? "'self' https:" : "'self' http: https:";
     reply.header(
       'Content-Security-Policy',
       `default-src 'self'; img-src ${img}; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'`,

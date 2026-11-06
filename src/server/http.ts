@@ -24,6 +24,12 @@ export const MSG: Record<string, string> = {
   INTERNAL: t['system.error.internal'],
 };
 
+/** Fail-closed: chỉ 'development' và 'test' là môi trường dev; quên đặt NODE_ENV hoặc giá trị lạ = production. */
+export function isProd(): boolean {
+  const e = process.env.NODE_ENV;
+  return e !== 'development' && e !== 'test';
+}
+
 export function fail(reply: FastifyReply, status: number, code: string) {
   return reply.code(status).send({ error: { code, message: MSG[code] } });
 }

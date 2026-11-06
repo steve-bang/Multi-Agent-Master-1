@@ -30,6 +30,7 @@ export function buildApp(db: Db, opts: AppOptions = {}): FastifyInstance {
     if (status === 500) console.error('[server] lỗi 5xx:', err);
     return reply.code(status).send({ error: { code: status === 500 ? 'INTERNAL' : 'INVALID_INPUT', message: status === 500 ? MSG.INTERNAL : MSG.INVALID_INPUT } });
   });
+  app.setNotFoundHandler((_req, reply) => reply.code(404).send({ error: { code: 'NOT_FOUND', message: MSG.NOT_FOUND } }));
   app.register(healthRoutes);
   app.register(authRoutes);
   app.register(studioRoutes);

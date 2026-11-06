@@ -14,10 +14,10 @@ import {
   userFromSession,
 } from '../auth/service.js';
 import { authPage } from '../render/auth-pages.js';
-import { COOKIE, fail, readCookie } from '../server/http.js';
+import { COOKIE, fail, isProd, readCookie } from '../server/http.js';
 
 function setCookie(reply: FastifyReply, token: string, maxAgeSec: number): void {
-  const secure = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+  const secure = isProd() ? '; Secure' : '';
   reply.header('Set-Cookie', `${COOKIE}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secure}`);
 }
 
