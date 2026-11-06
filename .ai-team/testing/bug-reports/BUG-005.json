@@ -1,0 +1,15 @@
+{
+  "task": "T-013",
+  "sha": "fb201308f5212b38a082f53fda9895ac66536f64",
+  "severity": "LOW",
+  "title": "N\u00fat 'M\u1edf' r\u1ed9ng 39px t\u1ea1i 360px (<44px)",
+  "steps": "M\u1edf /studio \u1edf 360px khi \u0111\u00e3 c\u00f3 space, \u0111o getBoundingClientRect c\u1ee7a n\u00fat M\u1edf",
+  "expected": "V\u00f9ng ch\u1ea1m >=44x44",
+  "actual": "39x44; c\u00e1c n\u00fat/\u00f4 nh\u1eadp kh\u00e1c \u0111\u1ec1u >=44px cao",
+  "id": "BUG-005",
+  "kind": "bug",
+  "status": "OPEN",
+  "created": "2026-11-06T07:07:59Z",
+  "original_sha": "fb201308f5212b38a082f53fda9895ac66536f64",
+  "history": []
+}

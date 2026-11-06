@@ -14,7 +14,7 @@
     "Danh s\u00e1ch l\u1ec7ch thi\u1ebft k\u1ebf k\u00e8m v\u1ecb tr\u00ed v\u00e0 c\u00e1ch s\u1eeda, ho\u1eb7c x\u00e1c nh\u1eadn kh\u1edbp"
   ],
   "expected_outputs": [],
-  "status": "PENDING",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -23,12 +23,70 @@
   ],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "by": "designer",
+      "evidence": ".ai-team/design/design-reviews/T-012-fb20130.md (19 d\u00f2ng l\u1ec7ch: 15 s\u1eeda ngay, 3 ho\u00e3n UI-2)"
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "by": "orchestrator",
+      "evidence": "Orchestrator: b\u00e1o c\u00e1o c\u00f3 b\u1ea3ng l\u1ec7ch, ph\u00e2n lo\u1ea1i, gi\u00e1 tr\u1ecb s\u1eeda c\u1ee5 th\u1ec3; Designer ghi r\u00f5 ph\u1ea7n \u1ea3nh ch\u01b0a xem"
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "by": "orchestrator",
+      "evidence": "design review delivered; s\u1eeda ngay chuy\u1ec3n T-013"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T06:35:39Z",
       "to": "PENDING",
       "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "designer",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "APPROVED",
+      "to": "DONE",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }

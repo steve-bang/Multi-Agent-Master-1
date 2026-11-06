@@ -1,0 +1,55 @@
+{
+  "id": "T-013",
+  "title": "UI-1b S\u1eeda c\u00e1c l\u1ec7ch thi\u1ebft k\u1ebf m\u1ee9c 's\u1eeda ngay' v\u00e0 3 bug LOW c\u1ee7a Tester",
+  "description": "UI-1b S\u1eeda c\u00e1c l\u1ec7ch thi\u1ebft k\u1ebf m\u1ee9c 's\u1eeda ngay' v\u00e0 3 bug LOW c\u1ee7a Tester",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [
+    ".ai-team/design/design-reviews/T-012-fb20130.md",
+    ".ai-team/testing/test-results/T-011-fb20130.md"
+  ],
+  "dependencies": [
+    "T-012"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "15 m\u1ee5c 's\u1eeda ngay' c\u1ee7a Designer \u0111\u01b0\u1ee3c x\u1eed l\u00fd ho\u1eb7c c\u00f3 l\u00fd do c\u1ee5 th\u1ec3",
+    "3 bug LOW c\u1ee7a Tester \u0111\u01b0\u1ee3c s\u1eeda",
+    "Test c\u0169 v\u1eabn xanh; Tester ch\u1ee5p l\u1ea1i \u1ea3nh; Designer x\u00e1c nh\u1eadn"
+  ],
+  "expected_outputs": [],
+  "status": "IN_PROGRESS",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [
+    "BUG-005",
+    "BUG-006",
+    "BUG-007"
+  ],
+  "requirements": [
+    "REQ-007"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:07:59Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    }
+  ]
+}
