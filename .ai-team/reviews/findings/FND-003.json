@@ -12,7 +12,7 @@
   "task": "T-005",
   "id": "FND-003",
   "kind": "finding",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T04:12:54Z",
   "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
   "history": [
@@ -22,7 +22,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "deb2d7688658bef90c6096cd411faaa4abbcddfe",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T04:19:22Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "36d881bbc5520cc28bbe86d00e4d24af11a12aa5",
+      "evidence": "Reviewer re-inspected code at 36d881b; report .ai-team/reviews/review-reports/T-005-36d881b.md; FND-001/002 tests red on 6d1ff96"
     }
   ],
-  "fixed_sha": "deb2d7688658bef90c6096cd411faaa4abbcddfe"
+  "fixed_sha": "deb2d7688658bef90c6096cd411faaa4abbcddfe",
+  "verified_by": "reviewer",
+  "verified_sha": "36d881bbc5520cc28bbe86d00e4d24af11a12aa5"
 }

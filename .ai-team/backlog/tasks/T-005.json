@@ -12,7 +12,7 @@
     "AC REQ-003 pass k\u00e8m test, m\u1eadt kh\u1ea9u scrypt, kh\u00f3a 5 l\u1ea7n/15 ph\u00fat"
   ],
   "expected_outputs": [],
-  "status": "IN_REVIEW",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [
     "FND-001",
@@ -39,6 +39,16 @@
       "at": "2026-11-06T04:17:55Z",
       "by": "senior-fullstack-dev",
       "evidence": "fix commits 9ea0600,62023ed,540f68b cherry-picked to deb2d7688658bef90c6096cd411faaa4abbcddfe; orchestrator run-checks PASS, 28/28 tests"
+    },
+    {
+      "at": "2026-11-06T04:19:22Z",
+      "by": "orchestrator",
+      "evidence": "Reviewer APPROVE_RECOMMENDED at 36d881b (advisory, not GitHub approval); run-checks PASS 28/28"
+    },
+    {
+      "at": "2026-11-06T04:19:22Z",
+      "by": "orchestrator",
+      "evidence": "all FND closed by reviewer at 36d881b; checks-36d881bbc552.json"
     }
   ],
   "history": [
@@ -100,6 +110,20 @@
       "at": "2026-11-06T04:17:55Z",
       "from": "SUBMITTED",
       "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:19:22Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:19:22Z",
+      "from": "APPROVED",
+      "to": "DONE",
       "by": "orchestrator",
       "note": null
     }
