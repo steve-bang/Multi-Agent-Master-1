@@ -31,7 +31,7 @@ export function registerGlobalGuards(app: FastifyInstance): void {
     reply.header('Referrer-Policy', 'same-origin');
     reply.header(
       'Content-Security-Policy',
-      "default-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
+      "default-src 'self'; img-src 'self' http: https:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
     );
     const u = req.url;
     if (u.startsWith('/api/') || u.startsWith('/studio') || u.startsWith('/dang-')) {

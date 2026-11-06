@@ -1,6 +1,7 @@
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import * as svc from '../services/docs.js';
 import { MSG } from '../server/http.js';
+import { renderMarkdown } from '../render/markdown.js';
 import { requireAuth } from '../server/guards.js';
 
 type Id = { Params: { id?: string; pid?: string } };
@@ -40,7 +41,11 @@ export async function docsRoutes(app: FastifyInstance): Promise<void> {
     run(reply, () => ({ page: svc.getPage(app.db, uid(req), svc.parseId(req.params.pid)) })),
   );
   app.patch<Id>('/api/pages/:pid', (req, reply) =>
-    run(reply, () => ({ page: svc.renamePage(app.db, uid(req), svc.parseId(req.params.pid), body(req).title) })),
+    run(reply, () => ({ page: svc.updatePage(app.db, uid(req), svc.parseId(req.params.pid), body(req)) })),
+  );
+  // Xem trước: chỉ render, không chạm DB; dùng chung renderMarkdown với trang đọc công khai.
+  app.post('/api/preview', (req, reply) =>
+    run(reply, () => ({ html: renderMarkdown(svc.cleanBody(body(req).bodyMd)) })),
   );
   app.post<Id>('/api/pages/:pid/move', (req, reply) =>
     run(reply, () => ({ tree: svc.movePage(app.db, uid(req), svc.parseId(req.params.pid), body(req)) })),

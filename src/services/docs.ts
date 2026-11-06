@@ -4,6 +4,7 @@ export const MAX_DEPTH = 4;
 export const MAX_PAGES_PER_SPACE = 500;
 export const MAX_TITLE = 200;
 export const MAX_SLUG = 80;
+export const MAX_BODY_BYTES = 200 * 1024;
 
 export class DocsError extends Error {
   constructor(
@@ -18,6 +19,7 @@ const notFound = () => new DocsError(404, 'NOT_FOUND');
 
 export type Space = { id: number; title: string; slug: string; published: boolean };
 export type PageRow = { id: number; title: string; slug: string; parentId: number | null; position: number };
+export type PageDetail = PageRow & { bodyMd: string };
 export type TreeNode = PageRow & { children: TreeNode[] };
 
 /** Tiêu đề -> slug: bỏ dấu tiếng Việt, đ->d, chữ thường, gạch ngang. */
@@ -38,6 +40,13 @@ function cleanTitle(v: unknown): string {
   if (!s) throw new DocsError(400, 'TITLE_REQUIRED');
   if ([...s].length > MAX_TITLE) throw new DocsError(400, 'TITLE_TOO_LONG');
   return s;
+}
+
+/** bodyMd: chuỗi, tối đa 200 KB tính theo byte UTF-8. */
+export function cleanBody(v: unknown): string {
+  if (typeof v !== 'string') throw new DocsError(400, 'INVALID_INPUT');
+  if (Buffer.byteLength(v, 'utf8') > MAX_BODY_BYTES) throw new DocsError(400, 'TOO_LARGE');
+  return v;
 }
 
 function cleanSlug(v: unknown, fallbackTitle: string, fallback: string): string {
@@ -170,11 +179,12 @@ export function createPage(
   db: Db,
   owner: number,
   spaceId: number | null,
-  body: { title?: unknown; slug?: unknown; parentId?: unknown },
+  body: { title?: unknown; slug?: unknown; parentId?: unknown; bodyMd?: unknown },
 ): PageRow {
   return db.transaction(() => {
     const s = ownedSpace(db, owner, spaceId);
     const title = cleanTitle(body.title);
+    const bodyMd = body.bodyMd === undefined ? '' : cleanBody(body.bodyMd);
     const slugBase = cleanSlug(body.slug, title, 'trang');
     const parentId = parentInput(body.parentId);
     const pages = loadPages(db, s.id);
@@ -185,23 +195,33 @@ export function createPage(
     const slug = uniqueSlug(slugBase, (x) => pages.some((p) => p.slug === x));
     const position = pages.filter((p) => p.parent_id === parentId).length;
     const id = db
-      .prepare('INSERT INTO pages (space_id,parent_id,title,slug,position) VALUES (?,?,?,?,?)')
-      .run(s.id, parentId, title, slug, position).lastInsertRowid;
+      .prepare('INSERT INTO pages (space_id,parent_id,title,slug,position,body_md) VALUES (?,?,?,?,?,?)')
+      .run(s.id, parentId, title, slug, position, bodyMd).lastInsertRowid;
     return toRow(ownedPage(db, owner, Number(id)));
   })();
 }
 
-export function getPage(db: Db, owner: number, pageId: number | null): PageRow {
-  return toRow(ownedPage(db, owner, pageId));
+export function getPage(db: Db, owner: number, pageId: number | null): PageDetail {
+  const p = ownedPage(db, owner, pageId);
+  const r = db.prepare('SELECT body_md FROM pages WHERE id=?').get(p.id) as { body_md: string };
+  return { ...toRow(p), bodyMd: r.body_md };
 }
 
-/** Đổi tiêu đề; slug giữ nguyên (URL ổn định). */
-export function renamePage(db: Db, owner: number, pageId: number | null, titleIn: unknown): PageRow {
+/** Cập nhật title và/hoặc bodyMd trong một transaction (kiểm tra hết rồi mới ghi); slug giữ nguyên (URL ổn định). */
+export function updatePage(
+  db: Db,
+  owner: number,
+  pageId: number | null,
+  body: { title?: unknown; bodyMd?: unknown },
+): PageDetail {
   return db.transaction(() => {
     ownedPage(db, owner, pageId);
-    const title = cleanTitle(titleIn);
-    db.prepare('UPDATE pages SET title=? WHERE id=?').run(title, pageId);
-    return toRow(ownedPage(db, owner, pageId));
+    if (body.title === undefined && body.bodyMd === undefined) throw new DocsError(400, 'INVALID_INPUT');
+    const title = body.title === undefined ? undefined : cleanTitle(body.title);
+    const bodyMd = body.bodyMd === undefined ? undefined : cleanBody(body.bodyMd);
+    if (title !== undefined) db.prepare('UPDATE pages SET title=? WHERE id=?').run(title, pageId);
+    if (bodyMd !== undefined) db.prepare('UPDATE pages SET body_md=? WHERE id=?').run(bodyMd, pageId);
+    return getPage(db, owner, pageId);
   })();
 }
 

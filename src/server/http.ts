@@ -18,6 +18,7 @@ export const MSG: Record<string, string> = {
   CYCLE: t['docs.error.cycle'],
   TOO_MANY_PAGES: t['docs.error.too_many_pages'],
   CONFIRM_REQUIRED: t['docs.error.confirm_required'],
+  TOO_LARGE: t['docs.error.too_large'],
   INVALID_INPUT: t['docs.error.invalid_input'],
 };
 
