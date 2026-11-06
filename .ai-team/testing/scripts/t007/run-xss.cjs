@@ -84,8 +84,9 @@ const inspect = (html) => {
     const ins = await p2.evaluate(inspect, r.j.html);
     if (ins.bad.length) { apiBad++; rows.push(`API #${i + 1} FAIL ${JSON.stringify(API[i])} => ${ins.bad}`); }
   }
+  await p2.evaluate(async () => { for (let i = 0; i < 95; i++) await fetch('/api/preview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ bodyMd: 'x' }) }); });
   const r31 = await p2.evaluate(async () => { const x = await fetch('/api/preview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ bodyMd: 'x' }) }); return { s: x.status, ra: x.headers.get('retry-after') }; });
-  L.rec('4e2 request thứ 31 trong 60s bị 429 + Retry-After', r31.s === 429 && !!r31.ra, JSON.stringify(r31));
+  L.rec('4e2 request thứ 121 trong 60s bị 429 (hạn mức mới 120/phút; 30 payload+95 điền thêm=125>120 nên chỉ cần 429 + Retry-After) + Retry-After', r31.s === 429 && !!r31.ra, JSON.stringify(r31));
   // render HTML thật của API vào DOM trang (inert -> tương đương nhúng trực tiếp) để thử "nếu không có iframe": không chạy
   L.rec('4e API: ' + API.length + ' payload qua POST /api/preview: HTML trả về sạch (allowlist)', apiBad === 0, 'status=' + [...new Set(stat)] + ' fail=' + apiBad);
   L.rec('4f API: không dialog, không request evil.example', d2.log.length === 0 && !ctx2.external.some((u) => u.includes('evil.example')), JSON.stringify(ctx2.external));

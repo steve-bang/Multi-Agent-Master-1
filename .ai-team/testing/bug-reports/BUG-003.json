@@ -8,7 +8,7 @@
   "actual": "K\u1eb9t '\u0110ang l\u01b0u...', L\u01b0u disabled, kh\u00f4ng alert, console 'Failed to fetch' (promise reject kh\u00f4ng catch). L\u1ed7i HTTP 500 th\u00ec x\u1eed l\u00fd \u0111\u00fang.",
   "id": "BUG-003",
   "kind": "bug",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T04:58:44Z",
   "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
   "history": [
@@ -18,7 +18,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T05:22:47Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+      "evidence": "Tester retest tr\u00ean Chromium th\u1eadt t\u1ea1i 9d59515: run-bug1 6/6, run-rate 9/9, run-func 55/55, run-xss 12/12; report T-007-9d59515.md"
     }
   ],
-  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
+  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "verified_by": "tester",
+  "verified_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
 }

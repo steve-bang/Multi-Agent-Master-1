@@ -8,7 +8,7 @@
   "actual": "Alert 'D\u1eef li\u1ec7u kh\u00f4ng h\u1ee3p l\u1ec7.' (400), trang v\u1eabn c\u00f2n. Nguy\u00ean nh\u00e2n: api() trong src/render/studio-page.ts lu\u00f4n g\u1eedi Content-Type application/json, Fastify t\u1eeb ch\u1ed1i body r\u1ed7ng; docs.test.ts g\u1ecdi DELETE kh\u00f4ng header n\u00ean kh\u00f4ng ph\u00e1t hi\u1ec7n. C\u00f3 t\u1eeb bf17e6b (T-006).",
   "id": "BUG-001",
   "kind": "bug",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T04:58:44Z",
   "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
   "history": [
@@ -18,7 +18,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T05:22:47Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+      "evidence": "Tester retest tr\u00ean Chromium th\u1eadt t\u1ea1i 9d59515: run-bug1 6/6, run-rate 9/9, run-func 55/55, run-xss 12/12; report T-007-9d59515.md"
     }
   ],
-  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
+  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "verified_by": "tester",
+  "verified_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
 }
