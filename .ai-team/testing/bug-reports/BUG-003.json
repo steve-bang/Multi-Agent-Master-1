@@ -1,0 +1,15 @@
+{
+  "task": "T-007",
+  "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "severity": "MEDIUM",
+  "title": "L\u01b0u l\u1ed7i m\u1ea1ng: UI k\u1eb9t '\u0110ang l\u01b0u...', n\u00fat L\u01b0u disabled, kh\u00f4ng b\u00e1o l\u1ed7i (api() thi\u1ebfu catch)",
+  "steps": "S\u1eeda n\u1ed9i dung; l\u00e0m PATCH /api/pages/:id l\u1ed7i m\u1ea1ng (Playwright route.abort); b\u1ea5m L\u01b0u.",
+  "expected": "B\u00e1o l\u1ed7i m\u1ea5t k\u1ebft n\u1ed1i, n\u00fat L\u01b0u b\u1eadt l\u1ea1i \u0111\u1ec3 th\u1eed l\u1ea1i, n\u1ed9i dung gi\u1eef nguy\u00ean.",
+  "actual": "K\u1eb9t '\u0110ang l\u01b0u...', L\u01b0u disabled, kh\u00f4ng alert, console 'Failed to fetch' (promise reject kh\u00f4ng catch). L\u1ed7i HTTP 500 th\u00ec x\u1eed l\u00fd \u0111\u00fang.",
+  "id": "BUG-003",
+  "kind": "bug",
+  "status": "OPEN",
+  "created": "2026-11-06T04:58:44Z",
+  "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "history": []
+}

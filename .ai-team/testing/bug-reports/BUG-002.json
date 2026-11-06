@@ -1,0 +1,15 @@
+{
+  "task": "T-007",
+  "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "severity": "HIGH",
+  "title": "G\u00f5 b\u00ecnh th\u01b0\u1eddng ch\u1ea1m 429 c\u1ee7a /api/preview sau ~26 gi\u00e2y, focus b\u1ecb c\u01b0\u1edbp kh\u1ecfi textarea l\u00e0m m\u1ea5t k\u00fd t\u1ef1, preview \u0111\u1ee9ng y\u00ean",
+  "steps": "M\u1edf tr\u00ecnh so\u1ea1n, g\u00f5 nh\u01b0 ng\u01b0\u1eddi th\u1eadt (90 ms/k\u00fd t\u1ef1, d\u1eebng 450 ms gi\u1eefa t\u1eeb, l\u1edbn h\u01a1n debounce 300 ms) trong 60 gi\u00e2y. Script .ai-team/testing/scripts/t007/run-rate.cjs.",
+  "expected": "Preview c\u1eadp nh\u1eadt su\u1ed1t phi\u00ean so\u1ea1n; n\u1ebfu b\u1ecb gi\u1edbi h\u1ea1n th\u00ec kh\u00f4ng l\u00e0m m\u1ea5t n\u1ed9i dung \u0111ang g\u00f5.",
+  "actual": "68 request: 30x200 r\u1ed3i 38x429 (429 \u0111\u1ea7u \u1edf gi\u00e2y ~26). err() g\u1ecdi msg.focus() n\u00ean 54/304 k\u00fd t\u1ef1 g\u00f5 ti\u1ebfp b\u1ecb m\u1ea5t; preview \u0111\u1ee9ng y\u00ean \u0111\u1ebfn h\u1ebft c\u1eeda s\u1ed5; alert kh\u00f4ng t\u1ef1 \u1ea9n khi preview th\u00e0nh c\u00f4ng l\u1ea1i.",
+  "id": "BUG-002",
+  "kind": "bug",
+  "status": "OPEN",
+  "created": "2026-11-06T04:58:44Z",
+  "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "history": []
+}

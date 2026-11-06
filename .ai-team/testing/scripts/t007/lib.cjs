@@ -28,7 +28,7 @@ function dialogs(page) {
   page.on('dialog', async (d) => {
     st.log.push({ type: d.type(), msg: d.message() });
     if (d.type() === 'prompt') return d.accept(st.prompts.length ? st.prompts.shift() : '');
-    if (d.type() === 'confirm') return d.accept === undefined ? 0 : (st.confirms.length ? (st.confirms.shift() ? d.accept() : d.dismiss()) : d.accept());
+    if (d.type() === 'confirm') { const yes = st.confirms.length ? st.confirms.shift() : true; return yes ? d.accept() : d.dismiss(); }
     if (d.type() === 'beforeunload') { st.beforeunload = (st.beforeunload || 0) + 1; return st.leave === false ? d.dismiss() : d.accept(); }
     return d.dismiss(); // alert => ghi nhận bằng log
   });

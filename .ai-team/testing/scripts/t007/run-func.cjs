@@ -1,0 +1,200 @@
+const L = require('./lib.cjs');
+const fs = require('fs');
+const OUT = '/home/user/Multi-Agent-Master-1/.ai-team/testing/test-results';
+(async () => {
+  const browser = await L.chromium.launch();
+  const { ctx, external } = await L.newCtx(browser);
+  const page = await ctx.newPage();
+  const d = L.dialogs(page);
+  const cons = []; page.on('console', (m) => cons.push(m.type() + ':' + m.text())); page.on('pageerror', (e) => cons.push('pageerror:' + e.message));
+  const email = `a${L.rand()}@example.com`;
+  // (1)
+  await L.register(page, email);
+  L.rec('1a đăng ký UI -> /studio', page.url().endsWith('/studio'));
+  await L.setupEditor(page, d);
+  L.rec('1b tạo space + trang + mở trình soạn', await page.isVisible('#ed-panel'));
+  const ta = page.locator('#ed-body');
+  const set = async (val, s, e) => page.evaluate(([v, s, e]) => { const t = document.getElementById('ed-body'); t.value = v; t.focus(); t.setSelectionRange(s, e == null ? s : e); }, [val, s, e]);
+  const val = () => ta.inputValue();
+  const sel = () => page.evaluate(() => { const t = document.getElementById('ed-body'); return t.value.slice(t.selectionStart, t.selectionEnd); });
+  // (2) toolbar
+  await set('abc def ghi', 4, 7); await page.click('#tb-bold');
+  L.rec('2a Đậm bọc vùng chọn', (await val()) === 'abc **def** ghi' && (await sel()) === 'def', JSON.stringify(await val()));
+  await set('abc def ghi', 4, 7); await page.click('#tb-italic');
+  L.rec('2b Nghiêng bọc vùng chọn', (await val()) === 'abc *def* ghi', JSON.stringify(await val()));
+  await set('', 0); await page.click('#tb-bold');
+  L.rec('2c Đậm không chọn -> placeholder', (await val()) === '**đậm**', JSON.stringify(await val()));
+  await set('dòng 1\ndòng 2\ndòng 3', 9, 9); await page.click('#tb-heading');
+  L.rec('2d Tiêu đề thêm ## vào dòng con trỏ', (await val()) === 'dòng 1\n## dòng 2\ndòng 3', JSON.stringify(await val()));
+  await set('x\ny\nz', 2, 5); await page.click('#tb-list');
+  L.rec('2e Danh sách nhiều dòng chọn', (await val()) === 'x\n- y\n- z', JSON.stringify(await val()));
+  await set('trước sau', 6, 6); await page.click('#tb-code');
+  L.rec('2f Code chèn khối ``` tại con trỏ', (await val()) === 'trước \n```\ncode\n```\nsau', JSON.stringify(await val()));
+  await set('A B', 1, 1); await page.click('#tb-table');
+  const tv = await val(); L.rec('2g Bảng chèn tại con trỏ', tv.startsWith('A') && tv.includes('| Cột 1 | Cột 2 |\n|---|---|') && tv.endsWith(' B'), JSON.stringify(tv));
+  await set('xin chào', 3, 3); d.prompts.push('https://img.example.test/a.png'); await page.click('#tb-image');
+  L.rec('2h Ảnh theo URL chèn tại con trỏ', (await val()) === 'xin![mô tả ảnh](https://img.example.test/a.png) chào', JSON.stringify(await val()));
+  const before = await val(); d.prompts.push('javascript:alert(1)'); await page.click('#tb-image');
+  L.rec('2i Ảnh URL javascript: bị từ chối + báo lỗi, không chèn', (await val()) === before && (await page.textContent('[role=alert]')).includes('http://'), '');
+  d.prompts.push('https://a.com/x y.png'); await page.click('#tb-image');
+  L.rec('2j Ảnh URL có khoảng trắng bị từ chối', (await val()) === before, '');
+  // Hủy thật
+  // (3) preview
+  const md = '# Tiêu đề lớn\n\n| Cột 1 | Cột 2 |\n|---|---|\n| a | b |\n\n```js\nconst x = 1;\n```\n\n![mô tả](https://img.example.test/a.png)\n\n- m1\n- m2\n\n**đậm** *nghiêng* [link](https://example.com)';
+  await ta.fill(md);
+  const fr = page.frameLocator('#ed-preview');
+  await fr.locator('table').waitFor({ timeout: 5000 });
+  const okTbl = (await fr.locator('table th').count()) === 2 && (await fr.locator('table td').count()) === 2;
+  const okCode = (await fr.locator('pre code').textContent()).includes('const x = 1;');
+  const okH = (await fr.locator('h1').textContent()) === 'Tiêu đề lớn';
+  const imgInfo = await fr.locator('img').evaluate((i) => new Promise((r) => { const f = () => r({ src: i.getAttribute('src'), w: i.naturalWidth, ref: i.getAttribute('referrerpolicy') }); i.complete ? f() : i.addEventListener('load', f); }));
+  L.rec('3a preview: bảng', okTbl); L.rec('3b preview: code', okCode); L.rec('3c preview: h1 + danh sách', okH && (await fr.locator('li').count()) === 2);
+  L.rec('3d preview: ảnh https tải được (host giả lập), img-src CSP cho phép', imgInfo.w === 1 && imgInfo.src === 'https://img.example.test/a.png', JSON.stringify(imgInfo));
+  const attrs = await page.evaluate(() => { const f = document.getElementById('ed-preview'); return { sandbox: f.getAttribute('sandbox'), has: f.hasAttribute('sandbox'), srcdoc: !!f.srcdoc }; });
+  L.rec('3e iframe có sandbox="" (rỗng, có thuộc tính)', attrs.has && attrs.sandbox === '', JSON.stringify(attrs));
+  // (5) save
+  L.rec('5a sau sửa: trạng thái chưa lưu + nút Lưu bật', (await page.textContent('#ed-status')).includes('chưa lưu') && !(await page.isDisabled('#ed-save')));
+  await page.click('#ed-save'); await page.waitForFunction(() => /Đã lưu lúc/.test(document.getElementById('ed-status').textContent));
+  L.rec('5b lưu: "Đã lưu lúc hh:mm" + nút Lưu tắt', /Đã lưu lúc \d\d:\d\d\./.test(await page.textContent('#ed-status')) && (await page.isDisabled('#ed-save')), await page.textContent('#ed-status'));
+  const ids = await L.pageId(page);
+  const got = await page.evaluate(async (i) => (await (await fetch('/api/pages/' + i)).json()).page.bodyMd, ids.pid);
+  L.rec('5c nội dung lưu = nội dung soạn (GET API)', got === md);
+  // beforeunload
+  await page.fill('#ed-body', md + ' thêm'); 
+  d.log.length = 0; d.leave = false;
+  await page.goto(L.BASE + '/studio').catch(() => {});
+  const bu = d.log.filter((x) => x.type === 'beforeunload').length;
+  L.rec('5d beforeunload bật khi có thay đổi chưa lưu (huỷ rời -> ở lại)', bu >= 1 && page.url().endsWith('/studio'), 'beforeunload=' + bu);
+  // 5e: sau khi lưu, không còn cảnh báo
+  await page.click('#ed-save'); await page.waitForFunction(() => /Đã lưu/.test(document.getElementById('ed-status').textContent));
+  d.log.length = 0; await page.reload();
+  L.rec('5e sau khi lưu: không cảnh báo beforeunload', d.log.filter((x) => x.type === 'beforeunload').length === 0);
+  // 5f lưu lỗi
+  await page.getByRole('button', { name: 'Mở', exact: true }).first().click();
+  await page.getByRole('button', { name: 'Soạn', exact: true }).first().click();
+  await page.waitForSelector('#ed-panel:not([hidden])');
+  const cur = await page.inputValue('#ed-body'); await page.fill('#ed-body', cur + '\nNỘI DUNG MỚI CHƯA LƯU');
+  await ctx.route('**/api/pages/*', (r) => r.request().method() === 'PATCH' ? r.abort('connectionfailed') : r.fallback());
+  await page.click('#ed-save'); await page.waitForTimeout(500);
+  const stx = await page.textContent('#ed-status'); const alertTx = await page.textContent('[role=alert]');
+  L.rec('5f lưu lỗi mạng: giữ nội dung, báo lỗi, nút Lưu bật lại để thử lại', (await page.inputValue('#ed-body')).endsWith('NỘI DUNG MỚI CHƯA LƯU') && stx.includes('Chưa lưu được') && alertTx.includes('Mất kết nối') && !(await page.isDisabled('#ed-save')), stx + ' | ' + alertTx);
+  const dis1 = await page.isDisabled('#ed-save');
+  L.rec('5f2 (chẩn đoán) sau lỗi mạng: nút Lưu disabled=' + dis1 + ', trạng thái=' + JSON.stringify(stx) + ', alert=' + JSON.stringify(alertTx), true);
+  await page.keyboard.press('End'); await page.fill('#ed-body', (await page.inputValue('#ed-body')) + '!');
+  L.rec('5g sau lỗi mạng, gõ thêm 1 ký tự thì nút Lưu bật lại (đường thoát duy nhất)', !(await page.isDisabled('#ed-save')));
+  await ctx.unroute('**/api/pages/*');
+  // lỗi HTTP 500
+  await ctx.route('**/api/pages/*', (r) => r.request().method() === 'PATCH' ? r.fulfill({ status: 500, contentType: 'application/json', body: '{"error":{"code":"INTERNAL","message":"Lỗi hệ thống."}}' }) : r.fallback());
+  await page.click('#ed-save'); await page.waitForTimeout(500);
+  const st500 = await page.textContent('#ed-status');
+  L.rec('5i lưu lỗi HTTP 500: giữ nội dung, báo "Chưa lưu được", nút Lưu bật lại', st500.includes('Chưa lưu được') && !(await page.isDisabled('#ed-save')) && (await page.inputValue('#ed-body')).endsWith('!'), st500);
+  await ctx.unroute('**/api/pages/*');
+  await page.click('#ed-save'); await page.waitForFunction(() => /Đã lưu/.test(document.getElementById('ed-status').textContent));
+  L.rec('5g2 thử lại sau khi khôi phục mạng: lưu thành công', true);
+  L.rec('5h thông báo lỗi cũ còn hiển thị sau khi lưu thành công? (ghi nhận)', true, 'alert hidden=' + (await page.evaluate(() => document.querySelector('[role=alert]').hidden)));
+  // (6) 200 KB
+  const big = (n) => 'a'.repeat(n);
+  const put = (body) => page.evaluate(async ([i, b]) => { const r = await fetch('/api/pages/' + i, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ bodyMd: b }) }); return { s: r.status, j: await r.json().catch(() => ({})) }; }, [ids.pid, body]);
+  const r1 = await put(big(204800)); const r2 = await put(big(204801));
+  L.rec('6a API 200*1024 byte ok (200)', r1.s === 200, r1.s); L.rec('6b API +1 byte bị chặn 400 TOO_LARGE', r2.s === 400 && r2.j.error.code === 'TOO_LARGE', JSON.stringify(r2));
+  const rv = await put('ế'.repeat(Math.floor(204800 / 3)) + 'a'.repeat(204800 % 3)); const rv2 = await put('ế'.repeat(Math.floor(204800 / 3)) + 'aaa');
+  L.rec('6c tiếng Việt đa byte: đúng 204800 byte ok, +1 byte bị chặn', rv.s === 200 && rv2.s === 400, rv.s + '/' + rv2.s);
+  const r3 = await put('😀'.repeat(51200)); const r4 = await put('😀'.repeat(51200) + 'a');
+  L.rec('6d emoji 4 byte: 204800 byte ok, +1 chặn', r3.s === 200 && r4.s === 400, r3.s + '/' + r4.s);
+  // UI: 200KB qua textarea + lưu; +1 byte
+  await page.getByRole('button', { name: 'Đóng trình soạn' }).click().catch(() => {});
+  await page.getByRole('button', { name: 'Soạn', exact: true }).first().click(); await page.waitForSelector('#ed-panel:not([hidden])');
+  await page.fill('#ed-body', big(204801)); await page.waitForTimeout(500);
+  await page.click('#ed-save'); await page.waitForTimeout(800);
+  const alertBig = await page.textContent('[role=alert]');
+  L.rec('6e UI: 204801 byte -> thông báo "tối đa 200 KB", nội dung giữ', alertBig.includes('200 KB') && (await page.inputValue('#ed-body')).length === 204801, alertBig);
+  await page.fill('#ed-body', big(204800)); await page.click('#ed-save'); await page.waitForFunction(() => /Đã lưu/.test(document.getElementById('ed-status').textContent), null, { timeout: 8000 });
+  L.rec('6f UI: 204800 byte lưu được', true);
+  const vn = 'Tiếng Việt: Nguyễn Thị Ánh, đường Lê Lợi, ươ ẳ ỹ ̣ 😀🎉👨‍👩‍👧 – “ngoặc” ';
+  d.prompts.push('Trang Việt 😀 ế');
+  await page.fill('#ed-body', vn + '\n\n## Mục ế'); await page.fill('#ed-title', 'Tiêu đề Việt 😀 ế'); await page.click('#ed-save'); await page.waitForFunction(() => /Đã lưu/.test(document.getElementById('ed-status').textContent));
+  await page.reload(); await page.getByRole('button', { name: 'Mở', exact: true }).first().click(); await page.getByRole('button', { name: 'Soạn', exact: true }).first().click(); await page.waitForSelector('#ed-panel:not([hidden])');
+  L.rec('6g tiếng Việt + emoji lưu rồi mở lại đúng (UI)', (await page.inputValue('#ed-body')) === vn + '\n\n## Mục ế' && (await page.inputValue('#ed-title')) === 'Tiêu đề Việt 😀 ế');
+  await page.waitForFunction(() => true); await page.waitForTimeout(600);
+  L.rec('6h preview hiển thị tiếng Việt + emoji', (await page.frameLocator('#ed-preview').locator('body').textContent()).includes('Nguyễn Thị Ánh') && (await page.frameLocator('#ed-preview').locator('h2').textContent()) === 'Mục ế');
+  // (11) keyboard
+  await page.focus('#ed-title');
+  const order = []; const outl = [];
+  for (let i = 0; i < 8; i++) { await page.keyboard.press('Tab'); order.push(await page.evaluate(() => document.activeElement.id)); outl.push(await page.evaluate(() => { const s = getComputedStyle(document.activeElement); return s.outlineStyle + ' ' + s.outlineWidth; })); }
+  L.rec('11a Tab đi qua thanh công cụ theo thứ tự bold,italic,heading,list,code,table,image', order.slice(0, 7).join(',') === 'tb-bold,tb-italic,tb-heading,tb-list,tb-code,tb-table,tb-image', order.join(','));
+  L.rec('11b focus nhìn thấy (outline solid 3px) trên nút thanh công cụ', outl.slice(0, 7).every((o) => o === 'solid 3px'), outl.join('|'));
+  await page.focus('#tb-bold'); await page.evaluate(() => { const t = document.getElementById('ed-body'); t.value = 'kb'; t.setSelectionRange(0, 2); document.getElementById('tb-bold').focus(); });
+  await page.keyboard.press('Enter');
+  L.rec('11c kích hoạt nút bằng Enter (bàn phím)', (await val()) === '**kb**', await val());
+  await page.keyboard.press('Space'); L.rec('11d (ghi nhận) sau Enter focus chuyển sang textarea nên Space gõ ký tự vào textarea', (await page.evaluate(() => document.activeElement.id)) === 'ed-body', JSON.stringify(await val()));
+  const tb = await page.evaluate(() => { const t = document.querySelector('[role=toolbar]'); return t.getAttribute('aria-label'); });
+  L.rec('11e toolbar có role + aria-label', tb === 'Thanh công cụ', tb);
+  // (12) screenshots
+  await page.fill('#ed-body', md); await page.waitForTimeout(700);
+  await page.screenshot({ path: OUT + '/T-007-a0f30e0-editor-1280.png', fullPage: true });
+  await page.setViewportSize({ width: 360, height: 800 }); await page.waitForTimeout(300);
+  await page.screenshot({ path: OUT + '/T-007-a0f30e0-editor-360.png', fullPage: true });
+  const ov = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
+  L.rec('12a 360px: không tràn ngang trang', ov.sw <= ov.cw, JSON.stringify(ov));
+  await page.setViewportSize({ width: 1280, height: 900 });
+  // (9) IDOR / 401 / Origin
+  const cookie = (await ctx.cookies()).map((c) => c.name + '=' + c.value).join('; ');
+  const H = { 'Content-Type': 'application/json', Origin: L.BASE };
+  const f = (m, u, b, h) => fetch(L.BASE + u, { method: m, headers: b ? h : Object.fromEntries(Object.entries(h).filter(([k]) => k !== 'Content-Type')), body: b ? JSON.stringify(b) : undefined, redirect: 'manual' }).then(async (r) => ({ s: r.status, t: await r.text() }));
+  const A = { ...H, cookie };
+  const emailB = `b${L.rand()}@example.com`;
+  const rb = await fetch(L.BASE + '/api/auth/register', { method: 'POST', headers: H, body: JSON.stringify({ email: emailB, password: 'matkhau-12345' }) });
+  const cookieB = rb.headers.get('set-cookie').split(';')[0]; const B = { ...H, cookie: cookieB };
+  const sec = 'BÍ MẬT-' + L.rand();
+  await f('PATCH', '/api/pages/' + ids.pid, { bodyMd: sec }, A);
+  const x = {};
+  x.getB = await f('GET', '/api/pages/' + ids.pid, null, B);
+  x.patchB = await f('PATCH', '/api/pages/' + ids.pid, { bodyMd: 'hacked' }, B);
+  x.delB = await f('DELETE', '/api/pages/' + ids.pid + '?confirm=1', null, B);
+  x.treeB = await f('GET', '/api/spaces/' + ids.sid + '/tree', null, B);
+  x.postB = await f('POST', '/api/spaces/' + ids.sid + '/pages', { title: 'x' }, B);
+  L.rec('9a IDOR: B đọc/sửa/xóa/liệt kê/tạo trang của A đều 404, không lộ nội dung', [x.getB, x.patchB, x.delB, x.treeB, x.postB].every((r) => r.s === 404 && !r.t.includes('BÍ MẬT')), JSON.stringify(Object.fromEntries(Object.entries(x).map(([k, v]) => [k, v.s]))));
+  const still = await f('GET', '/api/pages/' + ids.pid, null, A);
+  L.rec('9b dữ liệu của A không bị đổi bởi B', JSON.parse(still.t).page.bodyMd === sec);
+  const un = {};
+  un.get = await f('GET', '/api/pages/' + ids.pid, null, H); un.patch = await f('PATCH', '/api/pages/' + ids.pid, { bodyMd: 'x' }, H); un.prev = await f('POST', '/api/preview', { bodyMd: 'x' }, H);
+  un.badc = await f('POST', '/api/preview', { bodyMd: 'x' }, { ...H, cookie: 'sid=deadbeef' });
+  L.rec('9c không đăng nhập / cookie rác: 401 trên GET/PATCH/preview', Object.values(un).every((r) => r.s === 401), JSON.stringify(Object.fromEntries(Object.entries(un).map(([k, v]) => [k, v.s]))));
+  const og = {};
+  og.none = await f('POST', '/api/preview', { bodyMd: 'x' }, { 'Content-Type': 'application/json', cookie });
+  og.evil = await f('POST', '/api/preview', { bodyMd: 'x' }, { ...A, Origin: 'https://evil.example' });
+  og.patch = await f('PATCH', '/api/pages/' + ids.pid, { bodyMd: 'x' }, { ...A, Origin: 'https://evil.example' });
+  og.null = await f('POST', '/api/preview', { bodyMd: 'x' }, { ...A, Origin: 'null' });
+  og.sub = await f('POST', '/api/preview', { bodyMd: 'x' }, { ...A, Origin: L.BASE.replace('127.0.0.1', 'localhost') });
+  L.rec('9d Origin thiếu/sai/null/khác host bị 403', [og.none, og.evil, og.patch, og.null, og.sub].every((r) => r.s === 403), JSON.stringify(Object.fromEntries(Object.entries(og).map(([k, v]) => [k, v.s]))));
+  const bad = await f('POST', '/api/preview', { bodyMd: 123 }, A); const bad2 = await f('PATCH', '/api/pages/abc', { bodyMd: 'x' }, A); const bad3 = await f('GET', '/api/pages/99999999', null, A);
+  L.rec('9e đầu vào xấu: bodyMd số -> 400, id không hợp lệ -> 4xx, id không tồn tại -> 404; không lộ stack', bad.s === 400 && bad2.s >= 400 && bad2.s < 500 && bad3.s === 404 && ![bad, bad2, bad3].some((r) => /at .*\.js|stack/.test(r.t)), [bad.s, bad2.s, bad3.s].join('/') + ' ' + bad.t);
+  // (10) regression: tree + logout/login
+  d.leave = true; d.prompts.length = 0;
+  // 10a: cây trang qua UI thật (tạo con, di chuyển, xóa có xác nhận)
+  await page.goto(L.BASE + '/studio'); await page.getByRole('button', { name: 'Mở', exact: true }).first().click();
+  d.prompts.push('Con 1', ''); await page.getByRole('button', { name: 'Thêm trang con' }).first().click(); await page.waitForTimeout(400);
+  const treeTxt = await page.textContent('#tree');
+  L.rec('10a1 UI: thêm trang con -> hiện trong cây', /Con 1/.test(treeTxt), treeTxt.slice(0, 120));
+  d.log.length = 0; d.confirms.push(true);
+  await page.getByRole('button', { name: 'Xóa', exact: true }).first().click(); await page.waitForTimeout(600);
+  const afterDel = await page.textContent('#tree'); const alertDel = await page.evaluate(() => { const a = document.querySelector('[role=alert]'); return a.hidden ? '' : a.textContent; });
+  L.rec('10a2 UI: xóa trang có con (xác nhận nêu số con) -> trang biến mất khỏi cây', d.log.some((x) => x.type === 'confirm' && /1 trang con/.test(x.msg)) && !/Tiêu đề Việt/.test(afterDel), 'confirm=' + JSON.stringify(d.log) + ' | tree=' + afterDel.slice(0, 80) + ' | alert=' + alertDel);
+  const dapi = await page.evaluate(async () => { const s = (await (await fetch('/api/spaces')).json()).spaces[0]; const t = (await (await fetch('/api/spaces/' + s.id + '/tree')).json()).tree; if (!t.length) return null; const r = await fetch('/api/pages/' + t[0].id, { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }); return { s: r.status, b: await r.text() }; });
+  L.rec('10a3 (chẩn đoán) DELETE /api/pages/:id kèm Content-Type: application/json, không body (đúng kiểu UI gửi)', true, JSON.stringify(dapi));
+  await page.evaluate(() => fetch('/api/auth/logout', { method: 'POST' })); 
+  await page.goto(L.BASE + '/studio'); L.rec('10b đăng xuất rồi /studio -> chuyển /dang-nhap', page.url().endsWith('/dang-nhap'), page.url());
+  await page.fill('#email', email); await page.fill('#password', 'matkhau-12345'); await Promise.all([page.waitForURL('**/studio'), page.click('button[type=submit]')]);
+  L.rec('10c đăng nhập UI lại thành công', true);
+  await page.evaluate(() => fetch('/api/auth/logout', { method: 'POST' })); await page.goto(L.BASE + '/dang-nhap');
+  const msgs = [];
+  for (let i = 0; i < 6; i++) { await page.fill('#email', email); await page.fill('#password', 'sai-mat-khau-' + i); await page.click('button[type=submit]'); await page.waitForTimeout(400); msgs.push(await page.textContent('#error-summary')); }
+  await page.fill('#email', email); await page.fill('#password', 'matkhau-12345'); await page.click('button[type=submit]'); await page.waitForTimeout(500);
+  L.rec('10d khóa sau 5 lần sai: lần 6 báo khóa; đúng mật khẩu vẫn bị khóa', msgs.slice(0, 5).every((m) => m && m !== msgs[5]) && page.url().endsWith('/dang-nhap'), JSON.stringify(msgs.slice(4)) + ' | after-correct: ' + (await page.textContent('#error-summary')));
+  const bad_cons = cons.filter((c) => /pageerror|Refused|error/i.test(c) && !/Failed to load resource|ERR_FAILED|connectionfailed/.test(c));
+  L.rec('console không có lỗi JS / vi phạm CSP bất ngờ', bad_cons.length === 0, JSON.stringify(bad_cons.slice(0, 5)));
+  L.rec('không có dialog alert', !d.log.some((x) => x.type === 'alert'));
+  console.log('external requests:', JSON.stringify([...new Set(external)]));
+  console.log('ALL', L.results.filter((r) => r.ok).length + '/' + L.results.length, 'FAILS:', L.results.filter((r) => !r.ok).map((r) => r.id).join(' ; '));
+  await browser.close();
+})().catch((e) => { console.error('SCRIPT ERROR', e); process.exit(1); });

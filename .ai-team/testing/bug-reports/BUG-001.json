@@ -1,0 +1,15 @@
+{
+  "task": "T-007",
+  "sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "severity": "HIGH",
+  "title": "UI kh\u00f4ng x\u00f3a \u0111\u01b0\u1ee3c trang: DELETE k\u00e8m Content-Type json kh\u00f4ng body b\u1ecb 400 (l\u1ed7i t\u1eeb T-006, test API kh\u00f4ng b\u1eaft \u0111\u01b0\u1ee3c)",
+  "steps": "\u0110\u0103ng nh\u1eadp, m\u1edf /studio, t\u1ea1o space v\u00e0 trang; b\u1ea5m X\u00f3a, x\u00e1c nh\u1eadn h\u1ed9p tho\u1ea1i; quan s\u00e1t c\u00e2y v\u00e0 alert. \u0110\u1ed1i chi\u1ebfu: fetch DELETE c\u00f3 header Content-Type application/json tr\u1ea3 400, b\u1ecf header th\u00ec 204.",
+  "expected": "Trang b\u1ecb x\u00f3a (c\u1ea3 c\u00e2y con sau x\u00e1c nh\u1eadn), c\u00e2y c\u1eadp nh\u1eadt.",
+  "actual": "Alert 'D\u1eef li\u1ec7u kh\u00f4ng h\u1ee3p l\u1ec7.' (400), trang v\u1eabn c\u00f2n. Nguy\u00ean nh\u00e2n: api() trong src/render/studio-page.ts lu\u00f4n g\u1eedi Content-Type application/json, Fastify t\u1eeb ch\u1ed1i body r\u1ed7ng; docs.test.ts g\u1ecdi DELETE kh\u00f4ng header n\u00ean kh\u00f4ng ph\u00e1t hi\u1ec7n. C\u00f3 t\u1eeb bf17e6b (T-006).",
+  "id": "BUG-001",
+  "kind": "bug",
+  "status": "OPEN",
+  "created": "2026-11-06T04:58:44Z",
+  "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
+  "history": []
+}
