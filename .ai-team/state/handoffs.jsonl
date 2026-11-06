@@ -11,3 +11,4 @@
 {"at": "2026-11-06T04:07:10Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-005", "type": "delegation", "summary": "I-2 \u0111\u0103ng k\u00fd/\u0111\u0103ng nh\u1eadp/\u0111\u0103ng xu\u1ea5t"}
 {"at": "2026-11-06T04:11:11Z", "from": "senior-fullstack-dev", "to": "orchestrator", "task": "T-005", "type": "report", "summary": "REQ-003 xong, commit 7f4fbac cherry-pick 6d1ff96; 6 r\u1ee7i ro/ghi ch\u00fa"}
 {"at": "2026-11-06T04:11:11Z", "from": "orchestrator", "to": "reviewer", "task": "T-005", "type": "delegation", "summary": "Review b\u1ea3o m\u1eadt commit 6d1ff96"}
+{"at": "2026-11-06T04:12:54Z", "from": "reviewer", "to": "orchestrator", "task": "T-005", "type": "finding", "summary": "CHANGES_REQUESTED: 2 HIGH, 3 MEDIUM, 2 LOW (FND-001..007)"}

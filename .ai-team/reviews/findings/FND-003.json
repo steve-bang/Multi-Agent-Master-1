@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "MEDIUM",
+  "category": "security/csrf",
+  "file": "src/routes/auth.ts",
+  "line": 50,
+  "description": "Hook ki\u1ec3m tra Origin ch\u1ec9 n\u1eb1m trong plugin authRoutes n\u00ean kh\u00f4ng b\u1ea3o v\u1ec7 c\u00e1c route ghi sau n\u00e0y, tr\u00e1i thi\u1ebft k\u1ebf.",
+  "expected": "Ki\u1ec3m tra Origin \u00e1p d\u1ee5ng to\u00e0n app cho m\u1ecdi method ghi.",
+  "action": "Chuy\u1ec3n hook l\u00ean app.ts (root ho\u1eb7c fastify-plugin) th\u00e0nh originGuard d\u00f9ng chung.",
+  "acceptance": "Test: route POST gi\u1ea3 \u1edf plugin kh\u00e1c, Origin sai ho\u1eb7c thi\u1ebfu 403, Origin \u0111\u00fang th\u00e0nh c\u00f4ng.",
+  "task": "T-005",
+  "id": "FND-003",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}

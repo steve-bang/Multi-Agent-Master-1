@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "HIGH",
+  "category": "security/concurrency",
+  "file": "src/auth/service.ts",
+  "line": 76,
+  "description": "Kh\u00f3a \u0111\u0103ng nh\u1eadp l\u00e0 check-then-act: isLocked ch\u1ea1y tr\u01b0\u1edbc await scrypt, INSERT login_attempts ch\u1ea1y sau. N request song song c\u00f9ng email \u0111\u1ec1u qua ki\u1ec3m tra, v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 5 l\u1ea7n/15 ph\u00fat \u0111\u00e3 ch\u1ed1t.",
+  "expected": "T\u1ed1i \u0111a 5 l\u1ea7n sai trong 15 ph\u00fat k\u1ec3 c\u1ea3 khi g\u1eedi song song.",
+  "action": "Ghi nh\u1eadn/\u0111\u1eb7t ch\u1ed7 l\u1ea7n th\u1eed \u0111\u1ed3ng b\u1ed9 tr\u01b0\u1edbc khi await verify (better-sqlite3 \u0111\u1ed3ng b\u1ed9: ki\u1ec3m tra + ch\u00e8n trong m\u1ed9t transaction, x\u00f3a khi \u0111\u00fang) ho\u1eb7c mutex theo email.",
+  "acceptance": "Test 20 login sai song song b\u1eb1ng Promise.all: \u0111\u00fang 5 request 401, c\u00f2n l\u1ea1i 429, login_attempts \u0111\u00fang 5 d\u00f2ng.",
+  "task": "T-005",
+  "id": "FND-001",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}

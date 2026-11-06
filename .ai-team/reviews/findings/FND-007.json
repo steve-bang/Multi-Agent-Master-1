@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "LOW",
+  "category": "security/hardening",
+  "file": "src/routes/auth.ts",
+  "line": 100,
+  "description": "Trang auth thi\u1ebfu X-Frame-Options/CSP frame-ancestors; API auth thi\u1ebfu Cache-Control: no-store; phi\u00ean h\u1ebft h\u1ea1n kh\u00f4ng \u0111\u01b0\u1ee3c d\u1ecdn.",
+  "expected": "Header b\u1ea3o m\u1eadt c\u01a1 b\u1ea3n, no-store cho API auth, d\u1ecdn phi\u00ean h\u1ebft h\u1ea1n.",
+  "action": "Hook onSend \u0111\u1eb7t X-Frame-Options DENY, CSP frame-ancestors 'none', X-Content-Type-Options nosniff, Cache-Control no-store cho /api/auth/*; x\u00f3a phi\u00ean h\u1ebft h\u1ea1n khi t\u1ea1o phi\u00ean m\u1edbi.",
+  "acceptance": "Test header tr\u00ean GET /dang-nhap v\u00e0 POST /api/auth/login; phi\u00ean h\u1ebft h\u1ea1n b\u1ecb x\u00f3a.",
+  "task": "T-005",
+  "id": "FND-007",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}

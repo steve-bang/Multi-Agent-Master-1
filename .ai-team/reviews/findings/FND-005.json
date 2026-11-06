@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "MEDIUM",
+  "category": "security/resource",
+  "file": "src/auth/service.ts",
+  "line": 82,
+  "description": "login_attempts kh\u00f4ng bao gi\u1edd \u0111\u01b0\u1ee3c d\u1ecdn; email \u0111\u0103ng nh\u1eadp kh\u00f4ng gi\u1edbi h\u1ea1n \u0111\u1ed9 d\u00e0i (t\u1edbi 1MB) v\u1eabn \u0111\u01b0\u1ee3c INSERT, k\u1ec3 c\u1ea3 email kh\u00f4ng t\u1ed3n t\u1ea1i: DB ph\u00ecnh v\u00f4 h\u1ea1n.",
+  "expected": "B\u1ea3ng b\u1ecb ch\u1eb7n k\u00edch th\u01b0\u1edbc; email qu\u00e1 254 k\u00fd t\u1ef1 b\u1ecb t\u1eeb ch\u1ed1i tr\u01b0\u1edbc khi ghi.",
+  "action": "T\u1eeb ch\u1ed1i email d\u00e0i h\u01a1n 254 k\u00fd t\u1ef1 tr\u01b0\u1edbc khi ch\u1ea1m DB; x\u00f3a d\u00f2ng c\u0169 h\u01a1n WINDOW_MS khi ghi.",
+  "acceptance": "Test: login email 300 k\u00fd t\u1ef1 kh\u00f4ng t\u1ea1o d\u00f2ng; d\u00f2ng c\u0169 h\u01a1n 15 ph\u00fat b\u1ecb x\u00f3a sau l\u1ea7n ghi ti\u1ebfp theo.",
+  "task": "T-005",
+  "id": "FND-005",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}

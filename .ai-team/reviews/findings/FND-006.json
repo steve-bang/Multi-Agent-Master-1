@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "LOW",
+  "category": "tests",
+  "file": "test/integration/auth.test.ts",
+  "line": 54,
+  "description": "Test ch\u01b0a ki\u1ec3m h\u1ebft \u0111i\u1ec1u tuy\u00ean b\u1ed1: h\u1ebft kh\u00f3a sau 15 ph\u00fat, \u0111\u1ebfm theo email chu\u1ea9n h\u00f3a, \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm, phi\u00ean h\u1ebft h\u1ea1n tr\u1ea3 401, c\u1edd Secure \u1edf production, race, guard /studio.",
+  "expected": "M\u1ed7i quy t\u1eafc nghi\u1ec7p v\u1ee5 v\u00e0 r\u1ee7i ro b\u1ea3o m\u1eadt c\u1ee7a REQ-003 c\u00f3 test th\u1eadt.",
+  "action": "B\u1ed5 sung c\u00e1c test tr\u00ean c\u00f9ng c\u00e1c fix F1-F5.",
+  "acceptance": "C\u00e1c test c\u00f3 m\u1eb7t, pass \u1edf SHA m\u1edbi; b\u1ecf lock ho\u1eb7c chu\u1ea9n h\u00f3a th\u1ee7 c\u00f4ng th\u00ec test \u0111\u1ecf.",
+  "task": "T-005",
+  "id": "FND-006",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}

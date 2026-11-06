@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "severity": "HIGH",
+  "category": "requirement",
+  "file": "src/routes/auth.ts",
+  "line": 100,
+  "description": "Thi\u1ebfu AC3 REQ-003: ch\u01b0a \u0111\u0103ng nh\u1eadp v\u00e0o trang so\u1ea1n th\u1ea3o ph\u1ea3i b\u1ecb chuy\u1ec3n v\u1ec1 trang \u0111\u0103ng nh\u1eadp. Kh\u00f4ng c\u00f3 route /studio v\u00e0 guard; auth.js chuy\u1ec3n t\u1edbi /studio nh\u1eadn 404.",
+  "expected": "GET /studio ch\u01b0a c\u00f3 phi\u00ean tr\u1ea3 302 v\u1ec1 /dang-nhap; \u0111\u00e3 \u0111\u0103ng nh\u1eadp v\u00e0o \u0111\u01b0\u1ee3c.",
+  "action": "Th\u00eam preHandler requireAuth d\u00f9ng chung v\u00e0 route /studio t\u1ed1i thi\u1ec3u.",
+  "acceptance": "Test: kh\u00f4ng cookie 302 Location /dang-nhap; cookie h\u1ee3p l\u1ec7 200; cookie h\u1ebft h\u1ea1n 302.",
+  "task": "T-005",
+  "id": "FND-002",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T04:12:54Z",
+  "original_sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "history": []
+}
