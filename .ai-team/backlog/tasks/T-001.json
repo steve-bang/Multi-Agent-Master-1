@@ -15,13 +15,21 @@
   "expected_outputs": [
     ".ai-team/requirements/vn-docs-platform.md"
   ],
-  "status": "IN_PROGRESS",
+  "status": "BLOCKED",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
   "requirements": [],
-  "blocked_by": [],
-  "prev_status": null,
+  "blocked_by": [
+    "CLR-001",
+    "CLR-002",
+    "CLR-003",
+    "CLR-004",
+    "CLR-005",
+    "CLR-006",
+    "CLR-007"
+  ],
+  "prev_status": "IN_PROGRESS",
   "evidence": [],
   "history": [
     {
@@ -42,6 +50,13 @@
       "to": "IN_PROGRESS",
       "by": "orchestrator",
       "note": null
+    },
+    {
+      "at": "2026-11-06T03:41:54Z",
+      "from": "IN_PROGRESS",
+      "to": "BLOCKED",
+      "by": "orchestrator",
+      "note": "waiting on CLR-001"
     }
   ]
 }

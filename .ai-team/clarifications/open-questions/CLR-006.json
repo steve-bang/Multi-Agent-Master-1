@@ -1,0 +1,15 @@
+{
+  "id": "CLR-006",
+  "question": "C\u00f3 r\u00e0ng bu\u1ed9c stack/hosting/d\u1eef li\u1ec7u \u0111\u1eb7t t\u1ea1i VN (lu\u1eadt d\u1eef li\u1ec7u VN) kh\u00f4ng? \u0110\u1ec1 xu\u1ea5t: kh\u00f4ng r\u00e0ng bu\u1ed9c, ch\u1ecdn stack \u0111\u01a1n gi\u1ea3n chi ph\u00ed th\u1ea5p",
+  "asked_by": "ba",
+  "route": "client",
+  "blocks": [
+    "T-001"
+  ],
+  "status": "OPEN",
+  "classification": null,
+  "answer": null,
+  "source": null,
+  "created": "2026-11-06T03:41:54Z",
+  "history": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "CLR-004",
+  "question": "MVP ch\u1ec9 xu\u1ea5t b\u1ea3n c\u00f4ng khai hay c\u1ea7n c\u1ea3 ri\u00eang t\u01b0? \u0110\u1ec1 xu\u1ea5t: ch\u1ec9 c\u00f4ng khai",
+  "asked_by": "ba",
+  "route": "client",
+  "blocks": [
+    "T-001"
+  ],
+  "status": "OPEN",
+  "classification": null,
+  "answer": null,
+  "source": null,
+  "created": "2026-11-06T03:41:54Z",
+  "history": []
+}
