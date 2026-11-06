@@ -1,0 +1,36 @@
+{
+  "sha": "6b94a567280a9904cc77ac4103c4b8e047932858",
+  "at": "2026-11-06T07:18:18Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "egration/ui1b.test.ts (10 tests) 46ms\n \u2713 test/integration/preview-perf.test.ts (20 tests) 4714ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 661ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 561ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 558ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 120 request/ph\u00fat/user: request th\u1ee9 121 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 301ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (a) body 200 KB li\u00ean ti\u1ebfp: \u0111\u00fang 20 request qua r\u1ed3i 429; (c) user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 401ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (b) body nh\u1ecf 16 KB v\u1eabn \u0111\u1ea1t \u0111\u1ee7 120 request/ph\u00fat r\u1ed3i 429 theo s\u1ed1 l\u01b0\u1ee3ng 307ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (d) 40 request song song 200 KB: \u0111\u00fang 20 qua, kh\u00f4ng race 349ms\n \u2713 test/unit/migration.test.ts (1 test) 8ms\n \u2713 test/integration/server-hardening.test.ts (6 tests) 561ms\n   \u2713 T-007 c\u1edd Secure c\u1ee7a cookie theo m\u00f4i tr\u01b0\u1eddng > kh\u00f4ng \u0111\u1eb7t NODE_ENV -> Secure; production -> Secure; development -> kh\u00f4ng Secure 357ms\n \u2713 test/integration/healthz.test.ts (1 test) 134ms\n\n Test Files  10 passed (10)\n      Tests  159 passed (159)\n   Start at  07:17:57\n   Duration  9.77s (transform 645ms, setup 0ms, collect 2.81s, tests 23.48s, environment 2ms, prepare 739ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "ND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 973ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 746ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 650ms\n \u2713 test/integration/preview-perf.test.ts (20 tests) 5098ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 746ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 634ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 567ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 120 request/ph\u00fat/user: request th\u1ee9 121 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 354ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (a) body 200 KB li\u00ean ti\u1ebfp: \u0111\u00fang 20 request qua r\u1ed3i 429; (c) user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 438ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (d) 40 request song song 200 KB: \u0111\u00fang 20 qua, kh\u00f4ng race 382ms\n \u2713 test/integration/ui1b.test.ts (10 tests) 56ms\n \u2713 test/integration/healthz.test.ts (1 test) 141ms\n \u2713 test/integration/server-hardening.test.ts (6 tests) 587ms\n   \u2713 T-007 c\u1edd Secure c\u1ee7a cookie theo m\u00f4i tr\u01b0\u1eddng > kh\u00f4ng \u0111\u1eb7t NODE_ENV -> Secure; production -> Secure; development -> kh\u00f4ng Secure 386ms\n\n Test Files  9 passed (9)\n      Tests  158 passed (158)\n   Start at  07:18:07\n   Duration  10.15s (transform 520ms, setup 0ms, collect 2.92s, tests 24.58s, environment 2ms, prepare 661ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}
