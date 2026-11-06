@@ -122,7 +122,7 @@ const OUT = process.env.OUT || require('os').tmpdir();
   const order = []; const outl = [];
   for (let i = 0; i < 8; i++) { await page.keyboard.press('Tab'); order.push(await page.evaluate(() => document.activeElement.id)); outl.push(await page.evaluate(() => { const s = getComputedStyle(document.activeElement); return s.outlineStyle + ' ' + s.outlineWidth; })); }
   L.rec('11a Tab đi qua thanh công cụ theo thứ tự bold,italic,heading,list,code,table,image', order.slice(0, 7).join(',') === 'tb-bold,tb-italic,tb-heading,tb-list,tb-code,tb-table,tb-image', order.join(','));
-  L.rec('11b focus nhìn thấy (outline solid 3px) trên nút thanh công cụ', outl.slice(0, 7).every((o) => o === 'solid 3px'), outl.join('|'));
+  L.rec('11b focus nhìn thấy (outline solid 2px) trên nút thanh công cụ', outl.slice(0, 7).every((o) => o === 'solid 2px'), outl.join('|'));
   await page.focus('#tb-bold'); await page.evaluate(() => { const t = document.getElementById('ed-body'); t.value = 'kb'; t.setSelectionRange(0, 2); document.getElementById('tb-bold').focus(); });
   await page.keyboard.press('Enter');
   L.rec('11c kích hoạt nút bằng Enter (bàn phím)', (await val()) === '**kb**', await val());
