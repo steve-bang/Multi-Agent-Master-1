@@ -12,7 +12,7 @@
     "AC REQ-004/007 pass; space ng\u01b0\u1eddi kh\u00e1c tr\u1ea3 404 (test IDOR)"
   ],
   "expected_outputs": [],
-  "status": "IN_PROGRESS",
+  "status": "IN_REVIEW",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -22,7 +22,13 @@
   ],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T04:27:19Z",
+      "by": "senior-fullstack-dev",
+      "evidence": "dev c2235b1 -> b59abca; orchestrator run-checks PASS, 44/44 tests"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T04:00:36Z",
@@ -40,6 +46,20 @@
       "at": "2026-11-06T04:21:45Z",
       "from": "ASSIGNED",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:27:19Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "senior-fullstack-dev",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:27:19Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
       "by": "orchestrator",
       "note": null
     }
