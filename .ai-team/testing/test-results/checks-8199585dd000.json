@@ -1,0 +1,36 @@
+{
+  "sha": "8199585dd0007805db67599634d4656a2a736083",
+  "at": "2026-11-06T05:08:22Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": " test) 8ms\n \u2713 test/integration/healthz.test.ts (1 test) 135ms\n \u2713 test/integration/auth-hardening.test.ts (16 tests) 7818ms\n   \u2713 FND-001 race kh\u00f3a \u0111\u0103ng nh\u1eadp > 20 login sai song song: \u0111\u00fang 5 x 401, 15 x 429, 5 d\u00f2ng login_attempts 529ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > 5 l\u1ea7n sai t\u1eeb IP A kh\u00f4ng kh\u00f3a \u0111\u0103ng nh\u1eadp \u0111\u00fang t\u1eeb IP B 749ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > register tr\u1ea3 429 khi v\u01b0\u1ee3t 10 l\u1ea7n/15 ph\u00fat t\u1eeb c\u00f9ng IP, IP kh\u00e1c v\u1eabn \u0111\u01b0\u1ee3c 1170ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > X-Forwarded-For b\u1ecb b\u1ecf qua m\u1eb7c \u0111\u1ecbnh; d\u00f9ng \u0111\u01b0\u1ee3c khi trustProxy b\u1eadt 1405ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > s\u1ed1 scrypt ch\u1ea1y \u0111\u1ed3ng th\u1eddi kh\u00f4ng v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 536ms\n   \u2713 FND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 809ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 759ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 656ms\n \u2713 test/integration/preview-perf.test.ts (16 tests) 3261ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 481ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 482ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 545ms\n\n Test Files  8 passed (8)\n      Tests  114 passed (114)\n   Start at  05:08:03\n   Duration  8.77s (transform 568ms, setup 0ms, collect 2.16s, tests 21.03s, environment 2ms, prepare 595ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "> 20 login sai song song: \u0111\u00fang 5 x 401, 15 x 429, 5 d\u00f2ng login_attempts 465ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > 5 l\u1ea7n sai t\u1eeb IP A kh\u00f4ng kh\u00f3a \u0111\u0103ng nh\u1eadp \u0111\u00fang t\u1eeb IP B 776ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > register tr\u1ea3 429 khi v\u01b0\u1ee3t 10 l\u1ea7n/15 ph\u00fat t\u1eeb c\u00f9ng IP, IP kh\u00e1c v\u1eabn \u0111\u01b0\u1ee3c 1193ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > X-Forwarded-For b\u1ecb b\u1ecf qua m\u1eb7c \u0111\u1ecbnh; d\u00f9ng \u0111\u01b0\u1ee3c khi trustProxy b\u1eadt 1502ms\n   \u2713 FND-004 kh\u00f3a theo (IP, email), rate limit register, scrypt \u0111\u1ed3ng th\u1eddi > s\u1ed1 scrypt ch\u1ea1y \u0111\u1ed3ng th\u1eddi kh\u00f4ng v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 432ms\n   \u2713 FND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 760ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 723ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 621ms\n \u2713 test/integration/preview-perf.test.ts (16 tests) 3355ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 473ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 516ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 609ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 120 request/ph\u00fat/user: request th\u1ee9 121 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 331ms\n\n Test Files  7 passed (7)\n      Tests  113 passed (113)\n   Start at  05:08:13\n   Duration  8.82s (transform 451ms, setup 0ms, collect 1.91s, tests 21.18s, environment 1ms, prepare 509ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}
