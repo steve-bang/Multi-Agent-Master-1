@@ -47,3 +47,9 @@ Ghi chú: slug trang trùng trong cùng space được thêm hậu tố `-2`; đ
 ## Ngoài phạm vi đợt 1 (chốt bởi Orchestrator sau review T-006)
 - DELETE /api/spaces/:id và đổi slug space/trang sau khi tạo: KHÔNG làm ở đợt 1, vào backlog. `PATCH /api/spaces/:id {published?}` được thêm ở T-008.
 - Slug trang dành riêng của reader (ít nhất `search`): xử lý trong T-009 khi route `/s/:spaceSlug/search` được tạo.
+
+## Cập nhật sau T-007 (mã thực tế tại 22c0ab4)
+- PATCH /api/pages/:pid nhận `{title?, bodyMd?}` (ít nhất một trường; tối đa 200 KB UTF-8, vượt trả 400 TOO_LARGE). GET trả thêm `bodyMd`; cây trang không chứa `bodyMd`. POST tạo trang nhận `bodyMd?`.
+- POST /api/preview `{bodyMd}` -> 200 `{html}` (HTML đã sanitize, không gắn với trang; cần đăng nhập + Origin hợp lệ).
+- Body > 1 MB và lỗi Fastify 4xx khác trả envelope tiếng Việt; 5xx trả INTERNAL.
+- CSP hiện tại: default-src 'self'; img-src 'self' http: https:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'. (Thiết kế cũ ghi chỉ https; đang chờ quyết định giữ http: hay không.)
