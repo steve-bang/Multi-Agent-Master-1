@@ -1,6 +1,6 @@
 const L = require('./lib.cjs');
 const fs = require('fs');
-const OUT = '/home/user/Multi-Agent-Master-1/.ai-team/testing/test-results';
+const OUT = process.env.OUT || require('os').tmpdir();
 (async () => {
   const browser = await L.chromium.launch();
   const { ctx, external } = await L.newCtx(browser);
@@ -131,9 +131,9 @@ const OUT = '/home/user/Multi-Agent-Master-1/.ai-team/testing/test-results';
   L.rec('11e toolbar có role + aria-label', tb === 'Thanh công cụ', tb);
   // (12) screenshots
   await page.fill('#ed-body', md); await page.waitForTimeout(700);
-  await page.screenshot({ path: OUT + '/T-007-9d59515-editor-1280.png', fullPage: true });
+  await page.screenshot({ path: OUT + '/T-011-editor-1280.png', fullPage: true });
   await page.setViewportSize({ width: 360, height: 800 }); await page.waitForTimeout(300);
-  await page.screenshot({ path: OUT + '/T-007-9d59515-editor-360.png', fullPage: true });
+  await page.screenshot({ path: OUT + '/T-011-editor-360.png', fullPage: true });
   const ov = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
   L.rec('12a 360px: không tràn ngang trang', ov.sw <= ov.cw, JSON.stringify(ov));
   await page.setViewportSize({ width: 1280, height: 900 });
