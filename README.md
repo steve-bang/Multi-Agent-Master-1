@@ -32,3 +32,9 @@ npm run lint && npx tsc --noEmit && npm test
 - Giới hạn nội dung: 200 KB (byte UTF-8) mỗi trang và mỗi lần xem trước; vượt thì 400 `TOO_LARGE` (cả khi vượt giới hạn body 1 MB của server).
 - Render dùng một hàm duy nhất `src/render/markdown.ts` (markdown-it `html:false` + sanitize-html): chỉ http/https/mailto, ảnh chỉ http/https (chèn bằng URL, không upload), link có `rel="noopener noreferrer nofollow"`, không có `on*`/`style`. Markdown gốc được lưu, làm sạch khi render.
 - Studio: xem trước nằm trong `<iframe sandbox="">` (không script); CSP thêm `img-src 'self' http: https:`. Lưu thủ công, cảnh báo khi rời trang chưa lưu.
+
+## Giao diện và token thiết kế (REQ-007, T-011)
+- CSS: `src/assets/css/tokens.css` (nguồn duy nhất của mã màu, kích thước, chữ, khoảng cách) và `src/assets/css/app.css` (kiểu thành phần, chỉ dùng `var(--...)`). Phục vụ công khai tại `/assets/tokens.css`, `/assets/app.css` (`Cache-Control: public, max-age=3600`). `npm run build` chép `src/assets` vào `dist/src/assets`.
+- Trang `/design-tokens` (công khai, tĩnh) liệt kê token thật, tỉ lệ tương phản, trạng thái nút/ô nhập.
+- Font: Inter (gói npm `@fontsource-variable/inter`, giấy phép SIL OFL 1.1), chỉ phục vụ subset latin + vietnamese từ `/assets/fonts/*.woff2`, `font-display: swap`, fallback `system-ui`. Cần cài dependencies (`npm ci`) khi chạy `npm start`; thiếu gói thì font tự rơi về system-ui.
+- CSP: `style-src 'self'` (không còn `'unsafe-inline'`), `font-src 'self'`. Xem trước (iframe `sandbox=""`) nạp `tokens.css` + `app.css` qua `<link>`; font trong iframe cần header `Access-Control-Allow-Origin: *` trên `/assets/fonts/*` (origin mờ).
