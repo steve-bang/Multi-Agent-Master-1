@@ -5,7 +5,9 @@ import { renderMarkdown } from '../render/markdown.js';
 import { requireAuth } from '../server/guards.js';
 
 const PREVIEW_WINDOW_MS = 60_000;
-const PREVIEW_MAX = 30;
+// 120/phút/user: người gõ thật + debounce 800 ms + hủy request cũ chỉ tạo vài chục request/phút; 120 là biên an toàn
+// mà vẫn chặn lạm dụng (mỗi request render tối đa 200 KB).
+const PREVIEW_MAX = 120;
 
 type Id ={ Params: { id?: string; pid?: string } };
 
@@ -47,7 +49,7 @@ export async function docsRoutes(app: FastifyInstance): Promise<void> {
     run(reply, () => ({ page: svc.updatePage(app.db, uid(req), svc.parseId(req.params.pid), body(req)) })),
   );
   // Xem trước: chỉ render, không chạm DB; dùng chung renderMarkdown với trang đọc công khai.
-  // Rate limit theo user (cửa sổ cố định 60 s, tối đa 30): kiểm tra + ghi hoàn toàn đồng bộ trước khi render,
+  // Rate limit theo user (cửa sổ cố định 60 s, tối đa 120): kiểm tra + ghi hoàn toàn đồng bộ trước khi render,
   // nên request đồng thời không lách được; bộ đếm nằm trong bộ nhớ tiến trình (1 instance).
   const previewHits = new Map<number, { start: number; count: number }>();
   app.post('/api/preview', (req, reply) => {

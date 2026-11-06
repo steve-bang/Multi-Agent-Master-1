@@ -52,6 +52,8 @@
   "studio.edit.placeholder": "Bắt đầu viết bằng Markdown...",
   "studio.edit.preview": "Xem trước",
   "studio.edit.preview_empty": "Xem trước sẽ hiện ở đây",
+  "studio.edit.preview_wait": "Xem trước tạm dừng vài giây và sẽ tự cập nhật. Bạn cứ tiếp tục soạn.",
+  "studio.edit.preview_failed": "Chưa cập nhật được xem trước. Nội dung của bạn không bị mất.",
   "studio.edit.toolbar": "Thanh công cụ",
   "studio.edit.bold": "Đậm",
   "studio.edit.italic": "Nghiêng",

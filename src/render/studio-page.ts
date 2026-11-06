@@ -67,9 +67,19 @@ function setDirty(d){dirty=d;sv.disabled=!d;if(d)st.textContent=S['studio.edit.d
 function hhmm(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
 // Xem trước: HTML đã được server làm sạch, đặt vào iframe sandbox (không allow-scripts/same-origin) qua srcdoc, không chèn HTML vào DOM trang chính.
 function showPreview(html){fr.srcdoc='<!doctype html><meta charset="utf-8"><base target="_blank"><style>body{font-family:system-ui,sans-serif;margin:.5rem;color:#111827}img{max-width:100%}table{border-collapse:collapse}td,th{border:1px solid #D1D5DB;padding:.25rem .5rem}pre{background:#F3F4F6;padding:.5rem;overflow:auto}</style>'+html;}
-function preview(){clearTimeout(pvTimer);pvTimer=setTimeout(function(){var n=++pvSeq;
-if(!ta.value.trim()){showPreview('<p>'+S['studio.edit.preview_empty']+'</p>');return;}
-api('POST','/api/preview',{bodyMd:ta.value}).then(function(x){if(n!==pvSeq)return;if(!x.ok)return err(x);showPreview(x.j.html);});},300);}
+// Lỗi xem trước chỉ hiện thông báo nhẹ (aria-live), không alert, không cướp focus khỏi ô soạn thảo.
+var pn=el('div',null,{id:'pv-note',role:'status','aria-live':'polite'});pn.hidden=true;fr.parentNode.appendChild(pn);
+var pvCtl=null,pvRetry=null;
+function pvNote(t){pn.textContent=t||'';pn.hidden=!t;}
+// Debounce 800 ms, hủy request cũ khi gõ tiếp, tự thử lại sau Retry-After khi bị 429.
+function preview(){clearTimeout(pvTimer);clearTimeout(pvRetry);pvTimer=setTimeout(runPv,800);}
+function runPv(){var n=++pvSeq;if(pvCtl)pvCtl.abort();pvCtl=null;
+if(!ta.value.trim()){pvNote('');showPreview('<p>'+S['studio.edit.preview_empty']+'</p>');return;}
+if(window.AbortController)pvCtl=new AbortController();
+api('POST','/api/preview',{bodyMd:ta.value},pvCtl?pvCtl.signal:undefined).then(function(x){if(n!==pvSeq||x.aborted)return;
+if(x.ok){pvNote('');showPreview(x.j.html);return;}
+if(x.status===429){pvNote(S['studio.edit.preview_wait']);pvRetry=setTimeout(runPv,Math.max(1,x.retry||5)*1000+250);return;}
+pvNote(S['studio.edit.preview_failed']);});}
 function wrap(a,b,ph){var s=ta.selectionStart,e=ta.selectionEnd,v=ta.value,sel=v.slice(s,e)||ph;
 ta.value=v.slice(0,s)+a+sel+b+v.slice(e);ta.focus();ta.setSelectionRange(s+a.length,s+a.length+sel.length);onEdit();}
 function lines(prefix,ph){var s=ta.selectionStart,e=ta.selectionEnd,v=ta.value,ls=v.lastIndexOf('\\n',s-1)+1,sel=v.slice(ls,e)||ph;
@@ -113,7 +123,7 @@ export function studioPage(kind: 'page' | 'script'): string {
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(t['studio.title'])} - ${esc(t['app.name'])}</title>
 <style>body{font-family:system-ui,sans-serif;color:#111827;margin:0}main{max-width:70rem;margin:2rem auto;padding:0 1rem}
 button{margin:0 .25rem;padding:.25rem .5rem}button:focus{outline:3px solid #2563EB;outline-offset:2px}
-[role=alert]{color:#B91C1C;border:1px solid #B91C1C;padding:.5rem;margin:1rem 0}ul{padding-left:1.25rem}.cols{display:flex;gap:1rem;flex-wrap:wrap}.cols>div{flex:1 1 20rem}textarea,iframe{width:100%;height:24rem;box-sizing:border-box;border:1px solid #9CA3AF}textarea{font-family:ui-monospace,monospace}</style></head>
+#pv-note{color:#92400E;background:#FFFBEB;border:1px solid #92400E;padding:.5rem;margin:.5rem 0}[role=alert]{color:#B91C1C;border:1px solid #B91C1C;padding:.5rem;margin:1rem 0}ul{padding-left:1.25rem}.cols{display:flex;gap:1rem;flex-wrap:wrap}.cols>div{flex:1 1 20rem}textarea,iframe{width:100%;height:24rem;box-sizing:border-box;border:1px solid #9CA3AF}textarea{font-family:ui-monospace,monospace}</style></head>
 <body><main id="studio"><h1>${esc(t['studio.title'])}</h1>
 <button type="button" id="new-space">${esc(t['studio.space.new'])}</button>
 <div id="spaces"></div>
