@@ -15,7 +15,7 @@
     "C\u00f3 migration t\u1ea1o schema users/sessions/spaces/pages"
   ],
   "expected_outputs": [],
-  "status": "IN_PROGRESS",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -24,7 +24,23 @@
   ],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "by": "senior-fullstack-dev",
+      "evidence": "dev commit 6de320d (cherry-picked); orchestrator run-checks all PASS, .ai-team/testing/test-results/checks-7e69dd2a2e83.json"
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "by": "orchestrator",
+      "evidence": "Orchestrator re-ran build/lint/tsc/test/audit: PASS at f0fb25d258882abc79ca2c3ad0a88a7650205364"
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "by": "orchestrator",
+      "evidence": "scaffold verified independently at f0fb25d258882abc79ca2c3ad0a88a7650205364; tester/reviewer run at PR level"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T04:00:36Z",
@@ -42,6 +58,34 @@
       "at": "2026-11-06T04:00:44Z",
       "from": "ASSIGNED",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "senior-fullstack-dev",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:04:35Z",
+      "from": "APPROVED",
+      "to": "DONE",
       "by": "orchestrator",
       "note": null
     }
