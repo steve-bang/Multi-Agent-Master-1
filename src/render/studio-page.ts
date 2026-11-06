@@ -100,7 +100,7 @@ api('PATCH','/api/pages/'+id,b).then(function(x){if(!x.ok){st.textContent=S['stu
 ok();if(ta.value===b.bodyMd&&ti.value===b.title){dirty=false;sv.disabled=true;}else{sv.disabled=false;}
 st.textContent=S['studio.edit.saved'].replace('{time}',hhmm());loadTree();});}
 sv.addEventListener('click',save);
-function closeEd(){if(dirty&&!window.confirm(S['studio.edit.leave']))return;ed=null;dirty=false;document.getElementById('ed-panel').hidden=true;}
+function closeEd(){if(dirty&&!window.confirm(S['studio.edit.leave']))return;clearTimeout(pvTimer);clearTimeout(pvRetry);if(pvCtl)pvCtl.abort();pvCtl=null;++pvSeq;pvNote('');ed=null;dirty=false;document.getElementById('ed-panel').hidden=true;}
 document.getElementById('ed-close').addEventListener('click',closeEd);
 window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=S['studio.edit.leave'];return S['studio.edit.leave'];}});
 function openEd(n){if(dirty&&!window.confirm(S['studio.edit.leave']))return;

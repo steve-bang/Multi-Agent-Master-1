@@ -65,6 +65,21 @@ describe('REQ-005 rate limit POST /api/preview theo user', () => {
     expect(pv).toContain("'aria-live':'polite'");
   });
 
+  it('FND-015 closeEd hủy timer debounce/retry, abort request, tăng pvSeq, xóa ghi chú', async () => {
+    const app = buildApp(openDb(':memory:'));
+    const a = await reg(app, 'd@x.vn');
+    const js = (await app.inject({ method: 'GET', url: '/assets/studio.js', headers: a })).body;
+    const i = js.indexOf('function closeEd(');
+    const fn = js.slice(i, js.indexOf('\n', i));
+    expect(fn).toContain('clearTimeout(pvTimer)');
+    expect(fn).toContain('clearTimeout(pvRetry)');
+    expect(fn).toContain('pvCtl.abort()');
+    expect(fn).toContain('++pvSeq');
+    expect(fn).toContain("pvNote('')");
+    // Chỉ chạy sau bước xác nhận rời trang (không hủy khi người dùng bấm "Ở lại").
+    expect(fn.indexOf('window.confirm')).toBeLessThan(fn.indexOf('clearTimeout(pvTimer)'));
+  });
+
   it('120 request/phút/user: request thứ 121 -> 429 envelope tiếng Việt; user khác không bị ảnh hưởng', async () => {
     const app = buildApp(openDb(':memory:'));
     const a = await reg(app, 'a@x.vn');
