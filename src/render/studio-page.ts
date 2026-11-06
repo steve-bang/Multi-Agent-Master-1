@@ -72,7 +72,9 @@ var pn=el('div',null,{id:'pv-note',role:'status','aria-live':'polite'});pn.hidde
 var pvCtl=null,pvRetry=null;
 function pvNote(t){pn.textContent=t||'';pn.hidden=!t;}
 // Debounce 800 ms, hủy request cũ khi gõ tiếp, tự thử lại sau Retry-After khi bị 429.
-function preview(){clearTimeout(pvTimer);clearTimeout(pvRetry);pvTimer=setTimeout(runPv,800);}
+// FND-014: debounce tăng theo kích thước (800 ms + 20 ms/KB) để nội dung lớn không đốt ngân sách byte của server.
+function pvDelay(){return 800+Math.ceil(ta.value.length/1024)*20;}
+function preview(){clearTimeout(pvTimer);clearTimeout(pvRetry);pvTimer=setTimeout(runPv,pvDelay());}
 function runPv(){var n=++pvSeq;if(pvCtl)pvCtl.abort();pvCtl=null;
 if(!ta.value.trim()){pvNote('');showPreview('<p>'+S['studio.edit.preview_empty']+'</p>');return;}
 if(window.AbortController)pvCtl=new AbortController();

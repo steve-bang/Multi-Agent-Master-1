@@ -58,7 +58,8 @@ describe('REQ-005 rate limit POST /api/preview theo user', () => {
     const pv = js.slice(js.indexOf('var pn=el('), js.indexOf('function wrap('));
     expect(pv).not.toContain('focus');
     expect(pv).not.toContain('err(');
-    expect(pv).toContain('setTimeout(runPv,800)');
+    expect(pv).toContain('setTimeout(runPv,pvDelay())');
+    expect(pv).toContain('800+Math.ceil(ta.value.length/1024)*20');
     expect(pv).toContain('pvCtl.abort()');
     expect(pv).toContain('x.status===429');
     expect(pv).toContain('x.retry');
@@ -94,6 +95,43 @@ describe('REQ-005 rate limit POST /api/preview theo user', () => {
     });
     expect(limited[0]!.headers['retry-after']).toBeDefined();
     expect((await prev(app, b)).statusCode).toBe(200);
+  });
+
+  describe('FND-014 ngân sách byte 4 MiB/phút/user', () => {
+    const big = (app: ReturnType<typeof buildApp>, h: Record<string, string>) =>
+      app.inject({ method: 'POST', url: '/api/preview', headers: h, payload: { bodyMd: 'a'.repeat(MAX) } });
+    const BUDGET = 4 * 1024 * 1024;
+    const FIT = Math.floor(BUDGET / MAX); // 20
+
+    it('(a) body 200 KB liên tiếp: đúng 20 request qua rồi 429; (c) user khác không bị ảnh hưởng', async () => {
+      const app = buildApp(openDb(':memory:'));
+      const a = await reg(app, 'e@x.vn');
+      const b = await reg(app, 'f@x.vn');
+      for (let i = 0; i < FIT; i++) expect((await big(app, a)).statusCode).toBe(200);
+      const r = await big(app, a);
+      expect(r.statusCode).toBe(429);
+      expect(r.json().error.code).toBe('PREVIEW_RATE_LIMITED');
+      expect(Number(r.headers['retry-after'])).toBeGreaterThanOrEqual(1);
+      expect((await big(app, b)).statusCode).toBe(200);
+    });
+
+    it('(b) body nhỏ 16 KB vẫn đạt đủ 120 request/phút rồi 429 theo số lượng', async () => {
+      const app = buildApp(openDb(':memory:'));
+      const a = await reg(app, 'g@x.vn');
+      const small = () =>
+        app.inject({ method: 'POST', url: '/api/preview', headers: a, payload: { bodyMd: 'a'.repeat(16 * 1024) } });
+      const rs = await Promise.all(Array.from({ length: 125 }, small));
+      expect(rs.filter((r) => r.statusCode === 200)).toHaveLength(120);
+      expect(rs.filter((r) => r.statusCode === 429)).toHaveLength(5);
+    });
+
+    it('(d) 40 request song song 200 KB: đúng 20 qua, không race', async () => {
+      const app = buildApp(openDb(':memory:'));
+      const a = await reg(app, 'h@x.vn');
+      const rs = await Promise.all(Array.from({ length: 40 }, () => big(app, a)));
+      expect(rs.filter((r) => r.statusCode === 200)).toHaveLength(FIT);
+      expect(rs.filter((r) => r.statusCode === 429)).toHaveLength(40 - FIT);
+    });
   });
 
   it('chưa đăng nhập vẫn 401 (không tính vào hạn mức), request bị 429 không render', async () => {

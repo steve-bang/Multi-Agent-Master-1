@@ -8,6 +8,10 @@ const PREVIEW_WINDOW_MS = 60_000;
 // 120/phút/user: người gõ thật + debounce 800 ms + hủy request cũ chỉ tạo vài chục request/phút; 120 là biên an toàn
 // mà vẫn chặn lạm dụng (mỗi request render tối đa 200 KB).
 const PREVIEW_MAX = 120;
+// FND-014: ngân sách byte/phút/user (cùng cửa sổ cố định). Render ~0,88 s / 200 KB ca xấu nhất => 4 MiB = ~20 request
+// 200 KB/phút ~ 17,6 s CPU/phút (~29% một lõi, trần xấu nhất). Nội dung <= 16 KB vẫn đủ 120 request (120 x 16 KB < 4 MiB).
+// Client tăng debounce theo kích thước nên người gõ thật (<= 50 KB) không chạm ngân sách (xem README).
+export const PREVIEW_MAX_BYTES = 4 * 1024 * 1024;
 
 type Id ={ Params: { id?: string; pid?: string } };
 
@@ -51,20 +55,23 @@ export async function docsRoutes(app: FastifyInstance): Promise<void> {
   // Xem trước: chỉ render, không chạm DB; dùng chung renderMarkdown với trang đọc công khai.
   // Rate limit theo user (cửa sổ cố định 60 s, tối đa 120): kiểm tra + ghi hoàn toàn đồng bộ trước khi render,
   // nên request đồng thời không lách được; bộ đếm nằm trong bộ nhớ tiến trình (1 instance).
-  const previewHits = new Map<number, { start: number; count: number }>();
+  const previewHits = new Map<number, { start: number; count: number; bytes: number }>();
   app.post('/api/preview', (req, reply) => {
     const now = Date.now();
     if (previewHits.size > 1000) for (const [k, v] of previewHits) if (now - v.start >= PREVIEW_WINDOW_MS) previewHits.delete(k);
     let h = previewHits.get(uid(req));
     if (!h || now - h.start >= PREVIEW_WINDOW_MS) {
-      h = { start: now, count: 0 };
+      h = { start: now, count: 0, bytes: 0 };
       previewHits.set(uid(req), h);
     }
-    if (h.count >= PREVIEW_MAX) {
+    const md = body(req).bodyMd;
+    const cost = typeof md === 'string' ? Buffer.byteLength(md, 'utf8') : 0;
+    if (h.count >= PREVIEW_MAX || h.bytes + cost > PREVIEW_MAX_BYTES) {
       reply.header('Retry-After', String(Math.max(1, Math.ceil((h.start + PREVIEW_WINDOW_MS - now) / 1000))));
       return reply.code(429).send({ error: { code: 'PREVIEW_RATE_LIMITED', message: MSG.PREVIEW_RATE_LIMITED } });
     }
     h.count++;
+    h.bytes += cost;
     return run(reply, () => ({ html: renderMarkdown(svc.cleanBody(body(req).bodyMd)) }));
   });
   app.post<Id>('/api/pages/:pid/move', (req, reply) =>
