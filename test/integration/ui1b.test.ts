@@ -34,7 +34,7 @@ describe('T-013 UI-1b trang studio', () => {
   });
 
   it('nút Mở >= 44px bằng CSS ở màn hẹp; vùng #pv-note giữ chỗ; trạng thái Đã lưu có dấu tick', async () => {
-    expect(css).toMatch(/\.row-actions \.btn-sm \{[^}]*min-width: var\(--size-touch\)/);
+    expect(css).toMatch(/\.item-actions \.btn-sm \{[^}]*min-width: var\(--size-touch\)/);
     expect(css).toMatch(/\.pv-slot \{ min-height: 3rem; \}/);
     expect(css).toContain('.status-saved::before { content: "\\2713');
     const js = studioJs;
@@ -44,6 +44,7 @@ describe('T-013 UI-1b trang studio', () => {
 
   it('iframe xem trước có vòng focus; outline :focus chỉ còn cho tabindex=-1', () => {
     expect(css).toMatch(/iframe:focus-visible \{ outline: var\(--focus-ring\)/);
+    expect(studioHtml).toContain('<iframe id="ed-preview" tabindex="-1"');
     expect(css).toContain('[tabindex="-1"]:focus {');
     expect(css).not.toMatch(/input:focus, textarea:focus, button:focus, a:focus/);
   });

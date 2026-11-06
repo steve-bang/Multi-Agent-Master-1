@@ -84,8 +84,7 @@ function showPreview(html){fr.srcdoc='<!doctype html><meta charset="utf-8"><base
 // Lỗi xem trước chỉ hiện thông báo nhẹ (aria-live), không alert, không cướp focus khỏi ô soạn thảo.
 var pn=el('div',null,{id:'pv-note',role:'status','aria-live':'polite','class':'alert-warning'});pn.hidden=true;
 var slot=el('div',null,{'class':'pv-slot'});slot.appendChild(pn);fr.parentNode.appendChild(slot);
-var pvCtl=null,pvRetry=null;
-function pvNote(t){pn.textContent=t||'';pn.hidden=!t;}
+var pvCtl=null,pvRetry=null;function pvNote(t){pn.textContent=t||'';pn.hidden=!t;}
 // Debounce 800 ms, hủy request cũ khi gõ tiếp, tự thử lại sau Retry-After khi bị 429.
 // FND-014: debounce tăng theo kích thước (800 ms + 20 ms/KB) để nội dung lớn không đốt ngân sách byte của server.
 function pvDelay(){return 800+Math.ceil(ta.value.length/1024)*20;}
@@ -156,7 +155,7 @@ export function studioPage(kind: 'page' | 'script'): string {
 <div role="toolbar" class="toolbar" aria-label="${esc(t['studio.edit.toolbar'])}">
 <button type="button" id="tb-bold">${esc(t['studio.edit.bold'])}</button><button type="button" id="tb-italic">${esc(t['studio.edit.italic'])}</button><button type="button" id="tb-heading">${esc(t['studio.edit.heading'])}</button><button type="button" id="tb-list">${esc(t['studio.edit.list'])}</button><button type="button" id="tb-code">${esc(t['studio.edit.code'])}</button><button type="button" id="tb-table">${esc(t['studio.edit.table'])}</button><button type="button" id="tb-image">${esc(t['studio.edit.image'])}</button></div>
 <div class="cols"><div><label for="ed-body">${esc(t['studio.edit.body'])}</label><textarea id="ed-body" placeholder="${esc(t['studio.edit.placeholder'])}"></textarea></div>
-<div><span id="pv-label" class="pane-label">${esc(t['studio.edit.preview'])}</span><iframe id="ed-preview" sandbox="" title="${esc(t['studio.edit.preview'])}" aria-labelledby="pv-label"></iframe></div></div>
+<div><span id="pv-label" class="pane-label">${esc(t['studio.edit.preview'])}</span><iframe id="ed-preview" tabindex="-1" sandbox="" title="${esc(t['studio.edit.preview'])}" aria-labelledby="pv-label"></iframe></div></div>
 <div class="editor-footer"><button type="button" id="ed-save" class="btn btn-primary" disabled>${esc(t['studio.save'])}</button><button type="button" id="ed-close" class="btn btn-secondary">${esc(t['studio.edit.close'])}</button><span id="ed-status" class="status-text" role="status" aria-live="polite"></span></div>
 </section>
 </div>

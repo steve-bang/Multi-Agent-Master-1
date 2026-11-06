@@ -45,7 +45,7 @@ code, pre { font-family: var(--font-mono); font-size: var(--font-size-code); lin
 /* Phần tử tabindex=-1 được focus bằng mã (tóm tắt lỗi, thông báo) luôn có vòng; vùng đích của skip link thì không (không tương tác). */
 [tabindex="-1"]:focus { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 main[tabindex="-1"]:focus { outline: none; }
-/* BUG-006: iframe xem trước nhận Tab nên phải có vòng focus rõ. */
+/* BUG-006: iframe xem trước (chỉ đọc, trùng nội dung ô soạn) tabindex=-1 nên không nằm trong thứ tự Tab; nếu được focus bằng chuột/mã thì vẫn có vòng rõ. */
 iframe:focus, iframe:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
 
 .skip-link { position: absolute; left: var(--space-2); top: -100px; background: var(--color-bg); padding: var(--space-2) var(--space-3); border-radius: var(--radius-control); z-index: 10; }
@@ -208,7 +208,7 @@ textarea { font-family: var(--font-mono); font-size: var(--font-size-code); line
 @media (max-width: 767px), (pointer: coarse) {
   .btn, button, input { min-height: var(--size-touch); }
   .btn-sm, .toolbar button { min-height: var(--size-touch); }
-  .row-actions .btn-sm { padding: 0 var(--space-3); min-width: var(--size-touch); }
+  .row-actions .btn-sm, .item-actions .btn-sm { padding: 0 var(--space-3); min-width: var(--size-touch); }
 }
 @media (min-width: 768px) {
   .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
