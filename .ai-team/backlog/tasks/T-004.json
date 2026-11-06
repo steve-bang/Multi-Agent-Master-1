@@ -15,7 +15,7 @@
     "C\u00f3 migration t\u1ea1o schema users/sessions/spaces/pages"
   ],
   "expected_outputs": [],
-  "status": "PENDING",
+  "status": "IN_PROGRESS",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -30,6 +30,20 @@
       "at": "2026-11-06T04:00:36Z",
       "to": "PENDING",
       "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T04:00:44Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:00:44Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }
