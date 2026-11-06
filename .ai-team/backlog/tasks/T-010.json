@@ -1,0 +1,34 @@
+{
+  "id": "T-010",
+  "title": "I-7 R\u00e0 so\u00e1t \u0111\u1ea7u-cu\u1ed1i, README ch\u1ea1y th\u1eed",
+  "description": "I-7 R\u00e0 so\u00e1t \u0111\u1ea7u-cu\u1ed1i, README ch\u1ea1y th\u1eed",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-009"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "To\u00e0n b\u1ed9 lu\u1ed3ng MVP ch\u1ea1y b\u1eb1ng ti\u1ebfng Vi\u1ec7t"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-001",
+    "REQ-002",
+    "REQ-014"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

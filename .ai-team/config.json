@@ -4,15 +4,41 @@
   "branch_prefix": "ai/",
   "auto_merge": false,
   "auto_deploy": false,
-  "notification": {"channel": "in-session", "external_integration": null},
-  "review": {"max_cycles": 4, "escalate_after_cycles": 3},
-  "bugfix": {"max_cycles": 4},
+  "notification": {
+    "channel": "in-session",
+    "external_integration": null
+  },
+  "review": {
+    "max_cycles": 4,
+    "escalate_after_cycles": 3
+  },
+  "bugfix": {
+    "max_cycles": 4
+  },
   "checks": {
-    "build": {"command": null, "required": true},
-    "lint": {"command": null, "required": true},
-    "typecheck": {"command": null, "required": false},
-    "unit": {"command": null, "required": true},
-    "integration": {"command": null, "required": false},
-    "static_analysis": {"command": null, "required": false}
+    "build": {
+      "command": "npm run build",
+      "required": true
+    },
+    "lint": {
+      "command": "npm run lint",
+      "required": true
+    },
+    "typecheck": {
+      "command": "npx tsc --noEmit",
+      "required": false
+    },
+    "unit": {
+      "command": "npm test",
+      "required": true
+    },
+    "integration": {
+      "command": "npx vitest run test/integration",
+      "required": false
+    },
+    "static_analysis": {
+      "command": "npm audit --omit=dev --audit-level=high",
+      "required": false
+    }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "id": "T-007",
+  "title": "I-4 So\u1ea1n Markdown + xem tr\u01b0\u1edbc, \u1ea3nh b\u1eb1ng URL (REQ-005)",
+  "description": "I-4 So\u1ea1n Markdown + xem tr\u01b0\u1edbc, \u1ea3nh b\u1eb1ng URL (REQ-005)",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-006"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "AC REQ-005 pass; XSS b\u1ecb ch\u1eb7n c\u00f3 test"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-005"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

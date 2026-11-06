@@ -1,0 +1,32 @@
+{
+  "id": "T-005",
+  "title": "I-2 \u0110\u0103ng k\u00fd, \u0111\u0103ng nh\u1eadp, \u0111\u0103ng xu\u1ea5t (REQ-003)",
+  "description": "I-2 \u0110\u0103ng k\u00fd, \u0111\u0103ng nh\u1eadp, \u0111\u0103ng xu\u1ea5t (REQ-003)",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-004"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "AC REQ-003 pass k\u00e8m test, m\u1eadt kh\u1ea9u scrypt, kh\u00f3a 5 l\u1ea7n/15 ph\u00fat"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-003"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

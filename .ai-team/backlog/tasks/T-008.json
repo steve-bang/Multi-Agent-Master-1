@@ -1,0 +1,32 @@
+{
+  "id": "T-008",
+  "title": "I-5 Xu\u1ea5t b\u1ea3n v\u00e0 trang \u0111\u1ecdc c\u00f4ng khai (REQ-006)",
+  "description": "I-5 Xu\u1ea5t b\u1ea3n v\u00e0 trang \u0111\u1ecdc c\u00f4ng khai (REQ-006)",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-007"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "AC REQ-006 pass; ch\u01b0a xu\u1ea5t b\u1ea3n tr\u1ea3 404"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-006"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

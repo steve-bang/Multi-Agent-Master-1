@@ -1,5 +1,5 @@
 # ADR-0001: Chọn stack cho vn-docs-platform
-Trạng thái: PROPOSED - chờ Owner duyệt (CHƯA được duyệt; không viết code ứng dụng trước khi duyệt). Ràng buộc nguồn: CLR-006, CLR-007 (stack đơn giản, chi phí thấp, token thấp).
+Trạng thái: ACCEPTED - Owner duyệt 2026-11-06 (nguồn: .ai-team/decisions/owner-002-adr-and-defaults.md). Ràng buộc nguồn: CLR-006, CLR-007.
 
 ## Quyết định đề xuất
 Node.js 20 LTS + TypeScript + Fastify; SQLite (better-sqlite3, FTS5 cho tìm kiếm); render Markdown phía server bằng markdown-it + sanitize-html; Vitest + ESLint. Một tiến trình, một file DB; deploy bằng một container hoặc VPS nhỏ (ước tính vài USD/tháng) hoặc Fly.io/Railway; sao lưu = sao chép file DB.

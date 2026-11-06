@@ -4,10 +4,17 @@
   "asked_by": "senior-fullstack-dev",
   "route": "ba",
   "blocks": [],
-  "status": "OPEN",
-  "classification": null,
-  "answer": null,
-  "source": null,
+  "status": "ANSWERED",
+  "classification": "CONFIRMED",
+  "answer": "Owner duy\u1ec7t b\u1ed9 m\u1eb7c \u0111\u1ecbnh",
+  "source": ".ai-team/decisions/owner-002-adr-and-defaults.md",
   "created": "2026-11-06T03:58:55Z",
-  "history": []
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "classification": "CONFIRMED",
+      "answer": "Owner duy\u1ec7t b\u1ed9 m\u1eb7c \u0111\u1ecbnh"
+    }
+  ],
+  "answered": "2026-11-06T04:00:36Z"
 }

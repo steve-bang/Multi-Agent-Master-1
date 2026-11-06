@@ -1,0 +1,33 @@
+{
+  "id": "T-006",
+  "title": "I-3 Space v\u00e0 c\u00e2y trang t\u1ed1i \u0111a 4 c\u1ea5p, slug (REQ-004, REQ-007)",
+  "description": "I-3 Space v\u00e0 c\u00e2y trang t\u1ed1i \u0111a 4 c\u1ea5p, slug (REQ-004, REQ-007)",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-005"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "AC REQ-004/007 pass; space ng\u01b0\u1eddi kh\u00e1c tr\u1ea3 404 (test IDOR)"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-004",
+    "REQ-007"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

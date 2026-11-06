@@ -1,0 +1,32 @@
+{
+  "id": "T-009",
+  "title": "I-6 T\u00ecm ki\u1ebfm kh\u00f4ng d\u1ea5u (REQ-008)",
+  "description": "I-6 T\u00ecm ki\u1ebfm kh\u00f4ng d\u1ea5u (REQ-008)",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-008"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "AC REQ-008 pass; t\u00ecm 'duong' ra '\u0111\u01b0\u1eddng'"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-008"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

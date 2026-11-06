@@ -1,0 +1,35 @@
+{
+  "id": "T-004",
+  "title": "I-1 Kh\u1edfi t\u1ea1o d\u1ef1 \u00e1n Node/TS/Fastify/SQLite, lint, test, CI ch\u1ea1y \u0111\u01b0\u1ee3c",
+  "description": "I-1 Kh\u1edfi t\u1ea1o d\u1ef1 \u00e1n Node/TS/Fastify/SQLite, lint, test, CI ch\u1ea1y \u0111\u01b0\u1ee3c",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [
+    ".ai-team/architecture/technical-designs/vn-docs-platform.md"
+  ],
+  "dependencies": [
+    "T-003"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "npm run build, lint, test \u0111\u1ec1u ch\u1ea1y xanh",
+    "C\u00f3 migration t\u1ea1o schema users/sessions/spaces/pages"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-001"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T04:00:36Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}
