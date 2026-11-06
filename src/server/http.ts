@@ -10,6 +10,15 @@ export const MSG: Record<string, string> = {
   RATE_LIMITED: t['auth.error.rate_limited'],
   FORBIDDEN_ORIGIN: t['auth.error.forbidden_origin'],
   UNAUTHENTICATED: t['auth.error.unauthenticated'],
+  NOT_FOUND: t['docs.error.not_found'],
+  TITLE_REQUIRED: t['docs.error.title_required'],
+  TITLE_TOO_LONG: t['docs.error.title_too_long'],
+  SLUG_INVALID: t['docs.error.slug_invalid'],
+  TOO_DEEP: t['docs.error.too_deep'],
+  CYCLE: t['docs.error.cycle'],
+  TOO_MANY_PAGES: t['docs.error.too_many_pages'],
+  CONFIRM_REQUIRED: t['docs.error.confirm_required'],
+  INVALID_INPUT: t['docs.error.invalid_input'],
 };
 
 export function fail(reply: FastifyReply, status: number, code: string) {

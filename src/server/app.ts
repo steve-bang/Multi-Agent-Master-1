@@ -1,6 +1,7 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import type { Db } from '../db/index.js';
 import { authRoutes } from '../routes/auth.js';
+import { docsRoutes } from '../routes/docs.js';
 import { healthRoutes } from '../routes/health.js';
 import { studioRoutes } from '../routes/studio.js';
 import { registerGlobalGuards } from './guards.js';
@@ -22,5 +23,6 @@ export function buildApp(db: Db, opts: AppOptions = {}): FastifyInstance {
   app.register(healthRoutes);
   app.register(authRoutes);
   app.register(studioRoutes);
+  app.register(docsRoutes);
   return app;
 }
