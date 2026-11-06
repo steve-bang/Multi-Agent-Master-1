@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { openDb } from '../../src/db/index.js';
-import { renderMarkdown } from '../../src/render/markdown.js';
+import { renderLayer1, renderMarkdown, sanitizeLayer2, validateLink } from '../../src/render/markdown.js';
 import { buildApp } from '../../src/server/app.js';
 
 const H = { host: 'localhost:3000', origin: 'http://localhost:3000' };
@@ -47,6 +47,14 @@ const XSS: [string, string][] = [
   ['style', '<p style="x:expression(alert(1))">x</p>'],
   ['ref link', '[x][r]\n\n[r]: javascript:alert(1)'],
   ['autolink', '<javascript:alert(1)>'],
+  ['details ontoggle', '<details open ontoggle=alert(1)><summary>x</summary></details>'],
+  ['math', '<math><mi xlink:href=javascript:alert(1)>x</mi></math>'],
+  ['heading html', '# <img src=x onerror=alert(1)> tiêu đề <script>alert(1)</script>'],
+  ['setext heading html', '<b onmouseover=alert(1)>x</b>\n===='],
+  ['code block html', '```html\n<script>alert(1)</script><img src=x onerror=alert(1)>\n```'],
+  ['inline code html', '`<script>alert(1)</script>`'],
+  ['indented code html', '    <script>alert(1)</script>'],
+  ['table html', '| a |\n|---|\n| <script>alert(1)</script> |'],
 ];
 
 describe('REQ-005 render an toàn', () => {
@@ -59,6 +67,29 @@ describe('REQ-005 render an toàn', () => {
       expect(html).not.toMatch(/(href|src)\s*=\s*"[^"]*(javascript|vbscript|data)\s*:/i);
     });
   }
+
+  // Kiểm từng lớp độc lập để hồi quy một lớp không bị lớp kia che.
+  it('REQ-005 lớp 1 validateLink: chặn scheme nguy hiểm, cho phép http/https/mailto/#', () => {
+    for (const u of ['javascript:alert(1)', 'JaVaScRiPt:x', ' javascript:x', 'java\tscript:x', 'java​script:x', 'vbscript:x', 'data:text/html,x', 'file:///etc/passwd', '//evil.example', '/local'])
+      expect(validateLink(u), u).toBe(false);
+    for (const u of ['https://e.com', 'http://e.com', 'mailto:a@e.com', '#muc'])
+      expect(validateLink(u), u).toBe(true);
+  });
+
+  it('REQ-005 lớp 1 markdown-it (chưa sanitize): không sinh thẻ nguy hiểm / link javascript', () => {
+    expect(renderLayer1('<script>alert(1)</script>')).not.toMatch(/<script/i);
+    expect(renderLayer1('<img src=x onerror=alert(1)>')).not.toMatch(/<img/i);
+    expect(renderLayer1('[x](javascript:alert(1))')).not.toMatch(/<a\b/i);
+    expect(renderLayer1('![x](javascript:alert(1))')).not.toMatch(/<img/i);
+    expect(renderLayer1('<details ontoggle=alert(1)>')).not.toMatch(/<details/i);
+  });
+
+  it('REQ-005 lớp 2 sanitize-html độc lập: bỏ thẻ/thuộc tính/scheme nguy hiểm trong HTML thô', () => {
+    const out = sanitizeLayer2(
+      '<script>a</script><a href="javascript:x" onclick="y">l</a><img src="data:image/png;base64,AA" onerror="z"><details ontoggle="q"><summary>s</summary></details><math><mi>m</mi></math><p style="x:y">p</p>',
+    );
+    expect(out).not.toMatch(/<script|javascript:|onclick|onerror|ontoggle|<details|<math|style=|data:/i);
+  });
 
   it('REQ-005 giữ lại http/https/mailto, link ngoài có rel an toàn', () => {
     const html = renderMarkdown('[a](https://e.com) [b](http://e.com) [c](mailto:a@e.com)');
@@ -194,8 +225,15 @@ describe('REQ-005 Studio', () => {
     const page = await app.inject({ method: 'GET', url: '/studio', headers: a });
     expect(String(page.headers['content-security-policy'])).toContain("img-src 'self' http: https:");
     expect(page.body).not.toMatch(/<script(?![^>]*src=)/i);
+    // Lớp phòng thủ chính của preview: thuộc tính sandbox rỗng (không allow-*) trên iframe trong HTML /studio.
+    const tag = page.body.match(/<iframe\b[^>]*\bid="ed-preview"[^>]*>/)?.[0] ?? '';
+    expect(tag).not.toBe('');
+    expect(tag).toMatch(/\ssandbox=""(\s|>)/);
+    expect(tag).not.toMatch(/allow-/);
+    expect(tag).not.toMatch(/\ssrc=/);
+    expect(page.body.match(/<iframe\b/g)).toHaveLength(1);
     const js = await app.inject({ method: 'GET', url: '/assets/studio.js', headers: a });
-    expect(js.body).toContain('sandbox');
+    expect(js.body).not.toMatch(/setAttribute\(\s*['"]sandbox['"]/);
     expect(js.body).toContain('beforeunload');
     expect(js.body).not.toMatch(/innerHTML\s*=/);
   });

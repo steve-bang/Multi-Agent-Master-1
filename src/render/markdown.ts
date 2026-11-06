@@ -15,10 +15,11 @@ const isInvisible = (c: number): boolean =>
 const stripInvisible = (s: string): string => [...s].filter((ch) => !isInvisible(ch.codePointAt(0)!)).join('');
 
 const md = new MarkdownIt({ html: false, linkify: false, typographer: false, breaks: false });
-md.validateLink = (url: string): boolean => {
+export const validateLink = (url: string): boolean => {
   const u = stripInvisible(url);
   return ABSOLUTE_LINK.test(u) || u.startsWith('#');
 };
+md.validateLink = validateLink;
 
 const OPTIONS: sanitizeHtml.IOptions = {
   allowedTags: [
@@ -58,6 +59,11 @@ const OPTIONS: sanitizeHtml.IOptions = {
   exclusiveFilter: (frame) => frame.tag === 'img' && !frame.attribs.src,
 };
 
+/** Lớp 1 riêng (chỉ để test từng lớp): markdown-it, chưa sanitize. */
+export const renderLayer1 = (source: string): string => md.render(source);
+/** Lớp 2 riêng (chỉ để test từng lớp): sanitize-html trên HTML bất kỳ. */
+export const sanitizeLayer2 = (html: string): string => sanitizeHtml(html, OPTIONS);
+
 export function renderMarkdown(source: string): string {
-  return sanitizeHtml(md.render(source), OPTIONS);
+  return sanitizeLayer2(renderLayer1(source));
 }
