@@ -4,7 +4,10 @@ import { MSG } from '../server/http.js';
 import { renderMarkdown } from '../render/markdown.js';
 import { requireAuth } from '../server/guards.js';
 
-type Id = { Params: { id?: string; pid?: string } };
+const PREVIEW_WINDOW_MS = 60_000;
+const PREVIEW_MAX = 30;
+
+type Id ={ Params: { id?: string; pid?: string } };
 
 export async function docsRoutes(app: FastifyInstance): Promise<void> {
   // Mọi route trong plugin này đều yêu cầu đăng nhập; chủ sở hữu kiểm tra trong service (404 nếu không phải chủ).
@@ -44,9 +47,24 @@ export async function docsRoutes(app: FastifyInstance): Promise<void> {
     run(reply, () => ({ page: svc.updatePage(app.db, uid(req), svc.parseId(req.params.pid), body(req)) })),
   );
   // Xem trước: chỉ render, không chạm DB; dùng chung renderMarkdown với trang đọc công khai.
-  app.post('/api/preview', (req, reply) =>
-    run(reply, () => ({ html: renderMarkdown(svc.cleanBody(body(req).bodyMd)) })),
-  );
+  // Rate limit theo user (cửa sổ cố định 60 s, tối đa 30): kiểm tra + ghi hoàn toàn đồng bộ trước khi render,
+  // nên request đồng thời không lách được; bộ đếm nằm trong bộ nhớ tiến trình (1 instance).
+  const previewHits = new Map<number, { start: number; count: number }>();
+  app.post('/api/preview', (req, reply) => {
+    const now = Date.now();
+    if (previewHits.size > 1000) for (const [k, v] of previewHits) if (now - v.start >= PREVIEW_WINDOW_MS) previewHits.delete(k);
+    let h = previewHits.get(uid(req));
+    if (!h || now - h.start >= PREVIEW_WINDOW_MS) {
+      h = { start: now, count: 0 };
+      previewHits.set(uid(req), h);
+    }
+    if (h.count >= PREVIEW_MAX) {
+      reply.header('Retry-After', String(Math.max(1, Math.ceil((h.start + PREVIEW_WINDOW_MS - now) / 1000))));
+      return reply.code(429).send({ error: { code: 'PREVIEW_RATE_LIMITED', message: MSG.PREVIEW_RATE_LIMITED } });
+    }
+    h.count++;
+    return run(reply, () => ({ html: renderMarkdown(svc.cleanBody(body(req).bodyMd)) }));
+  });
   app.post<Id>('/api/pages/:pid/move', (req, reply) =>
     run(reply, () => ({ tree: svc.movePage(app.db, uid(req), svc.parseId(req.params.pid), body(req)) })),
   );

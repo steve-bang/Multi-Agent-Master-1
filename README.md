@@ -27,6 +27,7 @@ npm run lint && npx tsc --noEmit && npm test
 - Chưa làm: xóa space, xuất bản, tìm kiếm.
 
 ## Soạn Markdown và xem trước (REQ-005)
+- Hiệu năng xem trước (FND-011): `POST /api/preview` giới hạn 30 request/phút/user (429 `PREVIEW_RATE_LIMITED`, header `Retry-After`; bộ đếm trong bộ nhớ, 1 instance). Số đo `renderMarkdown` ở ca xấu đúng 200 KB (Node, máy dev, 3 lần chạy, ms): danh sách lồng sâu ~70; blockquote lồng sâu ~7; emphasis lồng ~155; emphasis `**_` lặp ~225-280; `[` lặp ~485-535; `[a](` lặp ~85; backtick lặp ~5; backtick xen kẽ ~150; link dài ~55; bảng lớn ~460-490; entity lặp ~105-117; nhiều đoạn ngắn ~500-545; ảnh lặp ~140. Tăng tuyến tính (không thấy ReDoS/bậc hai), ca tệ nhất ~0,5 s chặn event loop; test hồi quy `test/integration/preview-perf.test.ts` (ngưỡng nới 1500 ms; đặt `PERF_LOG=1` để in số đo).
 - `PATCH /api/pages/:pid` nhận `title` và/hoặc `bodyMd` (một transaction); `GET /api/pages/:pid` trả `bodyMd`; `POST /api/preview {bodyMd}` trả `{html}` đã làm sạch.
 - Giới hạn nội dung: 200 KB (byte UTF-8) mỗi trang và mỗi lần xem trước; vượt thì 400 `TOO_LARGE` (cả khi vượt giới hạn body 1 MB của server).
 - Render dùng một hàm duy nhất `src/render/markdown.ts` (markdown-it `html:false` + sanitize-html): chỉ http/https/mailto, ảnh chỉ http/https (chèn bằng URL, không upload), link có `rel="noopener noreferrer nofollow"`, không có `on*`/`style`. Markdown gốc được lưu, làm sạch khi render.
