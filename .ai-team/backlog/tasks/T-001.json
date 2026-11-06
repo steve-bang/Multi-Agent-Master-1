@@ -1,0 +1,47 @@
+{
+  "id": "T-001",
+  "title": "Ph\u00e2n t\u00edch y\u00eau c\u1ea7u n\u1ec1n t\u1ea3ng t\u00e0i li\u1ec7u ki\u1ec3u GitBook (VN)",
+  "description": "Ph\u00e2n t\u00edch y\u00eau c\u1ea7u n\u1ec1n t\u1ea3ng t\u00e0i li\u1ec7u ki\u1ec3u GitBook (VN)",
+  "assigned_agent": "ba",
+  "input_artifacts": [
+    ".ai-team/PROJECT.md"
+  ],
+  "dependencies": [],
+  "scope": "",
+  "acceptance_criteria": [
+    "Danh s\u00e1ch REQ-NNN, m\u1ed7i m\u1ee5c CONFIRMED ho\u1eb7c ASSUMPTION",
+    "Danh s\u00e1ch c\u00e2u h\u1ecfi m\u1edf k\u00e8m \u0111\u1ec1 xu\u1ea5t m\u1eb7c \u0111\u1ecbnh"
+  ],
+  "expected_outputs": [
+    ".ai-team/requirements/vn-docs-platform.md"
+  ],
+  "status": "IN_PROGRESS",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T03:40:57Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T03:40:57Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:40:57Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    }
+  ]
+}

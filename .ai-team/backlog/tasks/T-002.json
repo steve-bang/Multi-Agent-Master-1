@@ -1,0 +1,32 @@
+{
+  "id": "T-002",
+  "title": "Thi\u1ebft k\u1ebf UX/UI tr\u00ecnh so\u1ea1n th\u1ea3o v\u00e0 trang \u0111\u1ecdc",
+  "description": "Thi\u1ebft k\u1ebf UX/UI tr\u00ecnh so\u1ea1n th\u1ea3o v\u00e0 trang \u0111\u1ecdc",
+  "assigned_agent": "designer",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-001"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "Lu\u1ed3ng, \u0111\u1eb7c t\u1ea3, \u0111\u1ee7 tr\u1ea1ng th\u00e1i, responsive, a11y"
+  ],
+  "expected_outputs": [
+    ".ai-team/design/design-specs/vn-docs-platform.md"
+  ],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T03:40:57Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

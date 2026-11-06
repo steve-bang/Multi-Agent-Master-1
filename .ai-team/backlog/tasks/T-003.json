@@ -1,0 +1,32 @@
+{
+  "id": "T-003",
+  "title": "K\u1ebf ho\u1ea1ch k\u1ef9 thu\u1eadt v\u00e0 ADR ch\u1ecdn stack",
+  "description": "K\u1ebf ho\u1ea1ch k\u1ef9 thu\u1eadt v\u00e0 ADR ch\u1ecdn stack",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [],
+  "dependencies": [
+    "T-001"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "Thi\u1ebft k\u1ebf k\u1ef9 thu\u1eadt, ADR stack, l\u1ec7nh build/test cho config.json"
+  ],
+  "expected_outputs": [
+    ".ai-team/architecture/technical-designs/vn-docs-platform.md"
+  ],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T03:40:57Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}
