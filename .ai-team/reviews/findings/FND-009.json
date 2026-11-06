@@ -1,0 +1,28 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "b59abca213bab7a389dd251bf614d9b0d93885e1",
+  "severity": "LOW",
+  "category": "api-contract",
+  "file": ".ai-team/architecture/api-contracts/vn-docs-platform.md",
+  "line": 18,
+  "description": "H\u1ee3p \u0111\u1ed3ng li\u1ec7t k\u00ea DELETE /api/spaces/:id v\u00e0 PATCH /api/spaces/:id {published?} nh\u01b0ng m\u00e3 ch\u01b0a c\u00f3; DELETE space kh\u00f4ng thu\u1ed9c task n\u00e0o.",
+  "expected": "H\u1ee3p \u0111\u1ed3ng kh\u1edbp m\u00e3 ho\u1eb7c c\u00f3 task ch\u1ecbu tr\u00e1ch nhi\u1ec7m.",
+  "action": "Orchestrator ch\u1ed1t ph\u1ea1m vi v\u00e0 ghi r\u00f5 trong h\u1ee3p \u0111\u1ed3ng.",
+  "acceptance": "H\u1ee3p \u0111\u1ed3ng kh\u00f4ng c\u00f2n route m\u00e3 thi\u1ebfu m\u00e0 kh\u00f4ng c\u00f3 ch\u00fa th\u00edch ho\u1eb7c task ch\u1ecbu tr\u00e1ch nhi\u1ec7m.",
+  "task": "T-006",
+  "id": "FND-009",
+  "kind": "finding",
+  "status": "DISPOSITIONED",
+  "created": "2026-11-06T04:29:25Z",
+  "original_sha": "b59abca213bab7a389dd251bf614d9b0d93885e1",
+  "history": [
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "from": "OPEN",
+      "to": "DISPOSITIONED",
+      "sha": null,
+      "evidence": null
+    }
+  ],
+  "disposition": "\u0110\u00e3 s\u1eeda b\u1eb1ng c\u00e1ch ch\u1ed1t ph\u1ea1m vi trong h\u1ee3p \u0111\u1ed3ng API (m\u1ee5c 'Ngo\u00e0i ph\u1ea1m vi \u0111\u1ee3t 1'): DELETE space v\u00e0 \u0111\u1ed5i slug v\u00e0o backlog, published th\u00eam \u1edf T-008. Ch\u1ec9 s\u1eeda t\u00e0i li\u1ec7u, kh\u00f4ng \u0111\u1ed5i m\u00e3."
+}

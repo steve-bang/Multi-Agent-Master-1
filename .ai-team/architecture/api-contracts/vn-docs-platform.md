@@ -43,3 +43,7 @@ Ghi chú: slug trang trùng trong cùng space được thêm hậu tố `-2`; đ
 - PATCH /api/pages/:pid hiện chỉ nhận `title`; `bodyMd` sẽ thêm ở T-007.
 - DELETE /api/pages/:pid?confirm=1: trang có con mà thiếu confirm trả 400 CONFIRM_REQUIRED kèm `error.childCount`.
 - Giới hạn: 500 trang/space, tiêu đề 200 ký tự, slug 80 ký tự. Space/trang của người khác trả 404.
+
+## Ngoài phạm vi đợt 1 (chốt bởi Orchestrator sau review T-006)
+- DELETE /api/spaces/:id và đổi slug space/trang sau khi tạo: KHÔNG làm ở đợt 1, vào backlog. `PATCH /api/spaces/:id {published?}` được thêm ở T-008.
+- Slug trang dành riêng của reader (ít nhất `search`): xử lý trong T-009 khi route `/s/:spaceSlug/search` được tạo.

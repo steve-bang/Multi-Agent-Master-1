@@ -1,0 +1,28 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "b59abca213bab7a389dd251bf614d9b0d93885e1",
+  "severity": "LOW",
+  "category": "correctness/routing",
+  "file": "src/services/docs.ts",
+  "line": 42,
+  "description": "Slug trang t\u1ef1 sinh ho\u1eb7c nh\u1eadp tay c\u00f3 th\u1ec3 l\u00e0 'search'; h\u1ee3p \u0111\u1ed3ng c\u00f3 route GET /s/:spaceSlug/search (T-009), route t\u0129nh th\u1eafng n\u00ean trang n\u00e0y kh\u00f4ng truy c\u1eadp \u0111\u01b0\u1ee3c.",
+  "expected": "Slug trang kh\u00f4ng tr\u00f9ng segment d\u00e0nh ri\u00eang c\u1ee7a reader (\u00edt nh\u1ea5t 'search').",
+  "action": "Th\u00eam danh s\u00e1ch slug d\u00e0nh ri\u00eang; t\u1ef1 sinh th\u00ec th\u00eam h\u1eadu t\u1ed1 -2, nh\u1eadp tay th\u00ec t\u1eeb ch\u1ed1i SLUG_INVALID ho\u1eb7c \u0111\u1ed5i; th\u00eam test.",
+  "acceptance": "T\u1ea1o trang ti\u00eau \u0111\u1ec1 'Search' ra slug kh\u00e1c 'search'; nh\u1eadp slug 'search' b\u1ecb t\u1eeb ch\u1ed1i ho\u1eb7c \u0111\u1ed5i; test m\u1edbi pass.",
+  "task": "T-006",
+  "id": "FND-008",
+  "kind": "finding",
+  "status": "DISPOSITIONED",
+  "created": "2026-11-06T04:29:25Z",
+  "original_sha": "b59abca213bab7a389dd251bf614d9b0d93885e1",
+  "history": [
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "from": "OPEN",
+      "to": "DISPOSITIONED",
+      "sha": null,
+      "evidence": null
+    }
+  ],
+  "disposition": "Ho\u00e3n c\u00f3 ch\u1ee7 \u0111\u00edch sang T-009: l\u1ed7i ch\u1ec9 x\u1ea3y ra khi route /search t\u1ed3n t\u1ea1i (ch\u01b0a c\u00f3), n\u00ean ch\u01b0a c\u00f3 t\u00e1c \u0111\u1ed9ng t\u1edbi ng\u01b0\u1eddi d\u00f9ng. T-009 B\u1eaeT BU\u1ed8C th\u00eam danh s\u00e1ch slug trang d\u00e0nh ri\u00eang + test; Reviewer c\u1ee7a T-009 ki\u1ec3m tra m\u1ee5c n\u00e0y."
+}

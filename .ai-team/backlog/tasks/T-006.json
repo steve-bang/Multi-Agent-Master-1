@@ -12,9 +12,12 @@
     "AC REQ-004/007 pass; space ng\u01b0\u1eddi kh\u00e1c tr\u1ea3 404 (test IDOR)"
   ],
   "expected_outputs": [],
-  "status": "IN_REVIEW",
+  "status": "DONE",
   "related_pr": null,
-  "related_findings": [],
+  "related_findings": [
+    "FND-008",
+    "FND-009"
+  ],
   "related_bugs": [],
   "requirements": [
     "REQ-004",
@@ -27,6 +30,16 @@
       "at": "2026-11-06T04:27:19Z",
       "by": "senior-fullstack-dev",
       "evidence": "dev c2235b1 -> b59abca; orchestrator run-checks PASS, 44/44 tests"
+    },
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "by": "orchestrator",
+      "evidence": "Reviewer APPROVE_RECOMMENDED at b59abca (advisory, not GitHub approval); run-checks PASS 44/44; FND-008/009 LOW dispositioned"
+    },
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "by": "orchestrator",
+      "evidence": "review report .ai-team/reviews/review-reports/T-006-b59abca.md; checks-b59abca213ba.json"
     }
   ],
   "history": [
@@ -60,6 +73,20 @@
       "at": "2026-11-06T04:27:19Z",
       "from": "SUBMITTED",
       "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:29:25Z",
+      "from": "APPROVED",
+      "to": "DONE",
       "by": "orchestrator",
       "note": null
     }
