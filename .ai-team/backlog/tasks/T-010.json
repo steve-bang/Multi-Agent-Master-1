@@ -15,7 +15,9 @@
   "status": "PENDING",
   "related_pr": null,
   "related_findings": [],
-  "related_bugs": [],
+  "related_bugs": [
+    "BUG-004"
+  ],
   "requirements": [
     "REQ-001",
     "REQ-002",

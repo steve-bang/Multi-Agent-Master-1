@@ -13,6 +13,7 @@ const tally = async (ps) => { const o = {}; for (const r of await ps) { o[r.stat
 const hz = async (ms) => { const lat = []; const end = Date.now() + ms; while (Date.now() < end) { const t = performance.now(); await fetch(B + '/healthz').then((r) => r.text()); lat.push(performance.now() - t); await new Promise((r) => setTimeout(r, 5)); } return lat; };
 (async () => {
   const k200 = 'a'.repeat(200 * 1024), k16 = 'b'.repeat(16 * 1024);
+  if (!process.env.ONLYG) {
   // (a) tuần tự 200KB
   let c = await user(), ok = 0, first429 = null;
   for (let i = 0; i < 30; i++) { const r = await pv(c, k200); await r.text(); if (r.status === 200) ok++; else if (!first429) first429 = { i, status: r.status, ra: r.headers.get('retry-after') }; }
@@ -37,6 +38,7 @@ const hz = async (ms) => { const lat = []; const end = Date.now() + ms; while (D
   // 20 song song
   c = await user(); const hp2 = hz(8000); const t1 = Date.now(); const o2 = await tally(await Promise.all(Array.from({ length: 20 }, () => pv(c, k200)))); const t2 = Date.now() - t1; const l2 = await hp2; l2.sort((a, b) => a - b);
   console.log('e2) 20x200KB song song', JSON.stringify(o2), 'tổng', t2, 'ms; healthz p50', l2[l2.length >> 1].toFixed(1), 'max', l2[l2.length - 1].toFixed(1));
+  }
   // (g) nội dung nhỏ render nặng
   const shapes = {
     'img "![" x16KB': '!['.repeat(8 * 1024),
@@ -48,8 +50,9 @@ const hz = async (ms) => { const lat = []; const end = Date.now() + ms; while (D
     '**_ lặp 16KB': '**_'.repeat(5400),
     '``` lặp 16KB': '`'.repeat(16 * 1024),
   };
+  c = await user();
   for (const [name, body] of Object.entries(shapes)) {
-    c = await user(); const b = body.slice(0, 16 * 1024); const hp3 = hz(4000); const ts = []; let st = {};
+    const b = body.slice(0, 16 * 1024); const hp3 = hz(4000); const ts = []; let st = {};
     for (let i = 0; i < 5; i++) { const t = performance.now(); const r = await pv(c, b); await r.text(); ts.push(performance.now() - t); st[r.status] = (st[r.status] || 0) + 1; }
     const l = await hp3; l.sort((a, b) => a - b);
     console.log('g)', name, 'bytes', b.length, 'ms/request', ts.map((x) => x.toFixed(0)).join(','), JSON.stringify(st), 'healthz max', l[l.length - 1].toFixed(0));
