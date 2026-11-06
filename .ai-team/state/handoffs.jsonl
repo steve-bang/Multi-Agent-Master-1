@@ -30,3 +30,4 @@
 {"at": "2026-11-06T04:46:53Z", "from": "orchestrator", "to": "reviewer", "task": "T-007", "type": "delegation", "summary": "Re-review FND-010/011 t\u1ea1i c7a20614e360fcc7e26016084111cd726276cf23"}
 {"at": "2026-11-06T04:48:48Z", "from": "reviewer", "to": "orchestrator", "task": "T-007", "type": "finding", "summary": "Re-review: FND-010/011 verified; FND-013 MEDIUM m\u1edbi (429 l\u00e0m m\u1ea5t focus); ch\u1edd Tester"}
 {"at": "2026-11-06T04:58:44Z", "from": "tester", "to": "orchestrator", "task": "T-007", "type": "bug", "summary": "VERDICT FAIL t\u1ea1i a0f30e0: BUG-001 HIGH x\u00f3a trang UI, BUG-002 HIGH 429 c\u01b0\u1edbp focus, BUG-003 MEDIUM l\u01b0u l\u1ed7i m\u1ea1ng; XSS/sandbox/IDOR PASS trong Chromium"}
+{"at": "2026-11-06T04:58:58Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-007", "type": "delegation", "summary": "Revision BUG-001..003 + FND-013"}
