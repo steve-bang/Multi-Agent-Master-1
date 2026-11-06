@@ -1,5 +1,6 @@
 {
   "app.name": "Nền tảng tài liệu",
+  "app.skip": "Bỏ qua tới nội dung",
   "studio.title": "Không gian làm việc",
   "auth.login.title": "Đăng nhập",
   "auth.register.title": "Đăng ký",

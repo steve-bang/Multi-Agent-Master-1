@@ -1,5 +1,6 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import type { Db } from '../db/index.js';
+import { assetRoutes } from '../routes/assets.js';
 import { authRoutes } from '../routes/auth.js';
 import { docsRoutes } from '../routes/docs.js';
 import { healthRoutes } from '../routes/health.js';
@@ -32,6 +33,7 @@ export function buildApp(db: Db, opts: AppOptions = {}): FastifyInstance {
   });
   app.setNotFoundHandler((_req, reply) => reply.code(404).send({ error: { code: 'NOT_FOUND', message: MSG.NOT_FOUND } }));
   app.register(healthRoutes);
+  app.register(assetRoutes);
   app.register(authRoutes);
   app.register(studioRoutes);
   app.register(docsRoutes);

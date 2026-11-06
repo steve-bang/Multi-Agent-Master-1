@@ -1,0 +1,75 @@
+/* Token thiết kế (nguồn duy nhất của mã màu). Giá trị theo .ai-team/design/design-specs/vn-docs-platform.md mục 1. */
+:root {
+  /* Màu: nền và chữ */
+  --color-bg: #FFFFFF;
+  --color-surface: #F9FAFB;
+  --color-text: #111827;
+  --color-text-muted: #4B5563;
+  /* Màu: hành động chính */
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-primary-active: #1E40AF;
+  --color-on-primary: #FFFFFF;
+  --color-current-bg: #EFF6FF;
+  /* Màu: viền */
+  --color-border: #6B7280;
+  --color-border-hover: #111827;
+  --color-border-subtle: #E5E7EB;
+  /* Màu: trạng thái */
+  --color-error: #B91C1C;
+  --color-error-bg: #FEF2F2;
+  --color-error-hover: #991B1B;
+  --color-success: #15803D;
+  --color-success-bg: #F0FDF4;
+  --color-warning: #92400E;
+  --color-warning-bg: #FFFBEB;
+  /* Màu: vô hiệu hóa và nền hover */
+  --color-disabled-text: #6B7280;
+  --color-disabled-bg: #F3F4F6;
+  --color-hover-bg: #F3F4F6;
+  /* Vòng focus: 2px, lệch 2px, tương phản >= 3:1 */
+  --color-focus: #1D4ED8;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring: var(--focus-ring-width) solid var(--color-focus);
+  /* Chữ */
+  --font-sans: Inter, "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-size-sm: 14px;
+  --line-height-sm: 20px;
+  --font-size-base: 16px;
+  --line-height-base: 24px;
+  --font-size-read: 18px;
+  --line-height-read: 30px;
+  --font-size-h2: 24px;
+  --line-height-h2: 32px;
+  --font-size-h1: 32px;
+  --line-height-h1: 40px;
+  --font-size-code: 14px;
+  --line-height-code: 22px;
+  --font-weight-normal: 400;
+  --font-weight-heading: 600;
+  /* Khoảng cách */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  /* Bo góc */
+  --radius-control: 6px;
+  --radius-card: 8px;
+  /* Kích thước */
+  --size-control: 40px;
+  --size-touch: 44px;
+  --size-sidebar: 280px;
+  --size-auth-card: 400px;
+  --size-page-max: 1120px;
+  --tree-indent: 16px;
+  /* Chuyển động */
+  --motion-duration: 150ms;
+  --motion-ease: ease-out;
+  /* Bóng nhẹ (card) */
+  --shadow-card: 0 1px 3px rgba(17, 24, 39, 0.12);
+}
