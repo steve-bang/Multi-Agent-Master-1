@@ -12,7 +12,7 @@
   "task": "T-007",
   "id": "FND-015",
   "kind": "finding",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T05:10:27Z",
   "original_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
   "history": [
@@ -22,7 +22,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T05:27:37Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3",
+      "evidence": "Reviewer \u0111\u1ecdc docs.ts/studio-page.ts/preview-perf.test.ts \u1edf b6e6335: ki\u1ec3m tra+tr\u1eeb \u0111\u1ed3ng b\u1ed9, closeEd h\u1ee7y \u0111\u1ee7; Reviewer KH\u00d4NG ch\u1ea1y \u0111\u01b0\u1ee3c vitest (thi\u1ebfu node_modules). H\u00e0nh vi tr\u00ecnh duy\u1ec7t ch\u1edd Tester. Report T-007-b6e6335.md"
     }
   ],
-  "fixed_sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3"
+  "fixed_sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3",
+  "verified_by": "reviewer",
+  "verified_sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3"
 }
