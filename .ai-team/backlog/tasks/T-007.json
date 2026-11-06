@@ -12,7 +12,7 @@
     "AC REQ-005 pass; XSS b\u1ecb ch\u1eb7n c\u00f3 test"
   ],
   "expected_outputs": [],
-  "status": "IN_PROGRESS",
+  "status": "IN_REVIEW",
   "related_pr": null,
   "related_findings": [
     "FND-010",
@@ -40,6 +40,11 @@
       "at": "2026-11-06T04:46:53Z",
       "by": "senior-fullstack-dev",
       "evidence": "dev c76d189 -> a0f30e0; orchestrator run-checks PASS, 108/108 tests"
+    },
+    {
+      "at": "2026-11-06T05:08:32Z",
+      "by": "senior-fullstack-dev",
+      "evidence": "dev fix2 8c5bb38 -> 9d59515f31944e4936d275ae300e7f1a3f1883de; orchestrator run-checks all PASS, 114/114 tests"
     }
   ],
   "history": [
@@ -115,6 +120,20 @@
       "at": "2026-11-06T04:58:58Z",
       "from": "REVISION",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T05:08:32Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "senior-fullstack-dev",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T05:08:32Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
       "by": "orchestrator",
       "note": null
     }

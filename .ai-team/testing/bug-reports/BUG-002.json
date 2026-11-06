@@ -8,8 +8,17 @@
   "actual": "68 request: 30x200 r\u1ed3i 38x429 (429 \u0111\u1ea7u \u1edf gi\u00e2y ~26). err() g\u1ecdi msg.focus() n\u00ean 54/304 k\u00fd t\u1ef1 g\u00f5 ti\u1ebfp b\u1ecb m\u1ea5t; preview \u0111\u1ee9ng y\u00ean \u0111\u1ebfn h\u1ebft c\u1eeda s\u1ed5; alert kh\u00f4ng t\u1ef1 \u1ea9n khi preview th\u00e0nh c\u00f4ng l\u1ea1i.",
   "id": "BUG-002",
   "kind": "bug",
-  "status": "OPEN",
+  "status": "FIXED_PENDING_VERIFICATION",
   "created": "2026-11-06T04:58:44Z",
   "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
-  "history": []
+  "history": [
+    {
+      "at": "2026-11-06T05:08:32Z",
+      "from": "OPEN",
+      "to": "FIXED_PENDING_VERIFICATION",
+      "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+      "evidence": null
+    }
+  ],
+  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
 }

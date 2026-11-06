@@ -12,8 +12,17 @@
   "task": "T-007",
   "id": "FND-013",
   "kind": "finding",
-  "status": "OPEN",
+  "status": "FIXED_PENDING_VERIFICATION",
   "created": "2026-11-06T04:48:48Z",
   "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
-  "history": []
+  "history": [
+    {
+      "at": "2026-11-06T05:08:32Z",
+      "from": "OPEN",
+      "to": "FIXED_PENDING_VERIFICATION",
+      "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+      "evidence": null
+    }
+  ],
+  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
 }
