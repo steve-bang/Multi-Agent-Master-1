@@ -1,0 +1,36 @@
+{
+  "sha": "6d1ff9620ff3a8c5e2d13b6264c90e550de8b7c2",
+  "at": "2026-11-06T04:10:58Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 test\n> vitest run\n\n\n RUN  v2.1.9 /home/user/Multi-Agent-Master-1\n\n \u2713 test/unit/migration.test.ts (1 test) 8ms\n \u2713 test/integration/healthz.test.ts (1 test) 125ms\n \u2713 test/integration/auth.test.ts (10 tests) 1984ms\n   \u2713 REQ-003 auth > REQ-003 \u0111\u0103ng k\u00fd ok, email kh\u00f4ng ph\u00e2n bi\u1ec7t hoa th\u01b0\u1eddng, \u0111\u0103ng nh\u1eadp \u0111\u01b0\u1ee3c 348ms\n   \u2713 REQ-003 auth > REQ-003 \u0111\u0103ng nh\u1eadp sai b\u00e1o chung chung, kh\u00f4ng l\u1ed9 email t\u1ed3n t\u1ea1i 308ms\n   \u2713 REQ-003 auth > REQ-003 kh\u00f3a sau 5 l\u1ea7n sai, k\u1ec3 c\u1ea3 khi sau \u0111\u00f3 nh\u1eadp \u0111\u00fang 625ms\n\n Test Files  3 passed (3)\n      Tests  12 passed (12)\n   Start at  04:10:52\n   Duration  2.46s (transform 229ms, setup 0ms, collect 532ms, tests 2.12s, environment 1ms, prepare 206ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n RUN  v2.1.9 /home/user/Multi-Agent-Master-1\n\n \u2713 test/integration/healthz.test.ts (1 test) 130ms\n \u2713 test/integration/auth.test.ts (10 tests) 1953ms\n   \u2713 REQ-003 auth > REQ-003 \u0111\u0103ng k\u00fd ok, email kh\u00f4ng ph\u00e2n bi\u1ec7t hoa th\u01b0\u1eddng, \u0111\u0103ng nh\u1eadp \u0111\u01b0\u1ee3c 368ms\n   \u2713 REQ-003 auth > REQ-003 \u0111\u0103ng nh\u1eadp sai b\u00e1o chung chung, kh\u00f4ng l\u1ed9 email t\u1ed3n t\u1ea1i 309ms\n   \u2713 REQ-003 auth > REQ-003 kh\u00f3a sau 5 l\u1ea7n sai, k\u1ec3 c\u1ea3 khi sau \u0111\u00f3 nh\u1eadp \u0111\u00fang 626ms\n\n Test Files  2 passed (2)\n      Tests  11 passed (11)\n   Start at  04:10:55\n   Duration  2.40s (transform 167ms, setup 0ms, collect 404ms, tests 2.08s, environment 0ms, prepare 124ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}
