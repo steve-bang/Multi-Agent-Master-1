@@ -12,7 +12,7 @@
     "AC REQ-004/007 pass; space ng\u01b0\u1eddi kh\u00e1c tr\u1ea3 404 (test IDOR)"
   ],
   "expected_outputs": [],
-  "status": "PENDING",
+  "status": "IN_PROGRESS",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -28,6 +28,20 @@
       "at": "2026-11-06T04:00:36Z",
       "to": "PENDING",
       "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T04:21:45Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:21:45Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }
