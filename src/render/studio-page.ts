@@ -105,7 +105,7 @@ document.getElementById('ed-close').addEventListener('click',closeEd);
 window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=S['studio.edit.leave'];return S['studio.edit.leave'];}});
 function openEd(n){if(dirty&&!window.confirm(S['studio.edit.leave']))return;
 api('GET','/api/pages/'+n.id).then(function(x){if(!x.ok)return err(x);ok();ed=x.j.page;ti.value=ed.title;ta.value=ed.bodyMd;dirty=false;
-sv.disabled=true;st.textContent='';document.getElementById('ed-panel').hidden=false;preview();ta.focus();});}
+sv.disabled=true;st.textContent='';document.getElementById('ed-panel').hidden=false;clearTimeout(pvTimer);clearTimeout(pvRetry);runPv();ta.focus();});}
 document.getElementById('new-space').addEventListener('click',function(){ask(S['studio.space.name'],'',function(v){
 api('POST','/api/spaces',{title:v}).then(function(x){if(!x.ok)return err(x);loadSpaces();});});});
 document.getElementById('new-page').addEventListener('click',function(){addPage(null);});
