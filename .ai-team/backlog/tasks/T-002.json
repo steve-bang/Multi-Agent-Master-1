@@ -14,14 +14,30 @@
   "expected_outputs": [
     ".ai-team/design/design-specs/vn-docs-platform.md"
   ],
-  "status": "IN_PROGRESS",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
   "requirements": [],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "by": "designer",
+      "evidence": ".ai-team/design/ux-flows/vn-docs-platform.md; .ai-team/design/design-specs/vn-docs-platform.md"
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "by": "orchestrator",
+      "evidence": "Orchestrator: 2 file t\u1ed3n t\u1ea1i, g\u1eafn REQ-003..008, \u0111\u1ee7 tr\u1ea1ng th\u00e1i; c\u00e2u h\u1ecfi m\u1edf ghi \u1edf CLR-009 (kh\u00f4ng ch\u1eb7n)"
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "by": "orchestrator",
+      "evidence": "design accepted; chi ti\u1ebft [?] v\u1eabn ASSUMPTION"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T03:40:57Z",
@@ -39,6 +55,34 @@
       "at": "2026-11-06T03:56:47Z",
       "from": "ASSIGNED",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "designer",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:58:10Z",
+      "from": "APPROVED",
+      "to": "DONE",
       "by": "orchestrator",
       "note": null
     }

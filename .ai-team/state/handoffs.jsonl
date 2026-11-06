@@ -4,3 +4,4 @@
 {"at": "2026-11-06T03:56:28Z", "from": "orchestrator", "to": "ba", "task": "T-001", "type": "answer", "summary": "Owner CONFIRMED CLR-001..008; ph\u1ea1m vi \u0111\u1ee3t 1 = REQ-003..008"}
 {"at": "2026-11-06T03:56:47Z", "from": "orchestrator", "to": "designer", "task": "T-002", "type": "delegation", "summary": "Thi\u1ebft k\u1ebf MVP \u0111\u1ee3t 1"}
 {"at": "2026-11-06T03:56:47Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-003", "type": "delegation", "summary": "K\u1ebf ho\u1ea1ch k\u1ef9 thu\u1eadt + ADR stack (ch\u01b0a code)"}
+{"at": "2026-11-06T03:58:10Z", "from": "designer", "to": "orchestrator", "task": "T-002", "type": "report", "summary": "Design xong; 12 c\u00e2u h\u1ecfi chi ti\u1ebft nghi\u1ec7p v\u1ee5 g\u1eedi BA"}
