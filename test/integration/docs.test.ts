@@ -301,6 +301,13 @@ describe('REQ-004 phân quyền và bảo vệ', () => {
     expect(bad.json().error.message).toBe('Dữ liệu không hợp lệ.');
   });
 
+  it('BUG-003 script bắt lỗi mạng của fetch và có thông báo tiếng Việt (error.network)', async () => {
+    const { app, a } = await setup();
+    const js = (await app.inject({ method: 'GET', url: '/assets/studio.js', headers: a })).body;
+    expect(js).toMatch(/function\(e\)\{return \{ok:false,status:0,j:\{\},net:true/);
+    expect(js).toContain('Mất kết nối. Kiểm tra mạng và thử lại.');
+  });
+
   it('REQ-004 /studio hiển thị khung quản lý bằng tiếng Việt, có script ngoài (CSP không cho inline)', async () => {
     const { app, a } = await setup();
     const r = await app.inject({ method: 'GET', url: '/studio', headers: a });

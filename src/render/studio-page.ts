@@ -17,7 +17,8 @@ function btn(label,fn){var b=el('button',label,{type:'button'});b.addEventListen
 function api(method,url,body,signal){var o={method:method,credentials:'same-origin',signal:signal};
 if(body){o.headers={'Content-Type':'application/json'};o.body=JSON.stringify(body);}
 return fetch(url,o)
-.then(function(r){return r.text().then(function(x){var j={};try{j=x?JSON.parse(x):{};}catch(e){}return {ok:r.ok,status:r.status,j:j,retry:parseInt(r.headers.get('Retry-After'),10)||0};});});}
+.then(function(r){return r.text().then(function(x){var j={};try{j=x?JSON.parse(x):{};}catch(e){}return {ok:r.ok,status:r.status,j:j,retry:parseInt(r.headers.get('Retry-After'),10)||0};});},
+function(e){return {ok:false,status:0,j:{},net:true,aborted:!!(e&&e.name==='AbortError')};});}
 var msg=el('div',null,{role:'alert',tabindex:'-1'});msg.hidden=true;
 function err(x){msg.textContent=(x&&x.j&&x.j.error&&x.j.error.message)||S['error.network'];msg.hidden=false;msg.focus();}
 function ok(){msg.hidden=true;msg.textContent='';}
