@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "severity": "LOW",
+  "category": "correctness",
+  "file": "src/render/studio-page.ts",
+  "line": 103,
+  "description": "closeEd() kh\u00f4ng clearTimeout pvTimer/pvRetry, kh\u00f4ng abort pvCtl, kh\u00f4ng x\u00f3a pvNote. Sau khi \u0111\u00f3ng v\u1eabn c\u00f2n m\u1ed9t request th\u1eeba; n\u1ebfu \u0111ang b\u1ecb 429, v\u00f2ng th\u1eed l\u1ea1i ch\u1ea1y ng\u1ea7m t\u1edbi khi h\u1ebft c\u1eeda s\u1ed5 (<=60 s). Kh\u00f4ng m\u1ea5t d\u1eef li\u1ec7u.",
+  "expected": "\u0110\u00f3ng tr\u00ecnh so\u1ea1n th\u00ec m\u1ecdi timer v\u00e0 request xem tr\u01b0\u1edbc b\u1ecb h\u1ee7y.",
+  "action": "Trong closeEd g\u1ecdi clearTimeout(pvTimer), clearTimeout(pvRetry), pvCtl.abort(), ++pvSeq, pvNote('').",
+  "acceptance": "\u0110\u00f3ng tr\u00ecnh so\u1ea1n khi \u0111ang ch\u1edd th\u1eed l\u1ea1i 429 th\u00ec kh\u00f4ng c\u00f2n request /api/preview n\u00e0o sau \u0111\u00f3.",
+  "task": "T-007",
+  "id": "FND-015",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T05:10:27Z",
+  "original_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "history": []
+}

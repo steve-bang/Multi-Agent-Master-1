@@ -131,9 +131,9 @@ const OUT = '/home/user/Multi-Agent-Master-1/.ai-team/testing/test-results';
   L.rec('11e toolbar có role + aria-label', tb === 'Thanh công cụ', tb);
   // (12) screenshots
   await page.fill('#ed-body', md); await page.waitForTimeout(700);
-  await page.screenshot({ path: OUT + '/T-007-a0f30e0-editor-1280.png', fullPage: true });
+  await page.screenshot({ path: OUT + '/T-007-9d59515-editor-1280.png', fullPage: true });
   await page.setViewportSize({ width: 360, height: 800 }); await page.waitForTimeout(300);
-  await page.screenshot({ path: OUT + '/T-007-a0f30e0-editor-360.png', fullPage: true });
+  await page.screenshot({ path: OUT + '/T-007-9d59515-editor-360.png', fullPage: true });
   const ov = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
   L.rec('12a 360px: không tràn ngang trang', ov.sw <= ov.cw, JSON.stringify(ov));
   await page.setViewportSize({ width: 1280, height: 900 });

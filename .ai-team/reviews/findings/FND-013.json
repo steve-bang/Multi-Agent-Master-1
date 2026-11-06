@@ -12,7 +12,7 @@
   "task": "T-007",
   "id": "FND-013",
   "kind": "finding",
-  "status": "FIXED_PENDING_VERIFICATION",
+  "status": "VERIFIED_CLOSED",
   "created": "2026-11-06T04:48:48Z",
   "original_sha": "a0f30e0e9084ce3dbf39faac74372a65866f4336",
   "history": [
@@ -22,7 +22,16 @@
       "to": "FIXED_PENDING_VERIFICATION",
       "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
       "evidence": null
+    },
+    {
+      "at": "2026-11-06T05:10:27Z",
+      "from": "FIXED_PENDING_VERIFICATION",
+      "to": "VERIFIED_CLOSED",
+      "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+      "evidence": "Reviewer \u0111\u1ecdc studio-page.ts \u1edf 9d59515: l\u1ed7i preview kh\u00f4ng g\u1ecdi err()/focus/alert, pvSeq+abort ch\u1ed1ng race, retry kh\u00f4ng d\u1ed3n. Reviewer KH\u00d4NG ch\u1ea1y \u0111\u01b0\u1ee3c vitest (ERR_MODULE_NOT_FOUND); h\u00e0nh vi client d\u1ef1a v\u00e0o retest c\u1ee7a Tester. Report T-007-9d59515.md"
     }
   ],
-  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
+  "fixed_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "verified_by": "reviewer",
+  "verified_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de"
 }

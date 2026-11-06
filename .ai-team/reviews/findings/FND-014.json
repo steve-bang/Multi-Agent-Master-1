@@ -1,0 +1,19 @@
+{
+  "pr": "NO-PR-YET",
+  "sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "severity": "MEDIUM",
+  "category": "performance",
+  "file": "src/routes/docs.ts",
+  "line": 10,
+  "description": "H\u1ea1n m\u1ee9c preview n\u00e2ng t\u1eeb 30 l\u00ean 120/ph\u00fat ch\u1ec9 \u0111\u1ebfm s\u1ed1 request, kh\u00f4ng x\u00e9t k\u00edch th\u01b0\u1edbc n\u1ed9i dung. V\u1edbi 0,5-0,7 s CPU m\u1ed7i l\u1ea7n \u1edf 200 KB, 120 request l\u00e0 60-85 s CPU/ph\u00fat, v\u01b0\u1ee3t 100% m\u1ed9t l\u00f5i; render \u0111\u1ed3ng b\u1ed9 tr\u00ean lu\u1ed3ng s\u1ef1 ki\u1ec7n \u0111\u01a1n n\u00ean m\u1ed9t user \u0111\u0103ng nh\u1eadp c\u00f3 th\u1ec3 l\u00e0m treo to\u00e0n \u1ee9ng d\u1ee5ng. S\u1ed1 CPU l\u1ea5y t\u1eeb s\u1ed1 \u0111o Dev/Tester, Reviewer ch\u01b0a t\u1ef1 \u0111o. Ng\u01b0\u1eddi g\u00f5 th\u1eadt v\u1edbi debounce 800 ms t\u1ed1i \u0111a ~75 request/ph\u00fat n\u00ean 120 l\u00e0 d\u01b0 cho n\u1ed9i dung nh\u1ecf.",
+  "expected": "H\u1ea1n m\u1ee9c t\u00ednh theo ng\u00e2n s\u00e1ch byte ho\u1eb7c c\u1ee1 n\u1ed9i dung \u0111\u1ec3 m\u1ed9t user kh\u00f4ng th\u1ec3 chi\u1ebfm qu\u00e1 m\u1ed9t ph\u1ea7n nh\u1ecf CPU.",
+  "action": "Gi\u1eef ~120/ph\u00fat cho n\u1ed9i dung nh\u1ecf v\u00e0 h\u1ea1 m\u1ea1nh khi n\u1ed9i dung l\u1edbn h\u01a1n kho\u1ea3ng 50 KB (ho\u1eb7c ng\u00e2n s\u00e1ch byte/ph\u00fat/user).",
+  "acceptance": "Test: c\u00e1c body 200 KB li\u00ean ti\u1ebfp b\u1ecb 429 theo ng\u01b0\u1ee1ng ghi trong m\u00e3; body nh\u1ecf v\u1eabn \u0111\u1ea1t 120/ph\u00fat; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng.",
+  "task": "T-007",
+  "id": "FND-014",
+  "kind": "finding",
+  "status": "OPEN",
+  "created": "2026-11-06T05:10:27Z",
+  "original_sha": "9d59515f31944e4936d275ae300e7f1a3f1883de",
+  "history": []
+}

@@ -8,7 +8,7 @@ const OUT = '/home/user/Multi-Agent-Master-1/.ai-team/testing/test-results';
     await page.setViewportSize({ width: w, height: h });
     const r = page.waitForResponse((x) => x.url().endsWith('/api/preview')); await page.fill('#ed-body', md + ' '.repeat(w === 360 ? 1 : 0)); await r; await page.waitForTimeout(500);
     await page.focus('#tb-table');
-    await page.screenshot({ path: `${OUT}/T-007-a0f30e0-editor-${n}.png`, fullPage: true });
+    await page.screenshot({ path: `${OUT}/T-007-9d59515-editor-${n}.png`, fullPage: true });
   }
   await browser.close();
 })();
