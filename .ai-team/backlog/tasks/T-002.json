@@ -14,7 +14,7 @@
   "expected_outputs": [
     ".ai-team/design/design-specs/vn-docs-platform.md"
   ],
-  "status": "PENDING",
+  "status": "IN_PROGRESS",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -27,6 +27,20 @@
       "at": "2026-11-06T03:40:57Z",
       "to": "PENDING",
       "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T03:56:47Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:56:47Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }

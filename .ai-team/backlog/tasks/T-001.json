@@ -15,22 +15,30 @@
   "expected_outputs": [
     ".ai-team/requirements/vn-docs-platform.md"
   ],
-  "status": "BLOCKED",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
   "requirements": [],
-  "blocked_by": [
-    "CLR-001",
-    "CLR-002",
-    "CLR-003",
-    "CLR-004",
-    "CLR-005",
-    "CLR-006",
-    "CLR-007"
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "by": "ba",
+      "evidence": ".ai-team/requirements/vn-docs-platform.md; decisions/owner-001-vn-docs-platform.md"
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "by": "orchestrator",
+      "evidence": "Orchestrator: 8/8 clarifications CONFIRMED c\u00f3 ngu\u1ed3n; REQ ph\u1ea1m vi \u0111\u00e3 \u0111\u1ed1i chi\u1ebfu"
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "by": "orchestrator",
+      "evidence": "requirements approved 2026-11-06"
+    }
   ],
-  "prev_status": "IN_PROGRESS",
-  "evidence": [],
   "history": [
     {
       "at": "2026-11-06T03:40:57Z",
@@ -57,6 +65,41 @@
       "to": "BLOCKED",
       "by": "orchestrator",
       "note": "waiting on CLR-001"
+    },
+    {
+      "at": "2026-11-06T03:56:15Z",
+      "from": "BLOCKED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": "unblocked by CLR-007"
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "ba",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T03:56:28Z",
+      "from": "APPROVED",
+      "to": "DONE",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }
