@@ -16,13 +16,17 @@ export function designTokensPage(tokensCss: string): string {
   const tokens = parseTokens(tokensCss);
   const by = (prefix: string): Token[] => tokens.filter((x) => x.name.startsWith(prefix));
   const bg = tokens.find((x) => x.name === 'color-bg')?.value ?? '';
+  const primary = tokens.find((x) => x.name === 'color-primary')?.value ?? '';
 
   const colors = by('color-')
     .map((x) => {
       const ratio = isHex(x.value) && isHex(bg) ? contrastRatio(x.value, bg) : null;
-      return `<li class="swatch"><div class="swatch-chip sw-${x.name}" role="img" aria-label="${esc(x.name)} ${esc(x.value)}"></div><div class="swatch-body"><strong>${esc(x.name)}</strong><code>${esc(x.value)}</code>${
-        ratio === null ? '' : `<span>${ratio.toFixed(1)}:1 trên nền trắng. ${esc(grade(ratio))}</span>`
-      }</div></li>`;
+      let note = ratio === null ? '' : `<span>${ratio.toFixed(1)}:1 trên nền trắng. ${esc(grade(ratio))}</span>`;
+      if (x.name === 'color-on-primary' && isHex(x.value) && isHex(primary)) {
+        const r = contrastRatio(x.value, primary);
+        note = `<span>Chữ trên primary ${esc(primary)}: ${r.toFixed(1)}:1. ${esc(grade(r))}</span>`;
+      }
+      return `<li class="swatch"><div class="swatch-chip sw-${x.name}" role="img" aria-label="${esc(x.name)} ${esc(x.value)}"></div><div class="swatch-body"><strong>${esc(x.name)}</strong><code>${esc(x.value)}</code>${note}</div></li>`;
     })
     .join('');
 
@@ -73,7 +77,7 @@ export function designTokensPage(tokensCss: string): string {
 <body>
 <a class="skip-link" href="#main">${esc(t['app.skip'])}</a>
 <header class="topbar"><span class="brand">${esc(t['app.name'])}</span></header>
-<main id="main" class="doc">
+<main id="main" class="doc" tabindex="-1">
 <h1>Token thiết kế</h1>
 <p class="muted">Giá trị đọc trực tiếp từ <code>tokens.css</code>. Tỉ lệ tương phản được tính với nền trắng (${esc(bg)}).</p>
 
@@ -88,7 +92,8 @@ export function designTokensPage(tokensCss: string): string {
 
 <section aria-labelledby="h-radius"><h2 id="h-radius">Bo góc</h2>${rows(by('radius-'), (x) => `<div class="radius-box r-${esc(x.name)}"></div>`)}</section>
 
-<section aria-labelledby="h-btn"><h2 id="h-btn">Nút</h2>${buttons}</section>
+<section aria-labelledby="h-btn"><h2 id="h-btn">Nút</h2>
+<p class="muted">Quy tắc: hành động chính của một hàng (Mở, Soạn) dùng nút phụ có viền; mọi hành động còn lại dùng nút ghost (không viền, hover nền <code>--color-hover-bg</code>).</p>${buttons}</section>
 
 <section aria-labelledby="h-input"><h2 id="h-input">Ô nhập</h2><div class="demo-grid">
 <div><label for="d-default">Mặc định</label><input id="d-default" type="text" placeholder="ten@congty.vn"></div>
@@ -99,7 +104,8 @@ export function designTokensPage(tokensCss: string): string {
 
 <section aria-labelledby="h-alert"><h2 id="h-alert">Khung thông báo</h2>
 <div class="alert" role="presentation">${esc(t['auth.error.bad_credentials'])}</div>
-<div class="alert alert-success" role="presentation">Đã lưu lúc 09:30.</div>
+<div class="alert alert-success" role="status">Đã lưu lúc 09:30.</div>
+<div class="alert alert-warning" role="status">${esc(t['studio.edit.preview_failed'])}</div>
 </section>
 
 <section aria-labelledby="h-focus"><h2 id="h-focus">Vòng focus</h2>

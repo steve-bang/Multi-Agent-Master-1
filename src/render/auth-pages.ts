@@ -9,11 +9,19 @@ var f=document.getElementById('auth-form');if(!f)return;
 var sum=document.getElementById('error-summary');
 var show=document.getElementById('toggle-password');var pw=document.getElementById('password');
 show.addEventListener('click',function(){var h=pw.type==='password';pw.type=h?'text':'password';show.setAttribute('aria-pressed',String(h));show.textContent=h?show.dataset.hide:show.dataset.show;});
-f.addEventListener('submit',function(e){e.preventDefault();sum.textContent='';sum.hidden=true;
+var FIELD={EMAIL_INVALID:'email',EMAIL_EXISTS:'email',PASSWORD_WEAK:'password'};
+function clearErr(){['email','password'].forEach(function(n){var i=document.getElementById(n);i.removeAttribute('aria-invalid');
+var m=document.getElementById(n+'-error');if(m)m.remove();
+if(n==='password'&&i.dataset.hint)i.setAttribute('aria-describedby',i.dataset.hint);else i.removeAttribute('aria-describedby');});}
+function fieldErr(n,text){var i=document.getElementById(n);var m=document.createElement('p');m.id=n+'-error';m.className='field-error-msg';m.textContent=text;
+var host=i.parentNode.classList.contains('field-row')?i.parentNode:i;host.insertAdjacentElement('afterend',m);
+i.setAttribute('aria-invalid','true');i.setAttribute('aria-describedby',m.id+(n==='password'&&i.dataset.hint?' '+i.dataset.hint:''));i.focus();}
+f.addEventListener('submit',function(e){e.preventDefault();sum.textContent='';sum.hidden=true;clearErr();
 fetch(f.dataset.action,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',
 body:JSON.stringify({email:f.email.value,password:pw.value})})
 .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok,j:j};});})
 .then(function(x){if(x.ok){location.href='/studio';return;}
+var c=x.j.error&&x.j.error.code;if(c&&FIELD[c]&&x.j.error.message){fieldErr(FIELD[c],x.j.error.message);return;}
 sum.textContent=(x.j.error&&x.j.error.message)||f.dataset.network;sum.hidden=false;sum.focus();})
 .catch(function(){sum.textContent=f.dataset.network;sum.hidden=false;sum.focus();});});
 })();`;
@@ -37,7 +45,7 @@ export function authPage(kind: 'login' | 'register' | 'script'): string {
 <body>
 <a class="skip-link" href="#main">${esc(t['app.skip'])}</a>
 <header class="topbar"><span class="brand">${esc(t['app.name'])}</span></header>
-<main id="main" class="auth">
+<main id="main" class="auth" tabindex="-1">
 <div class="card">
 <h1>${esc(title)}</h1>
 <form id="auth-form" method="post" data-action="/api/auth/${reg ? 'register' : 'login'}" data-network="${esc(t['error.network'])}" novalidate>
@@ -46,14 +54,14 @@ export function authPage(kind: 'login' | 'register' | 'script'): string {
 <input id="email" name="email" type="email" autocomplete="email" required placeholder="ten@congty.vn">
 <label for="password">${esc(t['auth.field.password'])}</label>
 <div class="field-row">
-<input id="password" name="password" type="password" autocomplete="${reg ? 'new-password' : 'current-password'}" required${reg ? ' minlength="8" aria-describedby="pw-hint"' : ''}>
+<input id="password" name="password" type="password" autocomplete="${reg ? 'new-password' : 'current-password'}" required${reg ? ' minlength="8" aria-describedby="pw-hint" data-hint="pw-hint"' : ''}>
 <button type="button" id="toggle-password" class="btn btn-secondary" aria-pressed="false" data-show="${esc(t['auth.password.show'])}" data-hide="${esc(t['auth.password.hide'])}">${esc(t['auth.password.show'])}</button>
 </div>
 ${reg ? `<p id="pw-hint" class="hint muted">${esc(t['auth.password.hint'])}</p>` : ''}
 <div class="actions"><button type="submit" class="btn btn-primary btn-block">${esc(title)}</button></div>
 </form>
+<p class="auth-alt muted">${other}</p>
 </div>
-<p class="muted">${other}</p>
 </main>
 <script src="/assets/auth.js" defer></script>
 </body>
