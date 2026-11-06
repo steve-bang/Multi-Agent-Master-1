@@ -1,0 +1,11 @@
+{
+  "agents": {
+    "orchestrator": {"state": "idle", "task": null, "updated": null},
+    "ba": {"state": "idle", "task": null, "updated": null},
+    "designer": {"state": "idle", "task": null, "updated": null},
+    "senior-fullstack-dev": {"state": "idle", "task": null, "updated": null},
+    "tester": {"state": "idle", "task": null, "updated": null},
+    "reviewer": {"state": "idle", "task": null, "updated": null},
+    "client": {"state": "idle", "task": null, "updated": null}
+  }
+}

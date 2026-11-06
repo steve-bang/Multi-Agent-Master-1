@@ -1,0 +1,23 @@
+name: ai-team-validate
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ['ai/**']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate AI-team configuration and state
+        run: python3 .ai-team/scripts/validate_config.py
+      - name: Unit tests for workflow tooling and hooks
+        run: python3 -m unittest discover -s .ai-team/scripts -p "test_*.py" -v
+      - name: Project checks (build/lint/test from .ai-team/config.json)
+        run: python3 .ai-team/scripts/ai_team.py run-checks
+        # Fails until real commands are configured: unconfigured required checks never count as green.

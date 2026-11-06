@@ -1,0 +1,18 @@
+{
+  "_comment": "Project-specific configuration. Placeholders (null) are intentional: the repository has no application stack yet. The first feature's technical plan must fill these in; run-checks treats a required check with no command as NOT passing.",
+  "default_branch": "main",
+  "branch_prefix": "ai/",
+  "auto_merge": false,
+  "auto_deploy": false,
+  "notification": {"channel": "in-session", "external_integration": null},
+  "review": {"max_cycles": 4, "escalate_after_cycles": 3},
+  "bugfix": {"max_cycles": 4},
+  "checks": {
+    "build": {"command": null, "required": true},
+    "lint": {"command": null, "required": true},
+    "typecheck": {"command": null, "required": false},
+    "unit": {"command": null, "required": true},
+    "integration": {"command": null, "required": false},
+    "static_analysis": {"command": null, "required": false}
+  }
+}
