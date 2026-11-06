@@ -37,3 +37,9 @@ Quy ước: JSON UTF-8; lỗi `{ "error": { "code": "<MA_LOI>", "message": "<ti�
 | GET /api/public/:spaceSlug/search?q= | 200 `{results:[{title,slug,snippet}]}` | 404 |
 
 Ghi chú: slug trang trùng trong cùng space được thêm hậu tố `-2`; đổi tiêu đề không đổi slug (URL ổn định, giả định, OPEN_QUESTIONS 3). Studio (HTML) tại `/studio`, chưa đăng nhập -> 302 `/dang-nhap`.
+
+## Cập nhật sau T-006 (theo mã thực tế tại b59abca)
+- POST /api/spaces/:id/pages nhận thêm `slug?` (tùy chọn, kiểm tra regex, SLUG_INVALID nếu sai).
+- PATCH /api/pages/:pid hiện chỉ nhận `title`; `bodyMd` sẽ thêm ở T-007.
+- DELETE /api/pages/:pid?confirm=1: trang có con mà thiếu confirm trả 400 CONFIRM_REQUIRED kèm `error.childCount`.
+- Giới hạn: 500 trang/space, tiêu đề 200 ký tự, slug 80 ký tự. Space/trang của người khác trả 404.
