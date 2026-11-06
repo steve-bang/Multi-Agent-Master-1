@@ -1,2 +1,3 @@
 {"at": "2026-11-06T03:40:57Z", "from": "orchestrator", "to": "ba", "task": "T-001", "type": "delegation", "summary": "Ph\u00e2n t\u00edch y\u00eau c\u1ea7u GitBook-VN"}
 {"at": "2026-11-06T03:41:54Z", "from": "ba", "to": "orchestrator", "task": "T-001", "type": "report", "summary": "NEEDS_INFO: REQ-001..014, 8 c\u00e2u h\u1ecfi m\u1edf"}
+{"at": "2026-11-06T03:42:38Z", "from": "client", "to": "orchestrator", "task": "T-001", "type": "escalation", "summary": "CLR-001..008 \u0111\u1ec1u UNKNOWN, chuy\u1ec3n Owner"}

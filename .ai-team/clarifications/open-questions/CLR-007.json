@@ -2,14 +2,20 @@
   "id": "CLR-007",
   "question": "10% token \u0111o tr\u00ean c\u00e1i g\u00ec v\u00e0 m\u1ee9c d\u1eebng khi ch\u1ea1m gi\u1edbi h\u1ea1n? \u0110\u1ec1 xu\u1ea5t: \u0111\u1ee3t 1 = REQ-003..008, d\u1eebng v\u00e0 b\u00e1o Owner khi g\u1ea7n ng\u01b0\u1ee1ng",
   "asked_by": "ba",
-  "route": "client",
+  "route": "owner",
   "blocks": [
     "T-001"
   ],
-  "status": "OPEN",
-  "classification": null,
+  "status": "ESCALATED_TO_OWNER",
+  "classification": "UNKNOWN",
   "answer": null,
   "source": null,
   "created": "2026-11-06T03:41:54Z",
-  "history": []
+  "history": [
+    {
+      "at": "2026-11-06T03:42:39Z",
+      "classification": "UNKNOWN",
+      "answer": "Kh\u00f4ng c\u00f3 ngu\u1ed3n x\u00e1c nh\u1eadn; ch\u1edd Owner"
+    }
+  ]
 }
