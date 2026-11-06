@@ -8,8 +8,17 @@
   "actual": "Hash \u0111\u1ed5i v\u00e0 trang cu\u1ed9n nh\u01b0ng document.activeElement v\u1eabn l\u00e0 BODY (\u0111\u00edch thi\u1ebfu tabindex=-1)",
   "id": "BUG-007",
   "kind": "bug",
-  "status": "OPEN",
+  "status": "FIXED_PENDING_VERIFICATION",
   "created": "2026-11-06T07:07:59Z",
   "original_sha": "fb201308f5212b38a082f53fda9895ac66536f64",
-  "history": []
+  "history": [
+    {
+      "at": "2026-11-06T07:19:47Z",
+      "from": "OPEN",
+      "to": "FIXED_PENDING_VERIFICATION",
+      "sha": "6b94a567280a9904cc77ac4103c4b8e047932858",
+      "evidence": null
+    }
+  ],
+  "fixed_sha": "6b94a567280a9904cc77ac4103c4b8e047932858"
 }

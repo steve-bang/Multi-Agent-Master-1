@@ -17,7 +17,7 @@
     "Test c\u0169 v\u1eabn xanh; Tester ch\u1ee5p l\u1ea1i \u1ea3nh; Designer x\u00e1c nh\u1eadn"
   ],
   "expected_outputs": [],
-  "status": "IN_PROGRESS",
+  "status": "IN_REVIEW",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [
@@ -30,7 +30,13 @@
   ],
   "blocked_by": [],
   "prev_status": null,
-  "evidence": [],
+  "evidence": [
+    {
+      "at": "2026-11-06T07:19:47Z",
+      "by": "senior-fullstack-dev",
+      "evidence": "dev 967892e -> 6b94a567280a9904cc77ac4103c4b8e047932858; orchestrator run-checks PASS, 159/159 tests; screenshots screens-ui1b"
+    }
+  ],
   "history": [
     {
       "at": "2026-11-06T07:07:59Z",
@@ -48,6 +54,20 @@
       "at": "2026-11-06T07:07:59Z",
       "from": "ASSIGNED",
       "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:19:47Z",
+      "from": "IN_PROGRESS",
+      "to": "SUBMITTED",
+      "by": "senior-fullstack-dev",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T07:19:47Z",
+      "from": "SUBMITTED",
+      "to": "IN_REVIEW",
       "by": "orchestrator",
       "note": null
     }
