@@ -20,6 +20,8 @@ export const MSG: Record<string, string> = {
   CONFIRM_REQUIRED: t['docs.error.confirm_required'],
   TOO_LARGE: t['docs.error.too_large'],
   INVALID_INPUT: t['docs.error.invalid_input'],
+  PREVIEW_RATE_LIMITED: t['docs.error.preview_rate_limited'],
+  INTERNAL: t['system.error.internal'],
 };
 
 export function fail(reply: FastifyReply, status: number, code: string) {

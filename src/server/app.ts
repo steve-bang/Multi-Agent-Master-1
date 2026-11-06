@@ -26,7 +26,9 @@ export function buildApp(db: Db, opts: AppOptions = {}): FastifyInstance {
     const e = err as { code?: string; statusCode?: number };
     if (e.code === 'FST_ERR_CTP_BODY_TOO_LARGE') return reply.code(400).send({ error: { code: 'TOO_LARGE', message: MSG.TOO_LARGE } });
     const status = e.statusCode && e.statusCode >= 400 && e.statusCode < 500 ? e.statusCode : 500;
-    return reply.code(status).send({ error: { code: status === 500 ? 'INTERNAL' : 'INVALID_INPUT', message: status === 500 ? 'Lỗi hệ thống.' : MSG.INVALID_INPUT } });
+    // Lỗi 5xx chỉ ghi log phía server (stderr), client nhận thông báo cố định.
+    if (status === 500) console.error('[server] lỗi 5xx:', err);
+    return reply.code(status).send({ error: { code: status === 500 ? 'INTERNAL' : 'INVALID_INPUT', message: status === 500 ? MSG.INTERNAL : MSG.INVALID_INPUT } });
   });
   app.register(healthRoutes);
   app.register(authRoutes);

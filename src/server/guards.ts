@@ -29,9 +29,11 @@ export function registerGlobalGuards(app: FastifyInstance): void {
     reply.header('X-Content-Type-Options', 'nosniff');
     reply.header('X-Frame-Options', 'DENY');
     reply.header('Referrer-Policy', 'same-origin');
+    // Ảnh theo URL: production chỉ https:; http: chỉ để dev/test (production bị mixed content chặn).
+    const img = process.env.NODE_ENV === 'production' ? "'self' https:" : "'self' http: https:";
     reply.header(
       'Content-Security-Policy',
-      "default-src 'self'; img-src 'self' http: https:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
+      `default-src 'self'; img-src ${img}; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'`,
     );
     const u = req.url;
     if (u.startsWith('/api/') || u.startsWith('/studio') || u.startsWith('/dang-')) {

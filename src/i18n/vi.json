@@ -17,6 +17,8 @@
   "auth.error.rate_limited": "Bạn đã thử quá nhiều lần. Vui lòng thử lại sau 15 phút.",
   "auth.error.forbidden_origin": "Yêu cầu không hợp lệ.",
   "auth.error.unauthenticated": "Vui lòng đăng nhập để tiếp tục.",
+  "system.error.internal": "Lỗi hệ thống.",
+  "docs.error.preview_rate_limited": "Bạn xem trước quá nhanh. Vui lòng thử lại sau ít giây.",
   "docs.error.not_found": "Không tìm thấy.",
   "docs.error.title_required": "Vui lòng nhập tiêu đề.",
   "docs.error.title_too_long": "Tiêu đề quá dài (tối đa 200 ký tự).",
