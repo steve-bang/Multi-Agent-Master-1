@@ -1,0 +1,36 @@
+{
+  "sha": "7e69dd2a2e83ca8e75da42c29a3e1e1e0779cb88",
+  "at": "2026-11-06T04:04:24Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 test\n> vitest run\n\n\n RUN  v2.1.9 /home/user/Multi-Agent-Master-1\n\n \u2713 test/unit/migration.test.ts (1 test) 8ms\n \u2713 test/integration/healthz.test.ts (1 test) 115ms\n\n Test Files  2 passed (2)\n      Tests  2 passed (2)\n   Start at  04:04:22\n   Duration  528ms (transform 139ms, setup 0ms, collect 243ms, tests 123ms, environment 0ms, prepare 154ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n RUN  v2.1.9 /home/user/Multi-Agent-Master-1\n\n \u2713 test/integration/healthz.test.ts (1 test) 117ms\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  04:04:23\n   Duration  539ms (transform 91ms, setup 0ms, collect 157ms, tests 117ms, environment 0ms, prepare 60ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}
