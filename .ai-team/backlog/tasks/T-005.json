@@ -12,7 +12,7 @@
     "AC REQ-003 pass k\u00e8m test, m\u1eadt kh\u1ea9u scrypt, kh\u00f3a 5 l\u1ea7n/15 ph\u00fat"
   ],
   "expected_outputs": [],
-  "status": "REVISION",
+  "status": "IN_PROGRESS",
   "related_pr": null,
   "related_findings": [
     "FND-001",
@@ -76,6 +76,13 @@
       "to": "REVISION",
       "by": "orchestrator",
       "note": "7 findings t\u1eeb review 6d1ff96"
+    },
+    {
+      "at": "2026-11-06T04:13:02Z",
+      "from": "REVISION",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }
