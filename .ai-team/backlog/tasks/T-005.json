@@ -12,7 +12,7 @@
     "AC REQ-003 pass k\u00e8m test, m\u1eadt kh\u1ea9u scrypt, kh\u00f3a 5 l\u1ea7n/15 ph\u00fat"
   ],
   "expected_outputs": [],
-  "status": "PENDING",
+  "status": "IN_PROGRESS",
   "related_pr": null,
   "related_findings": [],
   "related_bugs": [],
@@ -27,6 +27,20 @@
       "at": "2026-11-06T04:00:36Z",
       "to": "PENDING",
       "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T04:07:10Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T04:07:10Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
     }
   ]
 }

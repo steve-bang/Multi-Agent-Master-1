@@ -8,3 +8,4 @@
 {"at": "2026-11-06T03:58:55Z", "from": "senior-fullstack-dev", "to": "orchestrator", "task": "T-003", "type": "report", "summary": "K\u1ebf ho\u1ea1ch + ADR-0001 PROPOSED; 5 c\u00e2u h\u1ecfi cho BA; cherry-pick 1534a16"}
 {"at": "2026-11-06T04:00:44Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-004", "type": "delegation", "summary": "I-1 kh\u1edfi t\u1ea1o d\u1ef1 \u00e1n"}
 {"at": "2026-11-06T04:04:35Z", "from": "senior-fullstack-dev", "to": "orchestrator", "task": "T-004", "type": "report", "summary": "I-1 xong, cherry-pick 6de320d; thi\u1ebfu .env.example (b\u1ecb ch\u1eb7n b\u1edfi quy t\u1eafc secret)"}
+{"at": "2026-11-06T04:07:10Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-005", "type": "delegation", "summary": "I-2 \u0111\u0103ng k\u00fd/\u0111\u0103ng nh\u1eadp/\u0111\u0103ng xu\u1ea5t"}
