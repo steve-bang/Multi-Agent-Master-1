@@ -1,0 +1,36 @@
+{
+  "sha": "b6e63356bc2aa33c059f3e301c167bbacfdf9fc3",
+  "at": "2026-11-06T05:25:56Z",
+  "results": {
+    "build": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 build\n> tsc -p tsconfig.build.json && node scripts/copy-migrations.mjs\n\n"
+    },
+    "lint": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "\n> vn-docs-platform@0.1.0 lint\n> eslint .\n\n"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": ""
+    },
+    "unit": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "ung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 764ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 623ms\n \u2713 test/unit/migration.test.ts (1 test) 10ms\n \u2713 test/integration/preview-perf.test.ts (20 tests) 5142ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: emphasis l\u1eb7p **_ 305ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 602ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 573ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 627ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 120 request/ph\u00fat/user: request th\u1ee9 121 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 326ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (a) body 200 KB li\u00ean ti\u1ebfp: \u0111\u00fang 20 request qua r\u1ed3i 429; (c) user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 482ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (d) 40 request song song 200 KB: \u0111\u00fang 20 qua, kh\u00f4ng race 449ms\n \u2713 test/integration/server-hardening.test.ts (6 tests) 691ms\n   \u2713 T-007 c\u1edd Secure c\u1ee7a cookie theo m\u00f4i tr\u01b0\u1eddng > kh\u00f4ng \u0111\u1eb7t NODE_ENV -> Secure; production -> Secure; development -> kh\u00f4ng Secure 463ms\n \u2713 test/integration/healthz.test.ts (1 test) 139ms\n\n Test Files  8 passed (8)\n      Tests  118 passed (118)\n   Start at  05:25:34\n   Duration  10.30s (transform 620ms, setup 0ms, collect 2.19s, tests 25.22s, environment 7ms, prepare 741ms)\n\n"
+    },
+    "integration": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "t ch\u1ea1y \u0111\u1ed3ng th\u1eddi kh\u00f4ng v\u01b0\u1ee3t gi\u1edbi h\u1ea1n 625ms\n   \u2713 FND-006 test b\u1ed5 sung > h\u1ebft kh\u00f3a sau 15 ph\u00fat (fake timer) 864ms\n   \u2713 FND-006 test b\u1ed5 sung > email hoa/th\u01b0\u1eddng/kho\u1ea3ng tr\u1eafng d\u00f9ng chung b\u1ed9 \u0111\u1ebfm 711ms\n   \u2713 FND-006 test b\u1ed5 sung > \u0111\u0103ng nh\u1eadp \u0111\u00fang x\u00f3a b\u1ed9 \u0111\u1ebfm 638ms\n \u2713 test/integration/server-hardening.test.ts (6 tests) 578ms\n   \u2713 T-007 c\u1edd Secure c\u1ee7a cookie theo m\u00f4i tr\u01b0\u1eddng > kh\u00f4ng \u0111\u1eb7t NODE_ENV -> Secure; production -> Secure; development -> kh\u00f4ng Secure 405ms\n \u2713 test/integration/preview-perf.test.ts (20 tests) 5332ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: \"[\" l\u1eb7p 778ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: b\u1ea3ng l\u1edbn 537ms\n   \u2713 REQ-005 hi\u1ec7u n\u0103ng render ca x\u1ea5u 200 KB > render <= 1500 ms: nhi\u1ec1u \u0111o\u1ea1n ng\u1eafn 597ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > 120 request/ph\u00fat/user: request th\u1ee9 121 -> 429 envelope ti\u1ebfng Vi\u1ec7t; user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 320ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (a) body 200 KB li\u00ean ti\u1ebfp: \u0111\u00fang 20 request qua r\u1ed3i 429; (c) user kh\u00e1c kh\u00f4ng b\u1ecb \u1ea3nh h\u01b0\u1edfng 573ms\n   \u2713 REQ-005 rate limit POST /api/preview theo user > FND-014 ng\u00e2n s\u00e1ch byte 4 MiB/ph\u00fat/user > (d) 40 request song song 200 KB: \u0111\u00fang 20 qua, kh\u00f4ng race 408ms\n \u2713 test/integration/healthz.test.ts (1 test) 160ms\n\n Test Files  7 passed (7)\n      Tests  117 passed (117)\n   Start at  05:25:45\n   Duration  10.21s (transform 575ms, setup 0ms, collect 2.43s, tests 25.63s, environment 2ms, prepare 561ms)\n\n"
+    },
+    "static_analysis": {
+      "status": "PASS",
+      "exit": 0,
+      "tail": "found 0 vulnerabilities\n"
+    }
+  }
+}
