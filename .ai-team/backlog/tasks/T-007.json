@@ -12,7 +12,7 @@
     "AC REQ-005 pass; XSS b\u1ecb ch\u1eb7n c\u00f3 test"
   ],
   "expected_outputs": [],
-  "status": "IN_REVIEW",
+  "status": "DONE",
   "related_pr": null,
   "related_findings": [
     "FND-010",
@@ -52,6 +52,16 @@
       "at": "2026-11-06T05:26:16Z",
       "by": "senior-fullstack-dev",
       "evidence": "dev fix3 a78ab0d -> b6e63356bc2aa33c059f3e301c167bbacfdf9fc3; orchestrator run-checks PASS, 118/118 tests"
+    },
+    {
+      "at": "2026-11-06T05:48:47Z",
+      "by": "orchestrator",
+      "evidence": "Reviewer APPROVE_RECOMMENDED at b6e6335 (advisory; reviewer could not run vitest); Tester retest PASS in Chromium (T-007-b6e6335.md); orchestrator run-checks PASS 118/118; BUG-004 deferred to T-010"
+    },
+    {
+      "at": "2026-11-06T05:48:47Z",
+      "by": "orchestrator",
+      "evidence": "all FND/BUG for T-007 closed or dispositioned; Reviewer APPROVE_RECOMMENDED at b6e6335 (advisory; reviewer could not run vitest); Tester retest PASS in Chromium (T-007-b6e6335.md); orchestrator run-checks PASS 118/118; BUG-004 deferred to T-010"
     }
   ],
   "history": [
@@ -169,6 +179,20 @@
       "at": "2026-11-06T05:26:16Z",
       "from": "SUBMITTED",
       "to": "IN_REVIEW",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T05:48:47Z",
+      "from": "IN_REVIEW",
+      "to": "APPROVED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T05:48:47Z",
+      "from": "APPROVED",
+      "to": "DONE",
       "by": "orchestrator",
       "note": null
     }
