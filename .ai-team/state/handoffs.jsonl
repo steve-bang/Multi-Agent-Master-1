@@ -42,3 +42,4 @@
 {"at": "2026-11-06T05:26:17Z", "from": "orchestrator", "to": "tester", "task": "T-007", "type": "delegation", "summary": "Retest ph\u1ea1m vi h\u1eb9p FND-014/015 t\u1ea1i b6e63356bc2aa33c059f3e301c167bbacfdf9fc3"}
 {"at": "2026-11-06T05:27:37Z", "from": "reviewer", "to": "orchestrator", "task": "T-007", "type": "report", "summary": "V\u00f2ng 3: APPROVE_RECOMMENDED t\u1ea1i b6e6335; FND-014/015 verified (\u0111\u1ecdc m\u00e3); kh\u00f4ng finding m\u1edbi; ch\u1edd Tester"}
 {"at": "2026-11-06T05:48:47Z", "from": "tester", "to": "orchestrator", "task": "T-007", "type": "report", "summary": "Retest PASS t\u1ea1i b6e6335: FND-014/015 \u0111\u1ea1t; BUG-004 MEDIUM (CPU/byte l\u1ec7ch 80x) g\u1eafn T-010"}
+{"at": "2026-11-06T06:35:39Z", "from": "orchestrator", "to": "senior-fullstack-dev", "task": "T-011", "type": "delegation", "summary": "UI-1 design tokens + CSS"}

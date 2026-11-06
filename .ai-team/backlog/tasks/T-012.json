@@ -1,0 +1,34 @@
+{
+  "id": "T-012",
+  "title": "Designer review giao di\u1ec7n \u0111\u00e3 tri\u1ec3n khai so v\u1edbi b\u1ea3n thi\u1ebft k\u1ebf",
+  "description": "Designer review giao di\u1ec7n \u0111\u00e3 tri\u1ec3n khai so v\u1edbi b\u1ea3n thi\u1ebft k\u1ebf",
+  "assigned_agent": "designer",
+  "input_artifacts": [
+    ".ai-team/design/design-specs/vn-docs-platform.md"
+  ],
+  "dependencies": [
+    "T-011"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "Danh s\u00e1ch l\u1ec7ch thi\u1ebft k\u1ebf k\u00e8m v\u1ecb tr\u00ed v\u00e0 c\u00e1ch s\u1eeda, ho\u1eb7c x\u00e1c nh\u1eadn kh\u1edbp"
+  ],
+  "expected_outputs": [],
+  "status": "PENDING",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-007"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T06:35:39Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    }
+  ]
+}

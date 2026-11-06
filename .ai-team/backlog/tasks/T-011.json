@@ -1,0 +1,51 @@
+{
+  "id": "T-011",
+  "title": "UI-1 H\u1ec7 th\u1ed1ng CSS v\u00e0 design tokens, trang /design-tokens, \u00e1p cho \u0111\u0103ng k\u00fd/\u0111\u0103ng nh\u1eadp/studio/tr\u00ecnh so\u1ea1n",
+  "description": "UI-1 H\u1ec7 th\u1ed1ng CSS v\u00e0 design tokens, trang /design-tokens, \u00e1p cho \u0111\u0103ng k\u00fd/\u0111\u0103ng nh\u1eadp/studio/tr\u00ecnh so\u1ea1n",
+  "assigned_agent": "senior-fullstack-dev",
+  "input_artifacts": [
+    ".ai-team/design/design-specs/vn-docs-platform.md"
+  ],
+  "dependencies": [
+    "T-007"
+  ],
+  "scope": "",
+  "acceptance_criteria": [
+    "File CSS d\u00f9ng chung v\u1edbi bi\u1ebfn token \u0111\u00fang b\u1ea3n thi\u1ebft k\u1ebf, kh\u00f4ng c\u00f2n kh\u1ed1i style vi\u1ebft c\u1ee9ng trong TS (tr\u1eeb khung xem tr\u01b0\u1edbc n\u1ebfu b\u1eaft bu\u1ed9c)",
+    "Trang /design-tokens hi\u1ec3n th\u1ecb token (m\u00e0u + t\u01b0\u01a1ng ph\u1ea3n, ch\u1eef, kho\u1ea3ng c\u00e1ch, bo g\u00f3c, tr\u1ea1ng th\u00e1i n\u00fat/\u00f4 nh\u1eadp)",
+    "\u0110\u0103ng k\u00fd, \u0111\u0103ng nh\u1eadp, studio, tr\u00ecnh so\u1ea1n d\u00f9ng token; responsive 360/768/1280; focus ring; reduced-motion",
+    "Test t\u1ef1 \u0111\u1ed9ng: t\u1ec9 l\u1ec7 t\u01b0\u01a1ng ph\u1ea3n c\u00e1c c\u1eb7p m\u00e0u \u0111\u1ea1t WCAG AA; to\u00e0n b\u1ed9 test c\u0169 v\u1eabn xanh"
+  ],
+  "expected_outputs": [],
+  "status": "IN_PROGRESS",
+  "related_pr": null,
+  "related_findings": [],
+  "related_bugs": [],
+  "requirements": [
+    "REQ-007"
+  ],
+  "blocked_by": [],
+  "prev_status": null,
+  "evidence": [],
+  "history": [
+    {
+      "at": "2026-11-06T06:35:39Z",
+      "to": "PENDING",
+      "by": "orchestrator"
+    },
+    {
+      "at": "2026-11-06T06:35:39Z",
+      "from": "PENDING",
+      "to": "ASSIGNED",
+      "by": "orchestrator",
+      "note": null
+    },
+    {
+      "at": "2026-11-06T06:35:39Z",
+      "from": "ASSIGNED",
+      "to": "IN_PROGRESS",
+      "by": "orchestrator",
+      "note": null
+    }
+  ]
+}
